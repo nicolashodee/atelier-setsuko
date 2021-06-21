@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Amelia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-17 09:57+0200\n"
-"PO-Revision-Date: 2021-05-17 09:57+0200\n"
+"PO-Revision-Date: 2021-06-21 19:28+0200\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -11,7 +11,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 3.0\n"
 "X-Poedit-KeywordsList: __;_e;gettext;gettext_noop;_\n"
 "X-Poedit-Basepath: ../../src/Infrastructure/WP/Translations\n"
 "X-Loco-Version: 2.4.0; wp-5.4.2\n"
@@ -35,11 +35,11 @@ msgstr "Tous les emplacements"
 
 #: BackendStrings.php:28
 msgid "All Packages"
-msgstr "Toutes les offres"
+msgstr "Tous les forfaits"
 
 #: BackendStrings.php:29
 msgid "All Services"
-msgstr "Tous les services"
+msgstr "Tous les cours"
 
 #: BackendStrings.php:30 BackendStrings.php:692 FrontendStrings.php:92
 #: FrontendStrings.php:195
@@ -171,11 +171,11 @@ msgstr "example@mail.com"
 
 #: BackendStrings.php:61 BackendStrings.php:323 BackendStrings.php:689
 msgid "Employee"
-msgstr "Employé"
+msgstr "Professeur"
 
 #: BackendStrings.php:62 BackendStrings.php:324
 msgid "Employees"
-msgstr "Employés"
+msgstr "Professeurs"
 
 #: BackendStrings.php:63 FrontendStrings.php:131 FrontendStrings.php:459
 msgid "Please enter email"
@@ -193,11 +193,11 @@ msgstr "Erreur"
 #: BackendStrings.php:66 BackendStrings.php:693 BackendStrings.php:1385
 #: FrontendStrings.php:314
 msgid "Event"
-msgstr "Evénement"
+msgstr "Stage"
 
 #: BackendStrings.php:67 BackendStrings.php:270 FrontendStrings.php:315
 msgid "Events"
-msgstr "Evénements"
+msgstr "Stages"
 
 #: BackendStrings.php:68 FrontendStrings.php:510
 msgid "Export"
@@ -314,15 +314,15 @@ msgstr "hors de"
 
 #: BackendStrings.php:96 BackendStrings.php:688 FrontendStrings.php:164
 msgid "Package"
-msgstr "Offre"
+msgstr "forfait"
 
 #: BackendStrings.php:97
 msgid "Packages"
-msgstr "Offres"
+msgstr "Forfait"
 
 #: BackendStrings.php:98
 msgid "Package Price"
-msgstr "Prix de l'offre"
+msgstr "Prix du forfait"
 
 #: BackendStrings.php:99 BackendStrings.php:1207 BackendStrings.php:1248
 msgid "Paid"
@@ -438,11 +438,11 @@ msgstr "Merci de sélectionner une heure"
 
 #: BackendStrings.php:122 BackendStrings.php:325
 msgid "Service"
-msgstr "Service"
+msgstr "Cours"
 
 #: BackendStrings.php:123 BackendStrings.php:326 FrontendStrings.php:179
 msgid "Services"
-msgstr "Services"
+msgstr "Cours"
 
 #: BackendStrings.php:124
 msgid "Settings has been saved"
@@ -5383,7 +5383,7 @@ msgstr "Ajouter une option"
 
 #: BackendStrings.php:1508
 msgid "All services"
-msgstr "Tous les services"
+msgstr "Tous les cours"
 
 #: BackendStrings.php:1509
 msgid "All events"
@@ -5625,7 +5625,7 @@ msgstr "Afficher tous les lieux"
 
 #: BackendStrings.php:1580
 msgid "Show all services"
-msgstr "Afficher tous les services"
+msgstr "Afficher tous les cours"
 
 #: BackendStrings.php:1581
 msgid "Show all events"
@@ -6198,11 +6198,11 @@ msgstr "Enregistrer "
 
 #: FrontendStrings.php:262
 msgid "All services are booked separately."
-msgstr "Tous les services sont réservés séparément."
+msgstr "Tous les cours sont réservés séparément."
 
 #: FrontendStrings.php:263
 msgid "The package is time-limited to"
-msgstr "L'offre est limitée dans le temps à"
+msgstr "Offre valable"
 
 #: FrontendStrings.php:264
 msgid "Valid Until:"
@@ -6218,7 +6218,7 @@ msgstr "Service suivant"
 
 #: FrontendStrings.php:269
 msgid "appointment is required to be booked now."
-msgstr "le rendez-vous doit être réservé maintenant."
+msgstr "le premier cours doit être réservé maintenant."
 
 #: FrontendStrings.php:270
 msgid "appointments are required to be booked now."
