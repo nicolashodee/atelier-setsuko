@@ -1,0 +1,1916 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Framework\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-03-29 15:38+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: \n"
+"Language: \n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Loco https://localise.biz/\n"
+"X-Loco-Version: 2.2.2; wp-5.2.2"
+
+#: plus-specifics.php:45
+msgid "Powered by"
+msgstr ""
+
+#: plus-specifics.php:45
+msgid "Semantic Personal Publishing Platform"
+msgstr ""
+
+#: plus-specifics.php:208
+msgid "About"
+msgstr ""
+
+#: plus-specifics.php:209
+msgid "Got a question? Need help?"
+msgstr ""
+
+#: plus-specifics.php:211
+msgid "Need help?"
+msgstr ""
+
+#: plus-specifics.php:218
+msgid "Theme Support"
+msgstr ""
+
+#: plus-specifics.php:219
+msgid "Read the Docs"
+msgstr ""
+
+#: plus-specifics.php:226 plus/plus-extras/admin-page.php:179
+msgid "Priority Support"
+msgstr ""
+
+#: plus-specifics.php:232
+msgid "Theme Options and Addons"
+msgstr ""
+
+#: plus-specifics.php:233
+msgid "Manage Theme Options and Addons"
+msgstr ""
+
+#: plus-specifics.php:234
+msgid ""
+"Theme options can be exported, imported, or reset from the theme's about "
+"page."
+msgstr ""
+
+#: plus-specifics.php:240
+msgid "Footer Link"
+msgstr ""
+
+#: plus-specifics.php:241
+msgid "Sections Layout"
+msgstr ""
+
+#: plus-specifics.php:242
+msgid "Featured Icon Blocks 2"
+msgstr ""
+
+#: plus-specifics.php:243
+msgid "Featured Boxes 3"
+msgstr ""
+
+#: plus-specifics.php:244 plus-specifics.php:738
+msgid "Jetpack Portfolio"
+msgstr ""
+
+#: plus-specifics.php:245 plus-specifics.php:739
+msgid "Jetpack Testimonials"
+msgstr ""
+
+#: plus-specifics.php:246
+msgid "Display Order"
+msgstr ""
+
+#: plus-specifics.php:247
+msgid "Landing Page"
+msgstr ""
+
+#: plus-specifics.php:248
+msgid "Related Posts"
+msgstr ""
+
+#: plus-specifics.php:249
+msgid "Personalities"
+msgstr ""
+
+#: plus-specifics.php:263
+msgid "Posts Layout"
+msgstr ""
+
+#: plus-specifics.php:266
+msgid "One column"
+msgstr ""
+
+#: plus-specifics.php:270
+msgid "Two columns"
+msgstr ""
+
+#: plus-specifics.php:274
+msgid "Three columns"
+msgstr ""
+
+#: plus-specifics.php:278
+msgid "This layout applies to posts list on Landing Page."
+msgstr ""
+
+#: plus-specifics.php:287
+msgid "Posts Number"
+msgstr ""
+
+#: plus-specifics.php:294
+msgid "Posts Category"
+msgstr ""
+
+#: plus-specifics.php:295 plus-specifics.php:296 plus-specifics.php:481
+msgid "All Categories"
+msgstr ""
+
+#: plus-specifics.php:295 plus-specifics.php:296 plus-specifics.php:306
+#: plus-specifics.php:318 plus-specifics.php:330 plus-specifics.php:342
+#: plus-specifics.php:362 plus-specifics.php:382 plus-specifics.php:402
+#: plus-specifics.php:422 plus-specifics.php:442 plus-specifics.php:478
+#: plus-specifics.php:492 plus-specifics.php:503 plus-specifics.php:515
+#: plus-specifics.php:526 plus-specifics.php:537 plus-specifics.php:549
+#: plus-specifics.php:560
+msgid "- Disabled - "
+msgstr ""
+
+#: plus-specifics.php:308 plus-specifics.php:320 plus-specifics.php:332
+#: plus-specifics.php:344 plus-specifics.php:364 plus-specifics.php:384
+#: plus-specifics.php:404 plus-specifics.php:424 plus-specifics.php:444
+msgid "Featured Blocks"
+msgstr ""
+
+#: plus-specifics.php:309 plus-specifics.php:321 plus-specifics.php:333
+#: plus-specifics.php:345 plus-specifics.php:365 plus-specifics.php:385
+#: plus-specifics.php:405 plus-specifics.php:425 plus-specifics.php:445
+#: plus-specifics.php:495 plus-specifics.php:506 plus-specifics.php:518
+#: plus-specifics.php:529 plus-specifics.php:540 plus-specifics.php:552
+#: plus-specifics.php:563
+msgid "Pages"
+msgstr ""
+
+#: plus-specifics.php:311 plus-specifics.php:323 plus-specifics.php:335
+#: plus-specifics.php:347 plus-specifics.php:367 plus-specifics.php:387
+#: plus-specifics.php:407 plus-specifics.php:427 plus-specifics.php:447
+msgid "Define the content and icon."
+msgstr ""
+
+#: plus-specifics.php:354 plus-specifics.php:374 plus-specifics.php:394
+#: plus-specifics.php:414 plus-specifics.php:434
+#, php-format
+msgid "Block %d"
+msgstr ""
+
+#: plus-specifics.php:453
+msgid "Items per row"
+msgstr ""
+
+#: plus-specifics.php:466
+msgid "Box Appearance"
+msgstr ""
+
+#: plus-specifics.php:468
+msgid "Animated"
+msgstr ""
+
+#: plus-specifics.php:468
+msgid "Static"
+msgstr ""
+
+#: plus-specifics.php:468
+msgid "Animated 2"
+msgstr ""
+
+#: plus-specifics.php:468
+msgid "Static 2"
+msgstr ""
+
+#: plus-specifics.php:469
+msgid ""
+"Choose how the box content is shown. 'Animated' makes the content appear on "
+"hover while 'static' displays content beneath the image."
+msgstr ""
+
+#: plus-specifics.php:477
+msgid "Boxes Content"
+msgstr ""
+
+#: plus-specifics.php:480
+msgid "Featured Boxes"
+msgstr ""
+
+#: plus-specifics.php:480
+msgid "All boxes"
+msgstr ""
+
+#: plus-specifics.php:481
+msgid "Post Categories"
+msgstr ""
+
+#: plus-specifics.php:483
+msgid "Select the category from which to create landing page boxes."
+msgstr ""
+
+#: plus-specifics.php:491 plus-specifics.php:502 plus-specifics.php:514
+#: plus-specifics.php:525 plus-specifics.php:536 plus-specifics.php:548
+#: plus-specifics.php:559 plus-specifics.php:727 plus-specifics.php:729
+#: plus-specifics.php:731 plus-specifics.php:733 plus-specifics.php:735
+#: plus-specifics.php:737 plus-specifics.php:741 plus-specifics.php:1044
+#: plus-specifics.php:1050 plus-specifics.php:1056 plus-specifics.php:1062
+#: plus-specifics.php:1068 plus-specifics.php:1074 plus-specifics.php:1080
+#, php-format
+msgid "Text Area %d"
+msgstr ""
+
+#: plus-specifics.php:494 plus-specifics.php:505 plus-specifics.php:517
+#: plus-specifics.php:528 plus-specifics.php:539 plus-specifics.php:551
+#: plus-specifics.php:562
+msgid "Featured Texts"
+msgstr ""
+
+#: plus-specifics.php:565
+msgid "For position information see the theme documentation."
+msgstr ""
+
+#. Name of the template
+#: plus-specifics.php:572 plus-specifics.php:1086
+msgid "Portfolio"
+msgstr ""
+
+#: plus-specifics.php:581
+msgid ""
+"This uses Jetpacks' Portfolio functionality. Make sure the feature is "
+"enabled in Jetpack's options."
+msgstr ""
+
+#: plus-specifics.php:586 plus-specifics.php:666 plus-specifics.php:1127
+msgid "Section Title"
+msgstr ""
+
+#: plus-specifics.php:592 plus-specifics.php:672
+msgid "Section Description"
+msgstr ""
+
+#: plus-specifics.php:605 plus-specifics.php:685
+msgid "Items Number"
+msgstr ""
+
+#: plus-specifics.php:611 plus-specifics.php:691
+#: plus/plus-extras/widgets.php:1292
+msgid "Columns"
+msgstr ""
+
+#: plus-specifics.php:619 plus-specifics.php:699
+msgid "Order items by"
+msgstr ""
+
+#: plus-specifics.php:621 plus-specifics.php:701
+msgid "Author"
+msgstr ""
+
+#: plus-specifics.php:621 plus-specifics.php:701
+msgid "Date"
+msgstr ""
+
+#: plus-specifics.php:621 plus-specifics.php:701
+#: plus/plus-extras/widgets.php:176
+msgid "Title"
+msgstr ""
+
+#: plus-specifics.php:621 plus-specifics.php:701
+#: plus/plus-extras/widgets.php:646
+msgid "Random"
+msgstr ""
+
+#: plus-specifics.php:627 plus-specifics.php:707
+msgid "Sort"
+msgstr ""
+
+#: plus-specifics.php:629 plus-specifics.php:709
+msgid "DESC"
+msgstr ""
+
+#: plus-specifics.php:629 plus-specifics.php:709
+msgid "ASC"
+msgstr ""
+
+#: plus-specifics.php:639
+msgid "Portfolio Link URL"
+msgstr ""
+
+#: plus-specifics.php:645
+msgid "Portfolio Link Label"
+msgstr ""
+
+#: plus-specifics.php:652
+msgid "Testimonials"
+msgstr ""
+
+#: plus-specifics.php:661
+msgid ""
+"This uses Jetpacks' Testimonials functionality. Make sure the feature is "
+"enabled in Jetpack's options."
+msgstr ""
+
+#: plus-specifics.php:715
+msgid "Images"
+msgstr ""
+
+#: plus-specifics.php:726
+msgid "Slider"
+msgstr ""
+
+#: plus-specifics.php:728 plus-specifics.php:732 plus-specifics.php:1014
+#: plus-specifics.php:1020
+#, php-format
+msgid "Icon Blocks %d"
+msgstr ""
+
+#: plus-specifics.php:730 plus-specifics.php:734 plus-specifics.php:736
+#, php-format
+msgid "Featured Boxes %d"
+msgstr ""
+
+#: plus-specifics.php:740
+msgid "Posts / Static Page"
+msgstr ""
+
+#: plus-specifics.php:785
+msgid "Drag and drop to re-arrange the order of the elements."
+msgstr ""
+
+#: plus-specifics.php:792
+msgid "Categories/Archives Layout"
+msgstr ""
+
+#: plus-specifics.php:795 plus-specifics.php:827 plus-specifics.php:859
+#: plus-specifics.php:891 plus-specifics.php:923 plus-specifics.php:955
+msgid "One column (no sidebars)"
+msgstr ""
+
+#: plus-specifics.php:799 plus-specifics.php:831 plus-specifics.php:863
+#: plus-specifics.php:895 plus-specifics.php:927 plus-specifics.php:959
+msgid "Two columns, sidebar on the right"
+msgstr ""
+
+#: plus-specifics.php:803 plus-specifics.php:835 plus-specifics.php:867
+#: plus-specifics.php:899 plus-specifics.php:931 plus-specifics.php:963
+msgid "Two columns, sidebar on the left"
+msgstr ""
+
+#: plus-specifics.php:807 plus-specifics.php:839 plus-specifics.php:871
+#: plus-specifics.php:903 plus-specifics.php:935 plus-specifics.php:967
+msgid "Three columns, sidebars on the right"
+msgstr ""
+
+#: plus-specifics.php:811 plus-specifics.php:843 plus-specifics.php:875
+#: plus-specifics.php:907 plus-specifics.php:939 plus-specifics.php:971
+msgid "Three columns, sidebars on the left"
+msgstr ""
+
+#: plus-specifics.php:815 plus-specifics.php:847 plus-specifics.php:879
+#: plus-specifics.php:911 plus-specifics.php:943 plus-specifics.php:975
+msgid "Three columns, one sidebar on each side"
+msgstr ""
+
+#: plus-specifics.php:824
+msgid "Search Results Layout"
+msgstr ""
+
+#: plus-specifics.php:856
+msgid "Jetpack Portfolio Archive"
+msgstr ""
+
+#: plus-specifics.php:888
+msgid "Jetpack Single Portfolio"
+msgstr ""
+
+#: plus-specifics.php:920
+msgid "WooCommerce Layout"
+msgstr ""
+
+#: plus-specifics.php:952
+msgid "WooCommerce Single Product"
+msgstr ""
+
+#: plus-specifics.php:990
+msgid "Responsiveness Trigger Limit"
+msgstr ""
+
+#: plus-specifics.php:1026 plus-specifics.php:1032 plus-specifics.php:1038
+#, php-format
+msgid "Boxes %d"
+msgstr ""
+
+#: plus-specifics.php:1093
+msgid "Color and Typography Presets"
+msgstr ""
+
+#: plus-specifics.php:1095
+msgid "Bravada Default"
+msgstr ""
+
+#: plus-specifics.php:1104
+msgid ""
+"Publish the changes and reload the customizer screen for this option to take "
+"effect."
+msgstr ""
+
+#: plus-specifics.php:1110
+msgid "Testimonial"
+msgstr ""
+
+#: plus-specifics.php:1119
+msgid "Display Related Posts on Single Post"
+msgstr ""
+
+#: plus-specifics.php:1121
+msgid "Disabled"
+msgstr ""
+
+#: plus-specifics.php:1121
+msgid "Same Categories"
+msgstr ""
+
+#: plus-specifics.php:1121
+msgid "Same Tags"
+msgstr ""
+
+#: plus-specifics.php:1136
+msgid "Placeholders in Cryout widgets and Related Posts"
+msgstr ""
+
+#: plus-specifics.php:1148
+msgid "Article Animation on Scroll"
+msgstr ""
+
+#: plus-specifics.php:1150
+msgid "None"
+msgstr ""
+
+#: plus-specifics.php:1150
+msgid "Fade"
+msgstr ""
+
+#: plus-specifics.php:1150
+msgid "Slide"
+msgstr ""
+
+#: plus-specifics.php:1150
+msgid "Grow"
+msgstr ""
+
+#: plus-specifics.php:1151
+msgid "Slide Left"
+msgstr ""
+
+#: plus-specifics.php:1151
+msgid "Slide Right"
+msgstr ""
+
+#: plus-specifics.php:1152
+msgid "ZoomIn"
+msgstr ""
+
+#: plus-specifics.php:1152
+msgid "ZoomOut"
+msgstr ""
+
+#: plus-specifics.php:1152
+msgid "Blur"
+msgstr ""
+
+#: plus-specifics.php:1153
+msgid "Flip Left"
+msgstr ""
+
+#: plus-specifics.php:1153
+msgid "Flip Right"
+msgstr ""
+
+#: plus-specifics.php:1153
+msgid "Flip Up"
+msgstr ""
+
+#: plus-specifics.php:1153
+msgid "Flip Down"
+msgstr ""
+
+#: plus-specifics.php:1154
+msgid ""
+"Choose how to animate the articles when they become visible while scrolling "
+"the page."
+msgstr ""
+
+#: plus-specifics.php:1163
+msgid "Page Excerpts"
+msgstr ""
+
+#: plus-specifics.php:1172
+msgid "Header JS (unfiltered)"
+msgstr ""
+
+#: plus-specifics.php:1179
+msgid "Body JS (unfiltered)"
+msgstr ""
+
+#: plus-specifics.php:1186
+msgid "Footer JS (unfiltered)"
+msgstr ""
+
+#: plus-specifics.php:1193
+msgid "Plus Shortcodes"
+msgstr ""
+
+#: plus-specifics.php:1201
+msgid "Plus Shortcodes Prefix"
+msgstr ""
+
+#: plus-specifics.php:1210
+msgid "WordPress Link"
+msgstr ""
+
+#: plus-specifics.php:1217
+msgid "Custom Link"
+msgstr ""
+
+#: plus-specifics.php:1219
+msgid "Show or hide your own custom powered by link/text (defined below)."
+msgstr ""
+
+#: plus-specifics.php:1224
+msgid "Custom Link Text"
+msgstr ""
+
+#: plus-specifics.php:1239
+msgid "Inner Top"
+msgstr ""
+
+#: plus-specifics.php:1240
+msgid "Displayed between the header and content/sidebar(s)."
+msgstr ""
+
+#: plus-specifics.php:1247
+msgid "Inner Bottom"
+msgstr ""
+
+#: plus-specifics.php:1248
+msgid "Displayed between the content/sidebar(s) and footer."
+msgstr ""
+
+#: plus-specifics.php:1255
+msgid "404 / No Results"
+msgstr ""
+
+#: plus-specifics.php:1256
+msgid "Displayed on the 404 and on empty search results pages."
+msgstr ""
+
+#: cryout/prototypes.php:820
+msgid "Skip to content"
+msgstr ""
+
+#: cryout/tgmpa-class.php:327
+msgid "Install Required Plugins"
+msgstr ""
+
+#: cryout/tgmpa-class.php:328
+msgid "Install Plugins"
+msgstr ""
+
+#. %s: plugin name.
+#: cryout/tgmpa-class.php:330 plus/plus-extras/tgmpa.php:102
+#, php-format
+msgid "Installing Plugin: %s"
+msgstr ""
+
+#. %s: plugin name.
+#: cryout/tgmpa-class.php:332 plus/plus-extras/tgmpa.php:104
+#, php-format
+msgid "Updating Plugin: %s"
+msgstr ""
+
+#: cryout/tgmpa-class.php:333 plus/plus-extras/tgmpa.php:105
+msgid "Something went wrong with the plugin API."
+msgstr ""
+
+#: cryout/tgmpa-class.php:334
+#, php-format
+msgid "This theme requires the following plugin: %1$s."
+msgid_plural "This theme requires the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: cryout/tgmpa-class.php:340 plus/plus-extras/tgmpa.php:106
+#, php-format
+msgid "This theme recommends the following plugin: %1$s."
+msgid_plural "This theme recommends the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: cryout/tgmpa-class.php:346
+#, php-format
+msgid ""
+"The following plugin needs to be updated to its latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgid_plural ""
+"The following plugins need to be updated to their latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: cryout/tgmpa-class.php:352 plus/plus-extras/tgmpa.php:124
+#, php-format
+msgid "There is an update available for: %1$s."
+msgid_plural "There are updates available for the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: cryout/tgmpa-class.php:358
+#, php-format
+msgid "The following required plugin is currently inactive: %1$s."
+msgid_plural "The following required plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: cryout/tgmpa-class.php:364 plus/plus-extras/tgmpa.php:130
+#, php-format
+msgid "The following recommended plugin is currently inactive: %1$s."
+msgid_plural "The following recommended plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: cryout/tgmpa-class.php:370 plus/plus-extras/tgmpa.php:142
+msgid "Begin installing plugin"
+msgid_plural "Begin installing plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: cryout/tgmpa-class.php:375 plus/plus-extras/tgmpa.php:147
+msgid "Begin updating plugin"
+msgid_plural "Begin updating plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: cryout/tgmpa-class.php:380 plus/plus-extras/tgmpa.php:152
+msgid "Begin activating plugin"
+msgid_plural "Begin activating plugins"
+msgstr[0] ""
+msgstr[1] ""
+
+#: cryout/tgmpa-class.php:385
+msgid "Return to Required Plugins Installer"
+msgstr ""
+
+#: cryout/tgmpa-class.php:386 cryout/tgmpa-class.php:827
+#: cryout/tgmpa-class.php:2533 cryout/tgmpa-class.php:3580
+msgid "Return to the Dashboard"
+msgstr ""
+
+#: cryout/tgmpa-class.php:387 cryout/tgmpa-class.php:3159
+#: plus/plus-extras/tgmpa.php:158
+msgid "Plugin activated successfully."
+msgstr ""
+
+#: cryout/tgmpa-class.php:388 cryout/tgmpa-class.php:2952
+#: plus/plus-extras/tgmpa.php:159
+msgid "The following plugin was activated successfully:"
+msgid_plural "The following plugins were activated successfully:"
+msgstr[0] ""
+msgstr[1] ""
+
+#. 1: plugin name.
+#: cryout/tgmpa-class.php:390 plus/plus-extras/tgmpa.php:161
+#, php-format
+msgid "No action taken. Plugin %1$s was already active."
+msgstr ""
+
+#. 1: plugin name.
+#: cryout/tgmpa-class.php:392 plus/plus-extras/tgmpa.php:163
+#, php-format
+msgid ""
+"Plugin not activated. A higher version of %s is needed for this theme. "
+"Please update the plugin."
+msgstr ""
+
+#. 1: dashboard link.
+#: cryout/tgmpa-class.php:394 plus/plus-extras/tgmpa.php:165
+#, php-format
+msgid "All plugins installed and activated successfully. %1$s"
+msgstr ""
+
+#: cryout/tgmpa-class.php:395 plus/plus-extras/tgmpa.php:166
+msgid "Dismiss this notice"
+msgstr ""
+
+#: cryout/tgmpa-class.php:396
+msgid ""
+"There are one or more required or recommended plugins to install, update or "
+"activate."
+msgstr ""
+
+#: cryout/tgmpa-class.php:397 plus/plus-extras/tgmpa.php:168
+msgid "Please contact the administrator of this site for help."
+msgstr ""
+
+#: cryout/tgmpa-class.php:522
+msgid "This plugin needs to be updated to be compatible with your theme."
+msgstr ""
+
+#: cryout/tgmpa-class.php:523
+msgid "Update Required"
+msgstr ""
+
+#: cryout/tgmpa-class.php:934
+msgid ""
+"The remote plugin package does not contain a folder with the desired slug "
+"and renaming did not work."
+msgstr ""
+
+#: cryout/tgmpa-class.php:934 cryout/tgmpa-class.php:937
+msgid ""
+"Please contact the plugin provider and ask them to package their plugin "
+"according to the WordPress guidelines."
+msgstr ""
+
+#: cryout/tgmpa-class.php:937
+msgid ""
+"The remote plugin package consists of more than one file, but the files are "
+"not packaged in a folder."
+msgstr ""
+
+#: cryout/tgmpa-class.php:1121 cryout/tgmpa-class.php:2948
+msgctxt "plugin A *and* plugin B"
+msgid "and"
+msgstr ""
+
+#. %s: version number
+#: cryout/tgmpa-class.php:1982
+#, php-format
+msgid "TGMPA v%s"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2273
+msgid "Required"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2276 plus/plus-extras/admin-page-plugins.php:209
+msgid "Recommended"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2292
+msgid "WordPress Repository"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2295
+msgid "External Source"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2298
+msgid "Pre-Packaged"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2315
+msgid "Not Installed"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2319
+msgid "Installed But Not Activated"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2321
+msgid "Active"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2327
+msgid "Required Update not Available"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2330
+msgid "Requires Update"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2333
+msgid "Update recommended"
+msgstr ""
+
+#. 1: install status, 2: update status
+#: cryout/tgmpa-class.php:2342
+#, php-format
+msgctxt "Install/Update Status"
+msgid "%1$s, %2$s"
+msgstr ""
+
+#. 1: number of plugins.
+#: cryout/tgmpa-class.php:2388
+#, php-format
+msgctxt "plugins"
+msgid "All <span class=\"count\">(%s)</span>"
+msgid_plural "All <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#. 1: number of plugins.
+#: cryout/tgmpa-class.php:2392
+#, php-format
+msgid "To Install <span class=\"count\">(%s)</span>"
+msgid_plural "To Install <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#. 1: number of plugins.
+#: cryout/tgmpa-class.php:2396
+#, php-format
+msgid "Update Available <span class=\"count\">(%s)</span>"
+msgid_plural "Update Available <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#. 1: number of plugins.
+#: cryout/tgmpa-class.php:2400
+#, php-format
+msgid "To Activate <span class=\"count\">(%s)</span>"
+msgid_plural "To Activate <span class=\"count\">(%s)</span>"
+msgstr[0] ""
+msgstr[1] ""
+
+#: cryout/tgmpa-class.php:2482
+msgctxt "as in: \"version nr unknown\""
+msgid "unknown"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2490
+msgid "Installed version:"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2498
+msgid "Minimum required version:"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2510
+msgid "Available version:"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2533
+msgid "No plugins to install, update or activate."
+msgstr ""
+
+#: cryout/tgmpa-class.php:2547
+msgid "Plugin"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2548
+msgid "Source"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2549
+msgid "Type"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2553
+msgid "Version"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2554
+msgid "Status"
+msgstr ""
+
+#. %2$s: plugin name in screen reader markup
+#: cryout/tgmpa-class.php:2603
+#, php-format
+msgid "Install %2$s"
+msgstr ""
+
+#. %2$s: plugin name in screen reader markup
+#: cryout/tgmpa-class.php:2608
+#, php-format
+msgid "Update %2$s"
+msgstr ""
+
+#. %2$s: plugin name in screen reader markup
+#: cryout/tgmpa-class.php:2614
+#, php-format
+msgid "Activate %2$s"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2684
+msgid "Upgrade message from the plugin author:"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2717 plus/plus-extras/admin-page-plugins.php:48
+#: plus/plus-extras/admin-page-plugins.php:52
+msgid "Install"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2723 plus/plus-extras/admin-page-plugins.php:97
+msgid "Update"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2726 plus/plus-extras/admin-page-plugins.php:72
+msgid "Activate"
+msgstr ""
+
+#: cryout/tgmpa-class.php:2757
+msgid "No plugins were selected to be installed. No action taken."
+msgstr ""
+
+#: cryout/tgmpa-class.php:2759
+msgid "No plugins were selected to be updated. No action taken."
+msgstr ""
+
+#: cryout/tgmpa-class.php:2800
+msgid "No plugins are available to be installed at this time."
+msgstr ""
+
+#: cryout/tgmpa-class.php:2802
+msgid "No plugins are available to be updated at this time."
+msgstr ""
+
+#: cryout/tgmpa-class.php:2908
+msgid "No plugins were selected to be activated. No action taken."
+msgstr ""
+
+#: cryout/tgmpa-class.php:2934
+msgid "No plugins are available to be activated at this time."
+msgstr ""
+
+#: cryout/tgmpa-class.php:3158
+msgid "Plugin activation failed."
+msgstr ""
+
+#. 1: plugin name, 2: action number 3: total number of actions.
+#: cryout/tgmpa-class.php:3498
+#, php-format
+msgid "Updating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#. 1: plugin name, 2: error message.
+#: cryout/tgmpa-class.php:3501
+#, php-format
+msgid "An error occurred while installing %1$s: <strong>%2$s</strong>."
+msgstr ""
+
+#. 1: plugin name.
+#: cryout/tgmpa-class.php:3503
+#, php-format
+msgid "The installation of %1$s failed."
+msgstr ""
+
+#: cryout/tgmpa-class.php:3507
+msgid ""
+"The installation and activation process is starting. This process may take a "
+"while on some hosts, so please be patient."
+msgstr ""
+
+#. 1: plugin name.
+#: cryout/tgmpa-class.php:3509
+#, php-format
+msgid "%1$s installed and activated successfully."
+msgstr ""
+
+#: cryout/tgmpa-class.php:3509 cryout/tgmpa-class.php:3517
+msgid "Show Details"
+msgstr ""
+
+#: cryout/tgmpa-class.php:3509 cryout/tgmpa-class.php:3517
+msgid "Hide Details"
+msgstr ""
+
+#: cryout/tgmpa-class.php:3510
+msgid "All installations and activations have been completed."
+msgstr ""
+
+#. 1: plugin name, 2: action number 3: total number of actions.
+#: cryout/tgmpa-class.php:3512
+#, php-format
+msgid "Installing and Activating Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: cryout/tgmpa-class.php:3515
+msgid ""
+"The installation process is starting. This process may take a while on some "
+"hosts, so please be patient."
+msgstr ""
+
+#. 1: plugin name.
+#: cryout/tgmpa-class.php:3517
+#, php-format
+msgid "%1$s installed successfully."
+msgstr ""
+
+#: cryout/tgmpa-class.php:3518
+msgid "All installations have been completed."
+msgstr ""
+
+#. 1: plugin name, 2: action number 3: total number of actions.
+#: cryout/tgmpa-class.php:3520
+#, php-format
+msgid "Installing Plugin %1$s (%2$d/%3$d)"
+msgstr ""
+
+#: plus/plus-controls.php:56
+msgid "Manage this section"
+msgstr ""
+
+#: plus/plus-controls.php:63
+msgid "Refresh Visibility"
+msgstr ""
+
+#: plus/plus-controls.php:64
+msgid "Reset Order"
+msgstr ""
+
+#: plus/plus-functions.php:148
+msgid ""
+"Jetpack's Portfolio post type does not appear to be enabled on your site. "
+"Check its status or disable this section from the theme's options."
+msgstr ""
+
+#: plus/plus-functions.php:190 plus/plus-extras/widgets.php:1231
+msgid "All"
+msgstr ""
+
+#: plus/plus-functions.php:316
+msgid ""
+"Jetpack's Testimonials post type does not appear to be enabled on your site. "
+"Check its status or disable this section from the theme's options."
+msgstr ""
+
+#. Name of the template
+msgid "Contact Us"
+msgstr ""
+
+#: plus-templates/template-contact.php:34
+#: plus-templates/template-contact-2.php:34
+#: plus-templates/template-about.php:30
+#: plus-templates/template-portfolio.php:25 plus-templates/template-blog.php:21
+#: plus-templates/single-jetpack-portfolio.php:37
+#: plus-templates/template-blank.php:51
+msgid "Edit"
+msgstr ""
+
+#: plus-templates/template-contact.php:58
+#: plus-templates/template-contact-2.php:58 plus/plus-extras/widgets.php:829
+#: plus/plus-extras/widgets.php:984
+msgid "Address:"
+msgstr ""
+
+#: plus-templates/template-contact.php:59
+#: plus-templates/template-contact-2.php:59 plus/plus-extras/widgets.php:833
+#: plus/plus-extras/widgets.php:988
+msgid "Phone:"
+msgstr ""
+
+#: plus-templates/template-contact.php:60
+#: plus-templates/template-contact-2.php:60 plus/plus-extras/widgets.php:837
+msgid "Mobile:"
+msgstr ""
+
+#: plus-templates/template-contact.php:61
+#: plus-templates/template-contact-2.php:61
+msgid "E-mail:"
+msgstr ""
+
+#: plus-templates/template-contact.php:62
+#: plus-templates/template-contact-2.php:62 plus/plus-extras/widgets.php:849
+#: plus/plus-extras/widgets.php:996
+msgid "Opening Hours:"
+msgstr ""
+
+#. Name of the template
+msgid "Full Width"
+msgstr ""
+
+#. Name of the template
+msgid "Contact Us (2)"
+msgstr ""
+
+#. Name of the template
+msgid "About Us"
+msgstr ""
+
+#. Name of the template
+msgid "Blog (Posts List)"
+msgstr ""
+
+#: plus-templates/single-jetpack-portfolio.php:24
+msgid "Date: "
+msgstr ""
+
+#: plus-templates/single-jetpack-portfolio.php:25
+msgid "Project Types: "
+msgstr ""
+
+#: plus-templates/single-jetpack-portfolio.php:26
+msgid "Tags: "
+msgstr ""
+
+#: plus-templates/single-jetpack-portfolio.php:44
+msgid "Pages:"
+msgstr ""
+
+#. Name of the template
+msgid "Blank Page"
+msgstr ""
+
+#: plus/plus-extras/admin-page-plugins.php:48
+msgid "A license key is required to install this plugin"
+msgstr ""
+
+#: plus/plus-extras/admin-page-plugins.php:52
+#, php-format
+msgid "Install %s"
+msgstr ""
+
+#: plus/plus-extras/admin-page-plugins.php:72
+#, php-format
+msgid "Activate %s"
+msgstr ""
+
+#: plus/plus-extras/admin-page-plugins.php:97
+#, php-format
+msgid "Update %s"
+msgstr ""
+
+#: plus/plus-extras/admin-page-plugins.php:202
+#, php-format
+msgid "Installed: %1s"
+msgstr ""
+
+#: plus/plus-extras/admin-page-plugins.php:204
+#, php-format
+msgid "Available Version: %s"
+msgstr ""
+
+#: plus/plus-extras/admin-page-plugins.php:215
+#, php-format
+msgid "<span class=\"cryout-active-name\">Active: </span>%s"
+msgstr ""
+
+#: plus/plus-extras/admin-page-plugins.php:225
+msgid "Update Available"
+msgstr ""
+
+#: plus/plus-extras/admin-page-license.php:13
+#, php-format
+msgid ""
+"To receive %1$s Plus theme updates and be able to install companion plugins "
+"you need to enter your license key in the field below."
+msgstr ""
+
+#: plus/plus-extras/admin-page-license.php:18
+msgid "License Key"
+msgstr ""
+
+#: plus/plus-extras/admin-page-license.php:21
+#, php-format
+msgid "You can retrieve your license key from your %1$s."
+msgstr ""
+
+#: plus/plus-extras/admin-page-license.php:21
+msgid "account page"
+msgstr ""
+
+#: plus/plus-extras/admin-page-license.php:27
+msgid ""
+"Auto-update functionality is not currently available for Multisite "
+"installations."
+msgstr ""
+
+#: plus/plus-extras/options-xml.php:67
+msgid ""
+"Before you can use this functionality, you will need to fix the following "
+"error:"
+msgstr ""
+
+#: plus/plus-extras/options-xml.php:72 plus/plus-extras/options-xml.php:223
+#: plus/plus-extras/admin-page.php:286
+msgid "Import Theme Options"
+msgstr ""
+
+#: plus/plus-extras/options-xml.php:76
+msgid "This will overwrite all existing theme options."
+msgstr ""
+
+#: plus/plus-extras/options-xml.php:78
+msgid "Select theme options XML file"
+msgstr ""
+
+#: plus/plus-extras/options-xml.php:80
+#, php-format
+msgid "Maximum size: %s"
+msgstr ""
+
+#: plus/plus-extras/options-xml.php:86
+msgid "Import Options"
+msgstr ""
+
+#: plus/plus-extras/options-xml.php:104
+msgid "ERROR: You are not authorised to perform that operation"
+msgstr ""
+
+#: plus/plus-extras/options-xml.php:197
+msgid "Theme options have been imported succesfully."
+msgstr ""
+
+#: plus/plus-extras/options-xml.php:197
+msgid "Options Import"
+msgstr ""
+
+#: plus/plus-extras/options-xml.php:199
+msgid "Theme options import failed."
+msgstr ""
+
+#: plus/plus-extras/options-xml.php:202
+msgid ""
+"The uploaded file does not contain valid theme options. Please recheck the "
+"file."
+msgstr ""
+
+#: plus/plus-extras/options-xml.php:205
+msgid "The uploaded file could not be read."
+msgstr ""
+
+#: plus/plus-extras/options-xml.php:208
+msgid ""
+"The uploaded file is not supported. Make sure the file was exported from the "
+"correct theme and that it is an XML file."
+msgstr ""
+
+#: plus/plus-extras/options-xml.php:211
+msgid ""
+"The file is empty or there was no file. This error can also be caused by "
+"uploads being disabled on your server or by post_max_size being defined as "
+"smaller than upload_max_filesize in php.ini."
+msgstr ""
+
+#: plus/plus-extras/options-xml.php:219
+msgid "Oops, there was a problem!"
+msgstr ""
+
+#: plus/plus-extras/admin-page-migration.php:11
+#, php-format
+msgid ""
+"%1$s Plus is capable of migrating compatible options from the base %1$s "
+"theme."
+msgstr ""
+
+#: plus/plus-extras/admin-page-migration.php:15
+#, php-format
+msgid ""
+"It appears %s was used before on this site. Click the button below to "
+"migrate the options:"
+msgstr ""
+
+#: plus/plus-extras/admin-page-migration.php:17
+#, php-format
+msgid "Migration will overwrite any existing %s Plus options. Are you sure?"
+msgstr ""
+
+#: plus/plus-extras/admin-page-migration.php:17
+msgid "Migrate options now"
+msgstr ""
+
+#: plus/plus-extras/admin-page-migration.php:19
+#, php-format
+msgid ""
+"CAUTION: If you have started configuring %s Plus, this procedure will "
+"completely overwrite any configured options!"
+msgstr ""
+
+#: plus/plus-extras/admin-page-migration.php:22
+#, php-format
+msgid ""
+"%s does not appear to have been installed before on this site. There are no "
+"options to migrate."
+msgstr ""
+
+#: plus/plus-extras/widgets.php:23
+msgid "Displays the social icons menu in a widget area."
+msgstr ""
+
+#: plus/plus-extras/widgets.php:34
+msgid ""
+"You did not assign a menu to the theme's social menu. Assign one to display "
+"it in this widget."
+msgstr ""
+
+#: plus/plus-extras/widgets.php:37 plus/plus-extras/widgets.php:623
+#: plus/plus-extras/widgets.php:823 plus/plus-extras/widgets.php:1103
+#: plus/plus-extras/widgets.php:1265
+msgid "Title:"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:118
+msgid "A different way of listing posts, comments and/or tags."
+msgstr ""
+
+#: plus/plus-extras/widgets.php:127 plus/plus-extras/widgets.php:181
+#: plus/plus-extras/widgets.php:267
+msgid "Recent Posts"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:128 plus/plus-extras/widgets.php:202
+#: plus/plus-extras/widgets.php:278
+msgid "Popular Posts"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:129
+msgid "Recent Comments"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:130 plus/plus-extras/widgets.php:255
+#: plus/plus-extras/widgets.php:300
+msgid "Tags"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:185 plus/plus-extras/widgets.php:206
+msgid "Enabled"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:189 plus/plus-extras/widgets.php:210
+msgid "Show thumbnails"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:192 plus/plus-extras/widgets.php:213
+#: plus/plus-extras/widgets.php:249 plus/plus-extras/widgets.php:630
+msgid "Number of items"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:196 plus/plus-extras/widgets.php:217
+#: plus/plus-extras/widgets.php:634
+msgid "Category:"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:221
+msgid "Post most commented in last:"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:227 plus/plus-extras/widgets.php:657
+msgid "All time"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:228 plus/plus-extras/widgets.php:658
+msgid "1 Year"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:229 plus/plus-extras/widgets.php:659
+msgid "1 Month"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:230 plus/plus-extras/widgets.php:660
+msgid "1 Week"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:231 plus/plus-extras/widgets.php:661
+msgid "1 Day"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:238 plus/plus-extras/widgets.php:289
+msgid "Latest Comments"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:242 plus/plus-extras/widgets.php:259
+msgid "Enable"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:246
+msgid "Show avatars"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:313 plus/plus-extras/widgets.php:668
+msgid "Extra"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:317 plus/plus-extras/widgets.php:676
+msgid "Display categories"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:321 plus/plus-extras/widgets.php:680
+msgid "Display dates"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:590
+msgid "Cryout Featured Posts"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:592
+msgid "Displays posts from a category in an advanced way."
+msgstr ""
+
+#: plus/plus-extras/widgets.php:628
+msgid "Filters"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:638
+msgid "Order by:"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:644
+msgid "Most recent"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:645
+msgid "Most commented"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:651
+msgid "Posts from last:"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:672
+msgid "Display thumbnails"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:811
+msgid "Displays contact information in a customized layout."
+msgstr ""
+
+#: plus/plus-extras/widgets.php:841 plus/plus-extras/widgets.php:992
+msgid "Email:"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:845
+msgid "Website URL:"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:854
+msgid "Google Map"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:856
+msgid "Link:"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:858
+msgid "Width:"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:860
+msgid "Height:"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:906 plus/plus-extras/widgets.php:1028
+#: plus/plus-extras/meta.php:310
+msgid "Address"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:910 plus/plus-extras/widgets.php:1032
+#: plus/plus-extras/meta.php:314
+msgid "Phone"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:914 plus/plus-extras/meta.php:318
+msgid "Mobile"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:918 plus/plus-extras/widgets.php:1036
+#: plus/plus-extras/meta.php:322
+msgid "E-mail"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:922
+msgid "Web"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:925 plus/plus-extras/widgets.php:1039
+#: plus/plus-extras/meta.php:326
+msgid "Opening Hours"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:966
+msgid "Displays contact information. Suitable for the Top Section area"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:980
+msgid "Intro Text:"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:1073
+msgid "Displays information about you or the site."
+msgstr ""
+
+#: plus/plus-extras/widgets.php:1107
+msgid "Text:"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:1114 plus/plus-extras/widgets.php:1190
+msgid "Select image"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:1117
+msgid "Remove image"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:1189 plus/plus-extras/meta.php:204
+#: plus/plus-extras/meta.php:305 plus/plus-extras/meta.php:345
+msgid "Select Image"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:1220
+msgid "Displays your portfolio items in a neat stack."
+msgstr ""
+
+#: plus/plus-extras/widgets.php:1262
+msgid ""
+"This widget uses Jetpacks' Portfolio functionality. Make sure the feature is "
+"enabled in Jetpack's options."
+msgstr ""
+
+#: plus/plus-extras/widgets.php:1288
+msgid "Number:"
+msgstr ""
+
+#: plus/plus-extras/widgets.php:1379
+msgid ""
+"There are no Jetpack Portfolio posts to display. Add Portfolio items to "
+"display them here or disable this widget."
+msgstr ""
+
+#: plus/plus-extras/autoupdate.php:91
+msgid ""
+"An Unexpected HTTP Error occurred during the API request.</p> <p><a href=\"?"
+"\" onclick=\"document.location.reload(); return false;\">Try again</a>"
+msgstr ""
+
+#: plus/plus-extras/autoupdate.php:96
+msgid "An unknown error occurred"
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:77 plus/plus-extras/admin-page.php:78
+#: plus/plus-extras/admin-page.php:166
+#, php-format
+msgid "%s Theme"
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:96
+msgid "Reset theme options to default values?"
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:111
+msgid "Sorry, but you do not have sufficient permissions to access this page."
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:122
+msgid "License key saved successfully."
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:138
+msgid "Theme options have been loaded successfully."
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:147
+msgid "Theme options have been reset successfully."
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:156
+msgid "Theme options have been migrated successfully."
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:161
+msgid "Theme options migration has failed or options already exist."
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:178
+msgid "Theme page"
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:195
+msgid "Welcome"
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:196
+msgid "Plugins"
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:197
+msgid "Theme Options"
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:198
+msgid "Migrate"
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:199
+msgid "License"
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:200
+msgid "Changelog"
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:269
+msgid "Customization"
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:270
+msgid ""
+"The theme's over 250 options are located in the Customizer. Go check them "
+"out."
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:271
+msgid "Customize"
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:274
+msgid "Options Management"
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:275
+msgid ""
+"Quickly migrate theme options between sites, create and restore backups or "
+"reset everything to the theme's defaults."
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:281
+msgid "Export Theme Options"
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:291
+msgid "Reset to Defaults"
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:301
+msgid "Options Migration"
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:308
+msgid "License Management"
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:328
+msgid "Unable to display the changelog."
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:336
+msgid "This page requires JavaScript to function."
+msgstr ""
+
+#: plus/plus-extras/admin-page.php:337
+msgid "Thank you for choosing our creations!"
+msgstr ""
+
+#: plus/plus-extras/meta.php:46
+msgid "Cryout Theme Meta"
+msgstr ""
+
+#: plus/plus-extras/meta.php:56
+msgid "Layout"
+msgstr ""
+
+#: plus/plus-extras/meta.php:116
+msgid "No Repeat"
+msgstr ""
+
+#: plus/plus-extras/meta.php:117 plus/plus-extras/meta.php:211
+msgid "Repeat"
+msgstr ""
+
+#: plus/plus-extras/meta.php:118
+msgid "Repeat Horizontally"
+msgstr ""
+
+#: plus/plus-extras/meta.php:119
+msgid "Repeat Vertically"
+msgstr ""
+
+#: plus/plus-extras/meta.php:122
+msgid "Left"
+msgstr ""
+
+#: plus/plus-extras/meta.php:123
+msgid "Right"
+msgstr ""
+
+#: plus/plus-extras/meta.php:124 plus/plus-extras/meta.php:129
+msgid "Center"
+msgstr ""
+
+#: plus/plus-extras/meta.php:127
+msgid "Top"
+msgstr ""
+
+#: plus/plus-extras/meta.php:128
+msgid "Bottom"
+msgstr ""
+
+#: plus/plus-extras/meta.php:132
+msgid "Scroll"
+msgstr ""
+
+#: plus/plus-extras/meta.php:133
+msgid "Fixed"
+msgstr ""
+
+#: plus/plus-extras/meta.php:136
+msgid "Original"
+msgstr ""
+
+#: plus/plus-extras/meta.php:137
+msgid "Fit to Screen"
+msgstr ""
+
+#: plus/plus-extras/meta.php:138
+msgid "Fill Screen"
+msgstr ""
+
+#: plus/plus-extras/meta.php:143
+msgid "Default header"
+msgstr ""
+
+#: plus/plus-extras/meta.php:144
+msgid "Force featured image"
+msgstr ""
+
+#: plus/plus-extras/meta.php:145
+msgid "Hide header image"
+msgstr ""
+
+#: plus/plus-extras/meta.php:186
+msgid "Custom Background"
+msgstr ""
+
+#: plus/plus-extras/meta.php:187
+msgid "Custom Header"
+msgstr ""
+
+#: plus/plus-extras/meta.php:188
+msgid "Hide Elements"
+msgstr ""
+
+#: plus/plus-extras/meta.php:189
+msgid "Template Options"
+msgstr ""
+
+#: plus/plus-extras/meta.php:195
+msgid "Background Color"
+msgstr ""
+
+#: plus/plus-extras/meta.php:202
+msgid "Background Image"
+msgstr ""
+
+#: plus/plus-extras/meta.php:205 plus/plus-extras/meta.php:306
+#: plus/plus-extras/meta.php:346
+msgid "Remove Image"
+msgstr ""
+
+#: plus/plus-extras/meta.php:220
+msgid "Horizontal Position"
+msgstr ""
+
+#: plus/plus-extras/meta.php:229
+msgid "Vertical Position"
+msgstr ""
+
+#: plus/plus-extras/meta.php:238
+msgid "Attachment"
+msgstr ""
+
+#: plus/plus-extras/meta.php:247
+msgid "Size"
+msgstr ""
+
+#: plus/plus-extras/meta.php:263
+msgid "Header Image Behaviour"
+msgstr ""
+
+#: plus/plus-extras/meta.php:275
+msgid "Main Menu"
+msgstr ""
+
+#: plus/plus-extras/meta.php:279
+msgid "Header Image"
+msgstr ""
+
+#: plus/plus-extras/meta.php:283
+msgid "Breadcrumbs"
+msgstr ""
+
+#: plus/plus-extras/meta.php:287
+msgid "Page/Post Title"
+msgstr ""
+
+#: plus/plus-extras/meta.php:291
+msgid "Footer Widgets"
+msgstr ""
+
+#: plus/plus-extras/meta.php:295
+msgid "Footer"
+msgstr ""
+
+#: plus/plus-extras/meta.php:303 plus/plus-extras/meta.php:343
+msgid "Logo / Banner Image"
+msgstr ""
+
+#: plus/plus-extras/meta.php:330
+msgid "Google Map URL"
+msgstr ""
+
+#: plus/plus-extras/meta.php:335
+msgid "Contact Form Shortcode"
+msgstr ""
+
+#: plus/plus-extras/meta.php:350
+msgid "Team Shortcode"
+msgstr ""
+
+#: plus/plus-extras/meta.php:355
+msgid "This page template has no additional options."
+msgstr ""
+
+#: plus/plus-extras/meta.php:357
+msgid ""
+"Select a page template and save draft or publish the page to activate "
+"template specific options here. Note that not all templates have specific "
+"options."
+msgstr ""
+
+#: plus/plus-extras/meta.php:517
+msgid "Set Background Image"
+msgstr ""
+
+#: plus/plus-extras/meta.php:518
+msgid "Set background image"
+msgstr ""
+
+#: plus/plus-extras/migration.php:66
+#, php-format
+msgid ""
+"It appears you have used %1$s theme before. %1$s Plus can migrate compatible "
+"options from it. Would you like to perform the migration now?"
+msgstr ""
+
+#: plus/plus-extras/migration.php:68
+msgid "Yes, migrate"
+msgstr ""
+
+#: plus/plus-extras/migration.php:69 plus/plus-extras/licensing.php:65
+msgid "Don't remind me again"
+msgstr ""
+
+#: plus/plus-extras/licensing.php:61
+#, php-format
+msgid ""
+"To receive %1$s Plus theme updates and install companion plugins you need to "
+"enter your license key."
+msgstr ""
+
+#: plus/plus-extras/licensing.php:64
+msgid "Enter Key"
+msgstr ""
+
+#: plus/plus-extras/tgmpa.php:99
+#, php-format
+msgid "%s Companion Plugins"
+msgstr ""
+
+#: plus/plus-extras/tgmpa.php:100
+#, php-format
+msgid "%s Plugins"
+msgstr ""
+
+#: plus/plus-extras/tgmpa.php:112
+#, php-format
+msgid "This theme suggests the following plugin: %1$s."
+msgid_plural "This theme suggests the following plugins: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: plus/plus-extras/tgmpa.php:118
+#, php-format
+msgid ""
+"The following plugin should be updated to its latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgid_plural ""
+"The following plugins should be updated to their latest version to ensure "
+"maximum compatibility with this theme: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: plus/plus-extras/tgmpa.php:136
+#, php-format
+msgid "The following suggested plugin is currently inactive: %1$s."
+msgid_plural "The following suggested plugins are currently inactive: %1$s."
+msgstr[0] ""
+msgstr[1] ""
+
+#: plus/plus-extras/tgmpa.php:157
+msgid "Return to Companion Plugins Installer"
+msgstr ""
+
+#: plus/plus-extras/tgmpa.php:167
+msgid ""
+"There are one or more recommended or suggested plugins to install, update or "
+"activate."
+msgstr ""

@@ -1,0 +1,25 @@
+/*
+ * Cryout Plus Customizer styling
+ *
+ * @package Cryout Plus
+ */
+
+/* panels/sections */
+
+/*[id*='cryoutspecial-about-theme'] .customize-section-description .plus {
+        position: relative;
+        float: right;
+        background: #08c;
+        color: #fff;
+        width: auto;
+        padding: 0.5em 1em;
+        font-size: 12px;
+        letter-spacing: 3px;
+}*/
+
+[id*='cryoutspecial-about-theme'] .customize-section-description .plus {
+    display: none;
+}
+
+
+/* FIN */

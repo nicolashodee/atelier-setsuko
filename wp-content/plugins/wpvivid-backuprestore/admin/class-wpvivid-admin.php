@@ -151,10 +151,10 @@ class WPvivid_Admin {
                     <table class="widefat" cellpadding="0">
                         <tbody>
                         <tr class="alternate">
-                            <td class="row-title">'.__('Read <a href="https://wpvivid.com/troubleshooting-issues-wpvivid-backup-plugin" target="_blank">Troubleshooting page</a> for faster solutions.', 'wpvivid-backuprestore').'</td>
+                            <td class="row-title">'.__('Read <a href="https://docs.wpvivid.com/troubleshooting-issues-wpvivid-backup-plugin.html" target="_blank">Troubleshooting page</a> for faster solutions.', 'wpvivid-backuprestore').'</td>
                         </tr>
                         <tr>
-                            <td class="row-title">'.__('Adjust <a href="https://wpvivid.com/wpvivid-backup-plugin-advanced-settings.html" target="_blank">Advanced Settings</a> for higher task success rate.', 'wpvivid-backuprestore').'</td>
+                            <td class="row-title">'.__('Adjust <a href="https://docs.wpvivid.com/wpvivid-backup-free-advanced-settings.html" target="_blank">Advanced Settings</a> for higher task success rate.', 'wpvivid-backuprestore').'</td>
                         </tr>
                         </tbody>
                     </table>
@@ -165,10 +165,10 @@ class WPvivid_Admin {
                 <div class="inside">
                     <table class="widefat" cellpadding="0">
                         <tbody>
-                            <tr class="alternate"><td class="row-title"><a href="https://wpvivid.com/get-started-settings.html" target="_blank">'.__('WPvivid Backup Settings', 'wpvivid-backuprestore').'</a></td></tr>
-                            <tr><td class="row-title"><a href="https://wpvivid.com/get-started-create-a-manual-backup.html" target="_blank">'.__('Create a Manual Backup', 'wpvivid-backuprestore').'</a></td></tr>
-                            <tr class="alternate"><td class="row-title"><a href="https://wpvivid.com/get-started-restore-site.html" target="_blank">'.__('Restore Your Site from a Backup', 'wpvivid-backuprestore').'</a></td></tr>
-                            <tr><td class="row-title"><a href="https://wpvivid.com/get-started-transfer-site.html" target="_blank">'.__('Migrate WordPress', 'wpvivid-backuprestore').'</a></td></tr>
+                            <tr class="alternate"><td class="row-title"><a href="https://docs.wpvivid.com/wpvivid-backup-free-general-settings.html" target="_blank">'.__('WPvivid Backup Settings', 'wpvivid-backuprestore').'</a></td></tr>
+                            <tr><td class="row-title"><a href="https://docs.wpvivid.com/get-started-create-manual-backup.html" target="_blank">'.__('Create a Manual Backup', 'wpvivid-backuprestore').'</a></td></tr>
+                            <tr class="alternate"><td class="row-title"><a href="https://docs.wpvivid.com/get-started-restore-site.html" target="_blank">'.__('Restore Your Site from a Backup', 'wpvivid-backuprestore').'</a></td></tr>
+                            <tr><td class="row-title"><a href="https://docs.wpvivid.com/get-started-transfer-site.html" target="_blank">'.__('Migrate WordPress', 'wpvivid-backuprestore').'</a></td></tr>
                         </tbody>
                     </table>
                 </div>

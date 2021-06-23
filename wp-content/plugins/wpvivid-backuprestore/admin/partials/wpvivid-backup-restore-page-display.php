@@ -405,7 +405,7 @@ function wpvivid_add_backup_type($html, $type_name)
                         <span class="wpvivid-element-space-right" style="color: #ddd;">'.__('Create a staging site', 'wpvivid-backuprestore').'</span>
                     </div>
                     <span class="wpvivid-feature-pro">
-                        <a href="https://wpvivid.com/wpvivid-backup-pro-create-staging-site" style="text-decoration: none;">'.__('Pro feature: learn more', 'wpvivid-backuprestore').'</a>
+                        <a href="https://docs.wpvivid.com/wpvivid-backup-pro-create-staging-site.html" style="text-decoration: none;">'.__('Pro feature: learn more', 'wpvivid-backuprestore').'</a>
                     </span>
                 </label><br>
                 <label>
@@ -414,7 +414,7 @@ function wpvivid_add_backup_type($html, $type_name)
                         <span class="wpvivid-element-space-right" style="color: #ddd;">'.__('Custom', 'wpvivid-backuprestore').'</span>
                     </div>
                     <span class="wpvivid-feature-pro">
-                        <a href="https://wpvivid.com/backup-migration-overview?utm_source=client_custom_backup&utm_medium=inner_link&utm_campaign=access" style="text-decoration: none;">'.__('Pro feature: learn more', 'wpvivid-backuprestore').'</a>
+                        <a href="https://docs.wpvivid.com/wpvivid-backup-pro-overview.html" style="text-decoration: none;">'.__('Pro feature: learn more', 'wpvivid-backuprestore').'</a>
                     </span>
                 </label><br>';
     return $html;

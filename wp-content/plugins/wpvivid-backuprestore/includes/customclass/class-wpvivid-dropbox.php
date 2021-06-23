@@ -515,7 +515,7 @@ class WPvivid_Dropbox extends WPvivid_Remote {
                     </td>
                     <td class="column-description desc">
                         <div class="wpvivid-storage-form-desc">
-                            <a href="https://wpvivid.com/wpvivid-backup-pro-dropbox-custom-folder-name?utm_source=client_dropbox&utm_medium=inner_link&utm_campaign=access"><?php _e('Pro feature: Create a directory for storing the backups of the site', 'wpvivid-backuprestore'); ?></a>
+                            <a href="https://docs.wpvivid.com/wpvivid-backup-pro-dropbox-custom-folder-name.html"><?php _e('Pro feature: Create a directory for storing the backups of the site', 'wpvivid-backuprestore'); ?></a>
                         </div>
                     </td>
                 </tr>

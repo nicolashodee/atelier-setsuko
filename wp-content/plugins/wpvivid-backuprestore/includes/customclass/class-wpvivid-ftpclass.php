@@ -78,7 +78,7 @@ class WPvivid_FTPClass extends WPvivid_Remote{
                     </td>
                     <td class="column-description desc">
                         <div class="wpvivid-storage-form-desc">
-                            <a href="https://wpvivid.com/wpvivid-backup-pro-ftp-change-ftp-default-port?utm_source=client_ftp_port&utm_medium=inner_link&utm_campaign=access"><?php _e('Pro feature: Change the FTP default port number', 'wpvivid-backuprestore'); ?></a>
+                            <a href="https://docs.wpvivid.com/wpvivid-backup-pro-ftp-change-ftp-default-port.html"><?php _e('Pro feature: Change the FTP default port number', 'wpvivid-backuprestore'); ?></a>
                         </div>
                     </td>
                 </tr>

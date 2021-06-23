@@ -1125,7 +1125,7 @@ class WPvivid_Migrate
                         <span class="wpvivid-element-space-right" style="color: #ddd;">'.__('Choose what to migrate', 'wpvivid-backuprestore').'</span>
                     </div>
                     <span class="wpvivid-feature-pro">
-                        <a href="https://wpvivid.com/custom-migration-overview?utm_source=client_migration_custom_backup&utm_medium=inner_link&utm_campaign=access" style="text-decoration: none;">'.__('Pro feature: learn more', 'wpvivid-backuprestore').'</a>
+                        <a href="https://docs.wpvivid.com/custom-migration-overview.html" style="text-decoration: none;">'.__('Pro feature: learn more', 'wpvivid-backuprestore').'</a>
                     </span>
                   </label><br>';
         return $html;

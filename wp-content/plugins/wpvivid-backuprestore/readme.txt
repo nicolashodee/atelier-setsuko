@@ -4,11 +4,11 @@ Tags: move, clone, migrate, cleaner, backup, restore, auto backup, cloud backup
 Requires at least: 4.5
 Tested up to: 5.7.1
 Requires PHP: 5.3
-Stable tag: 0.9.53
+Stable tag: 0.9.54
 License: GPLv3 or later
 License URI: https://www.gnu.org/licenses/gpl-3.0.en.html
 
-Schedule offsite backup, automatic migration. All in one backup & migration plugin.
+Auto migrate, move, duplicate, back up WP. All-in-one backup & migration plugin. Schedule, offsite backup.
 
 == Description ==
 WPvivid Backup Plugin offers backup and migration as basic features, and is integrating more and more elegant features, such as unused images cleaner etc.
@@ -187,6 +187,10 @@ Thank you for translating WPvivid Backup Plugin to your languages!
 * [Daniel Wilczkowiak](https://profiles.wordpress.org/virtual03/) (German)
 
 == Changelog ==
+= 0.9.54 =
+- Added support for PHP 8.
+- Fixed some bugs in the plugin code.
+- Optimized the plugin code.
 = 0.9.53 =
 - Fixed a SQL injection vulnerability.
 - Fixed some bugs in the plugin code and optimized the plugin code.

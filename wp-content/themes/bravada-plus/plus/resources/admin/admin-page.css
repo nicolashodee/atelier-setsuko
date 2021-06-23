@@ -1,0 +1,476 @@
+/**
+ * Plus Admin page CSS
+ *
+ * @package Cryout Plus
+ */
+
+@import url("../../../resources/fonts/fontfaces.css");
+
+.nav-tabs a:focus {
+    outline: 0;
+    -webkit-box-shadow: none;
+            box-shadow: none;
+}
+
+#main-page {
+	display: block;
+	float: none;
+    overflow: hidden;
+	max-width: 1280px;
+    padding: 50px 30px 20px;
+}
+
+textarea#cryout-sysinfo {
+	font-family: Monaco, monospace;
+	white-space: pre;
+	overflow: auto;
+	display:block;
+	width: 100%;
+	background: #444;
+	color: #FFF;
+	padding: 2em;
+}
+
+.export {
+	overflow: hidden;
+}
+
+
+/* ADMIN HEADER AND LINKS */
+#admin-header {
+	display: -webkit-box;
+	display: -ms-flexbox;
+	display: flex;
+    -ms-flex-pack: distribute;
+        justify-content: space-around;
+    -webkit-box-align: stretch;
+        -ms-flex-align: stretch;
+            align-items: stretch;
+    overflow: hidden;
+}
+
+#admin-screenshot {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 300px;
+            flex: 0 0 300px;
+}
+
+#admin-screenshot,
+#admin-title {
+    float: left;
+}
+
+#admin-title {
+    margin-left: 50px;
+}
+
+#admin-title h2 {
+    font-size: 32px;
+    line-height: 1.2;
+    margin-bottom: 0;
+}
+
+#admin-description,
+#admin-description p {
+    font-size: 16px;
+}
+
+#admin-screenshot img {
+    max-height: 280px;
+    max-width: 100%;
+}
+
+#admin-version a {
+    text-decoration: none;
+	text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+#admin-version {
+    float: none;
+    clear: both;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: #888;
+}
+
+.admin-tabs {
+    clear: both;
+    float: none;
+    margin-top: 3em;
+}
+
+.wrap > h1,
+.wrap > h2 { display: none; }
+
+#cryout-settings-dialog {
+	display: none;
+}
+
+#cryout-settings-dialog textarea {
+	width: 97%;
+	min-height: 180px;
+	overflow: auto;
+}
+
+#cryout-settings-dialog p strong {
+	display: none;
+}
+
+#cryout-settings-dialog .settings-error {
+	text-align: center;
+	font-weight: bold;
+	color: red;
+}
+
+/* Tabs */
+#cryout_appearance_meta {
+    margin-top: 3em;
+}
+
+.tab-content {
+    padding: 2em 0;
+}
+
+/* Description */
+#description-features {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+#description-features ul {
+    list-style: inside;
+}
+
+#description-features li {
+    margin-bottom: 14px;
+}
+
+.description-panel {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    display: inline-block;
+    float: left;
+    width: 33%;
+    padding: 2em 3em;
+    background: #fff;
+    -webkit-box-shadow: 0 7px 30px rgba(160, 180, 200, 0.5);
+            box-shadow: 0 7px 30px rgba(160, 180, 200, 0.5);
+}
+
+
+.description-panel > h3 {
+    margin-bottom: 2em;
+}
+
+.description-panel:first-child {
+    background: #f8fafc;
+}
+
+.description-panel:last-child {
+    background: #fafcfe;
+}
+
+@media ( max-width: 1024px ) {
+
+    #description-features {
+        display: block;
+    }
+
+    .description-panel {
+        width: 100%;
+        padding: 1.5em;
+    }
+
+}
+
+/* Changelog */
+#cryout_appearance_meta #changelog textarea {
+    resize: both;
+    width: 100%;
+    height: 400px;
+    padding: 0 1.5em;
+    color: #555;
+    background: #F7F7F7;
+}
+
+/* Export settings*/
+.export-button {
+    display: inline-block;
+}
+
+.button.export-button,
+.export-button .button,
+#customizer.button,
+.button.button-bigger {
+    display: inline-block;
+    margin-right: .5em;
+    padding: .5em 1.5em;
+    height: auto;
+}
+
+/* Plugins */
+.cryout-plugins {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+        flex-wrap: wrap;
+    width: 100%;
+    margin-top: 20px;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.cryout-plugin {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    float: left;
+    width: 17.6%;
+    margin-right: 3%;
+    margin-bottom: 3%;
+    padding: 10px;
+    border: 1px solid #DDD;
+    border-bottom: 3px solid #DDD;
+    -webkit-transition: .3s ease-out all;
+    transition: .3s ease-out all;
+}
+
+.cryout-plugin:nth-child(5n) {
+    margin-right: 0;
+}
+
+.cryout-plugin:nth-child(5n+1) {
+    clear: both;
+}
+
+.cryout-plugin:hover {
+    -webkit-box-shadow: 0 0 12px rgba(0,0,0,.2);
+            box-shadow: 0 0 12px rgba(0,0,0,.2);
+}
+
+.cryout-plugin.active {
+    border-bottom-color: #99ddba;
+}
+
+.cryout-active-name {
+    display: none;
+}
+
+.cryout-plugin:last-child {
+    margin-right: 0;
+}
+
+.cryout-theme-screenshot {
+    position: relative;
+}
+
+.cryout-theme-screenshot > img {
+    display: block;
+    max-width: 100%;
+}
+
+.cryout-plugin-required {
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 0.5em 1em;
+    color: #FFF;
+    background: #00b9eb;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: .9em;
+}
+
+.cryout-plugin h3 {
+    font-size: 1.1em;
+}
+
+.cryout-plugin-info {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    padding: 0.25em .75em;
+    font-size: .9em;
+    color: #333;
+    background: rgba(255,255,255,.9);
+}
+
+.cryout-theme-actions {
+    display: inline-block;
+    float: left;
+}
+
+.cryout-theme-update {
+    padding: 0.8em 0;
+    margin-bottom: 1em;
+    font-size: .9em;
+    font-style: italic;
+    text-align: right;
+}
+
+.cryout-plugins .button-primary {
+    display: inline-block;
+    float: left;
+    height: auto;
+    margin-right: 0.5em;
+    padding: 0.5em 1.5em;
+    background: rgba(0,0,0,.4);
+    -webkit-box-shadow: none;
+            box-shadow: none;
+    border: none;
+    border-radius: 0;
+    text-shadow: none;
+}
+
+.cryout-plugins .button-disabled,
+.cryout-plugins .button-disabled:hover {
+	cursor: not-allowed;
+	color: inherit;
+	background-color: inherit;
+}
+
+/* License */
+#license label {
+	line-height: 3;
+}
+
+#license #cryout_license_key {
+	width: 500px;
+	max-width: 90%;
+	padding: 0 10px;
+	border: 1px solid #DDD;
+	line-height: 3;
+}
+
+/* Theme thanks */
+.theme-thanks {
+    display: block;
+    float: right;
+    clear: both;
+    margin-top: 1em;
+    color: #AAA;
+    font-style: italic;
+}
+
+/* ==RESPONSIVE ADMIN==
+--------------------------------*/
+
+@media (max-width: 1280px) {
+
+    #admin-title h2 {
+        margin-top: 0;
+        font-size: 26px;
+    }
+
+    #admin-links a {
+        letter-spacing: 0;
+    }
+
+    .cryout-plugin {
+        width: 22.75%;
+    }
+
+    .cryout-plugin:nth-child(5n) {
+        margin-right: 3%;
+    }
+
+    .cryout-plugin:nth-child(5n+1) {
+        clear: none;
+    }
+
+    .cryout-plugin:nth-child(4n) {
+        margin-right: 0;
+    }
+
+    .cryout-plugin:nth-child(4n+1) {
+        clear: both;
+    }
+
+    .cryout-theme-update {
+        font-size: 0.8em;
+        line-height: 1;
+    }
+
+}
+
+@media (max-width: 960px) {
+
+    #main-page {
+        padding: 0;
+    }
+
+    html #cryout_appearance_meta .ui-tabs .ui-tabs-nav .ui-tabs-anchor {
+        padding: 1em;
+    }
+
+    .cryout-plugin {
+        width: 31.33333%;
+    }
+
+    .cryout-plugin:nth-child(4n) {
+        margin-right: 3%;
+    }
+
+    .cryout-plugin:nth-child(4n+1) {
+        clear: none;
+    }
+
+    .cryout-plugin:nth-child(3n) {
+        margin-right: 0;
+    }
+
+    .cryout-plugin:nth-child(3n+1) {
+        clear: both;
+    }
+
+}
+
+
+@media (max-width: 720px) {
+    #admin-header {
+        display: block;
+    }
+
+    #admin-screenshot,
+    #admin-title {
+        display: block;
+        width: 100%;
+        margin: 0 auto;
+        text-align: center;
+    }
+
+    #admin-title {
+        margin-left: 0;
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 640px) {
+
+    .cryout-plugin {
+        width: 48.5%;
+    }
+
+    .cryout-plugin:nth-child(3n) {
+        margin-right: 3%;
+    }
+
+    .cryout-plugin:nth-child(3n+1) {
+        clear: none;
+    }
+
+    .cryout-plugin:nth-child(2n) {
+        margin-right: 0;
+    }
+
+    .cryout-plugin:nth-child(2n+1) {
+        clear: both;
+    }
+
+}
+
+/* FIN */

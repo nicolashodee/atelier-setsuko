@@ -118,7 +118,7 @@ class WPvivid_Export_Import
                 <div style="box-sizing: border-box;">
                     <div class="wpvivid-text-space-bottom"><?php _e('Export posts or pages with images in bulk.', 'wpvivid-backuprestore'); ?>
                         <span class="wpvivid-feature-pro">
-                            <a href="https://wpvivid.com/export-content" target="_blank" style="text-decoration: none;"><?php _e('Learn more', 'wpvivid-backuprestore'); ?></a>
+                            <a href="https://docs.wpvivid.com/export-content.html" target="_blank" style="text-decoration: none;"><?php _e('Learn more', 'wpvivid-backuprestore'); ?></a>
                         </span>
                     </div>
                     <div class="wpvivid-text-space-bottom"><?php _e('This will contain all of your posts, pages, comments, terms and images (original images, featured images and thumbnails).', 'wpvivid-backuprestore'); ?></div>

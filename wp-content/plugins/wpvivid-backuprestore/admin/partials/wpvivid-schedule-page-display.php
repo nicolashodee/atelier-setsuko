@@ -21,7 +21,7 @@ function wpvivid_schedule_settings()
                                 </div>
                                 <div style="float: left; height: 32px; line-height: 32px;">
                                     <span class="wpvivid-feature-pro">
-                                        <a href="https://wpvivid.com/wpvivid-backup-pro-incremental-backup"><?php _e('Pro feature: learn more', 'wpvivid-backuprestore'); ?></a>
+                                        <a href="https://docs.wpvivid.com/wpvivid-backup-pro-incremental-backups.html"><?php _e('Pro feature: learn more', 'wpvivid-backuprestore'); ?></a>
                                     </span>
                                 </div>
                                 <div style="clear: both;"></div>
@@ -33,7 +33,7 @@ function wpvivid_schedule_settings()
                                 </div>
                                 <div style="float: left; height: 32px; line-height: 32px;">
                                     <span class="wpvivid-feature-pro">
-                                        <a href="https://wpvivid.com/wpvivid-backup-pro-schedule-overview?utm_source=client_advanced_schedule&utm_medium=inner_link&utm_campaign=access"><?php _e('Pro feature: learn more', 'wpvivid-backuprestore'); ?></a>
+                                        <a href="https://docs.wpvivid.com/wpvivid-backup-pro-schedule-overview.html"><?php _e('Pro feature: learn more', 'wpvivid-backuprestore'); ?></a>
                                     </span>
                                 </div>
                                 <div style="clear: both;"></div>
@@ -95,7 +95,7 @@ function wpvivid_schedule_settings()
                         <?php _e('+ Add another schedule', 'wpvivid-backuprestore'); ?>
                     </div>
                     <span class="wpvivid-feature-pro">
-                        <a href="https://wpvivid.com/wpvivid-backup-pro-creating-schedules?utm_source=client_multi_schedule&utm_medium=inner_link&utm_campaign=access"><?php _e('Pro feature: learn more', 'wpvivid-backuprestore'); ?></a>
+                        <a href="https://docs.wpvivid.com/wpvivid-backup-pro-creating-schedules.html"><?php _e('Pro feature: learn more', 'wpvivid-backuprestore'); ?></a>
                     </span>
                 </div>
             </div>
@@ -143,7 +143,7 @@ function wpvivid_schedule_backup_type($html)
     $html.='</div>';
     $html.='<div style="float: left; height: 32px; line-height: 32px;">';
     $html.='<span class="wpvivid-feature-pro">';
-    $html.='<a href="https://wpvivid.com/wpvivid-backup-pro-customize-what-to-backup-for-schedule?utm_source=client_schedule_custom_backup&utm_medium=inner_link&utm_campaign=access" style="text-decoration: none;">'.__('Pro feature: learn more', 'wpvivid-backuprestore').'</a>';
+    $html.='<a href="https://docs.wpvivid.com/wpvivid-backup-pro-customize-what-to-backup-for-schedule.html" style="text-decoration: none;">'.__('Pro feature: learn more', 'wpvivid-backuprestore').'</a>';
     $html.='</span>';
     $html.='</div>';
     $html.='</label><br>';

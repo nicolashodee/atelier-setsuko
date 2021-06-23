@@ -132,6 +132,7 @@ class WPvivid {
         add_filter('wpvivid_get_oldest_backup_ids', array($this, 'get_oldest_backup_ids'), 10, 2);
         add_filter('wpvivid_check_backup_completeness', array($this, 'check_backup_completeness'), 10, 2);
 
+        add_filter('wpvivid_get_mainwp_sync_data', array($this, 'get_mainwp_sync_data'), 10);
         //
 		//Initialisation schedule hook
         $this->init_cron();
@@ -1065,6 +1066,39 @@ class WPvivid {
             }
         }
         return $check_res;
+    }
+
+    public function get_mainwp_sync_data($information)
+    {
+        $data['setting']['wpvivid_compress_setting']=get_option('wpvivid_compress_setting');
+        $data['setting']['wpvivid_local_setting']=get_option('wpvivid_local_setting');
+        $data['setting']['wpvivid_common_setting']=get_option('wpvivid_common_setting');
+        $data['setting']['wpvivid_email_setting']=get_option('wpvivid_email_setting');
+        $data['setting']['cron_backup_count']=get_option('cron_backup_count');
+        $data['schedule']=get_option('wpvivid_schedule_setting');
+        $data['remote']['upload']=get_option('wpvivid_upload_setting');
+        $data['remote']['history']=get_option('wpvivid_user_history');
+
+        $data['setting_addon'] = $data['setting'];
+        $data['setting_addon']['wpvivid_staging_options']=array();
+        $data['backup_custom_setting']=array();
+        $data['menu_capability']=array();
+        $data['white_label_setting']=array();
+        $data['incremental_backup_setting']=array();
+        $data['last_backup_report']=array();
+        $data['schedule_addon']=array();
+        $data['time_zone']=false;
+        $data['is_pro']=false;
+        $data['is_install']=false;
+        $data['is_login']=false;
+        $data['latest_version']='';
+        $data['current_version']='';
+        $data['dashboard_version'] = '';
+        $data['addons_info'] = array();
+        $data=apply_filters('wpvivid_get_wpvivid_info_addon_mainwp', $data);
+
+        $information['syncWPvividSetting']=$data;
+        return $information;
     }
 
     public function check_backup_file_json($file_name){

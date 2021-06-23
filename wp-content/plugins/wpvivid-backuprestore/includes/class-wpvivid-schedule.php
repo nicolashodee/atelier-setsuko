@@ -114,7 +114,7 @@ class WPvivid_Schedule
         $html.='</div>';
         $html.='<div style="float: left; height: 32px; line-height: 32px;">';
         $html.='<span class="wpvivid-feature-pro">';
-        $html.='<a href="https://wpvivid.com/wpvivid-backup-pro-schedule-overview?utm_source=client_custom_cycles&utm_medium=inner_link&utm_campaign=access" style="text-decoration: none; margin-top: 10px;">'.__('Pro feature: learn more', 'wpvivid-backuprestore').'</a>';
+        $html.='<a href="https://docs.wpvivid.com/wpvivid-backup-pro-customize-start-time.html" style="text-decoration: none; margin-top: 10px;">'.__('Pro feature: learn more', 'wpvivid-backuprestore').'</a>';
         $html.='</span>';
         $html.='</div>';
         $html.='</label><br>';

@@ -1,0 +1,228 @@
+<!doctype html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" href="bootstrap.css" />
+<link rel="stylesheet" href="../admin/shortcodes.css" />
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="bootstrap.js"></script>
+<script type="text/javascript">
+(function($) {
+    $(document).ready(function() {
+
+		prefix = '';
+		if ( typeof top.cryout_shortcodes_prefix != 'undefined' ) prefix = top.cryout_shortcodes_prefix;
+
+        $('#btn_insert, h5.preview').fadeOut();
+
+        setInterval(function() {
+            //Set popup's width
+            var pwidth = 800;
+            parent.jQuery('#TB_window,#TB_iframeContent').width(pwidth);
+            parent.jQuery('#TB_window').css('margin-left', -(pwidth / 2));
+        }, 100);
+
+        $('#frm_create').submit(function(e) {
+            e.preventDefault();
+            append_grid($('#quantity').val());
+        });
+
+        $('#quantity').bind('keyup change', function() {
+            var lastQuantity = $(this).data('lastQuantity');
+            var currentQuantity = $(this).val();
+
+            if (currentQuantity === lastQuantity) {
+                return 'no need to update'
+            } else {
+                $(this).data('lastQuantity', currentQuantity);
+                append_grid(currentQuantity);
+            }
+        });
+
+        $('#col-width').bind('change keyup', function() {
+            var $active = $('#demo_grid div.active');
+            var val = $(this).val();
+            //var rs = $(this).parent().parent().parent().find('#col-responsiveness').val();
+            if (isNaN(val) || val > 12 || val < 1) return;
+            var cw = $active.find('.grid').text().split(' ')[1];
+
+            $active.removeClass('col-' + 'xs' + '-' + cw).addClass('col-' + 'xs' + '-' + $(this).val());
+            $active.find('.grid').text('Grid ' + $(this).val());
+        });
+
+        $('#col-offset').bind('keyup change', function() {
+
+            var val = $(this).val();
+            if (isNaN(val) || val > 12 || val < 0) return;
+
+            var $active = $('#demo_grid div.active');
+
+
+            var cw = $active.find('.offset').text().split(' ')[1];
+
+            if (isNaN(cw) || cw > 12) return;
+
+            $active.removeClass('col-xs-offset-' + cw).addClass('col-xs-offset-' + $(this).val());
+            $active.find('.offset').text('Offset ' + $(this).val());
+        });
+
+        $('#col-responsiveness').bind('change', function() {
+            var $active = $('#demo_grid div.active');
+            var rs = $active.find('.responsiveness').val();
+            $active.find('.responsiveness').text( $(this).val() );
+        });
+
+        $('#col-alignment').bind('change', function() {
+            var $active = $('#demo_grid div.active');
+            var al = $active.find('.alignment').val();
+            $active.find('.alignment').text( $(this).val() );
+        });
+
+
+        $('#demo_grid').on('click', '.demo_col', function() {
+            $('#demo_grid div').removeClass('active');
+            $(this).addClass('active');
+            var cw = $(this).find('.grid').text().split(' ')[1];
+            var os = $(this).find('.offset').text().split(' ')[1];
+            var rs = $(this).find('.responsiveness').text();
+            var al = $(this).find('.alignment').text();
+            $('#col-width').val(cw);
+            $('#col-offset').val(os);
+            if ( 'xs' == rs || 'sm' == rs || 'md' == rs || 'lg' == rs)
+                $('#col-responsiveness').val(rs);
+            if ( 'centered' == al || 'normal' == al )
+                    $('#col-alignment').val(al);
+
+            $('#col-edit').hide();
+            $('#col-edit').fadeIn(200);
+
+        });
+
+        $('#btn_insert').click(function() {
+
+            var shortcodes = '['+prefix+'row class="row"]';
+            $('#demo_grid > div').each(function() {
+                $(this).removeClass('demo_col active');
+                var clss = $(this).attr('class');
+                var rsp = $(this).find('.responsiveness').text();
+                var alg = $(this).find('.alignment').text();
+                clss = clss.replace(/-xs-/g, "-" + rsp + "-");
+                if ( "centered" == alg ) clss += ' valign';
+                shortcodes += '<br class="nc"/>['+prefix+'col class="' + clss + '"]Text[/'+prefix+'col]';
+
+            });
+            shortcodes += '<br class="nc"/>[/'+prefix+'row]';
+            top.tinymce.activeEditor.execCommand('mceInsertContent', false, shortcodes);
+            top.tinymce.activeEditor.windowManager.close();
+        });
+
+    });
+
+    function append_grid(cols) {
+        if (isNaN(cols) || cols > 12) return;
+
+        $('#btn_insert, h5.preview').fadeIn();
+
+        var basewidth = Math.floor(12 / cols);
+        var extrawidth = 12 - (basewidth * cols);
+        var offset = 0;
+        var responsiveness = 'sm';
+        var alignment = 'normal';
+
+        $('#demo_grid').empty();
+
+        for (i = 0; i < cols; i++) {
+            var cwidth = (extrawidth > 0) ? 1 : 0;
+            $('#demo_grid').append('<div class="col-xs-' + (basewidth + cwidth) + ' demo_col"><span class="grid">Grid ' + (basewidth + cwidth) + '</span> <span class="offset">Offset ' + offset + '</span> <span class="responsiveness">' + responsiveness + '</span><span class="alignment">' + alignment + '</span></div>');
+            extrawidth--;
+        };
+
+        $('#demo_grid').append('<span id="click-info">Click on the columns to edit them</span>');
+    }
+}(jQuery));
+
+</script>
+
+</head>
+<body>
+<div id="bs-wrapper">
+    <div id="bs-grid">
+        <form id="frm_create" class="form-horizontal">
+            <div class="form-group">
+                <label for="quantity" class="col-xs-4 control-label">Number of columns</label>
+                <div class="col-xs-8">
+                    <input
+                        id="quantity"
+                        name="quantity"
+                        type="number"
+                        class="form-control"
+                        required
+                        pattern="\b([1-9]|1[0-2])\b"
+                        min="1"
+                        placeholder="Number from 1 - 12">
+                </div>
+            </div>
+        </form>
+
+        <div id="demo_grid" class="row show-grid"></div>
+
+        <form id="col-edit" class="form-horizontal" style="display:none;">
+            <div class="form-group">
+                <label for="col-width" class="col-xs-4 control-label">Grid</label>
+                <div class="col-xs-8">
+                    <input
+                        id="col-width"
+                        name="col-width"
+                        type="number"
+                        class="form-control"
+                        value="1"
+                        required
+                        pattern="\b([1-9]|1[0-2])\b"
+                        min="1"
+                        max="12">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="col-offset" class="col-xs-4 control-label">Offset</label>
+                <div class="col-xs-8">
+                    <input
+                        id="col-offset"
+                        name="col-offset"
+                        type="number"
+                        class="form-control"
+                        value="0"
+                        required
+                        pattern="\b([0-9]|1[0-1])\b"
+                        min="0"
+                        max="11">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="col-responsiveness" class="col-xs-4 control-label">Responsiveness</label>
+                <div class="col-xs-8">
+                    <select id="col-responsiveness" name="col-responsiveness" class="form-control" style="width: 220px">
+                        <option value="xs"> Extra Small (XS) </option>
+                        <option value="sm" selected> Small (SM) </option>
+                        <option value="md"> Medium (MD)</option>
+                        <option value="lg"> Large (LG)</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="col-alignment" class="col-xs-4 control-label">Vertical Alignment</label>
+                <div class="col-xs-8">
+                    <select id="col-alignment" name="col-alignment" class="form-control" style="width: 220px">
+                        <option value="normal" selected> Normal </option>
+                        <option value="centered"> Centered </option>
+                    </select>
+                </div>
+            </div>
+        </form>
+        <br>
+        <div class="form-group text-right">
+            <button id="btn_insert" class="btn btn-primary" style="display: none;">Insert Shortcode</button>
+        </div>
+    </div>
+</div>
+</body>
+</html>

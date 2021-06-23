@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="bootstrap.css" />
+    <link rel="stylesheet" href="../admin/shortcodes.css" />
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="bootstrap.js"></script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+		prefix = '';
+		if ( typeof top.cryout_shortcodes_prefix != 'undefined' ) prefix = top.cryout_shortcodes_prefix;	
+		
+		current_text = top.tinymce.activeEditor.selection.getContent({format : 'text'});
+		if (current_text.length<1) current_text = 'Your alert here.';
+		$('#alert-text-input').val( current_text );
+	
+        function alertType() {
+          return $('#alert-type-input').val();
+        }
+
+        function isDismissable() {
+          return $('#is-dismissable-input').is(':checked');
+        }
+		
+		function currentText() {
+		  current_text = $('#alert-text-input').val();
+		  if (current_text.length<1) current_text = 'Your alert here.';
+		  return current_text;
+		}
+
+        function alertShortcode() {
+          return '['+prefix+'notification type="' + alertType() + '" dismissible="' + isDismissable() + '"]' + currentText() + '[/'+prefix+'notification]';
+        }
+
+        function renderAlertPreview() {
+		  current_text = currentText();
+		  if (current_text.length>120) current_text = current_text.substr(0,120) + '...'; 
+          var closebutton = '<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>';
+          var template = '<div class="alert alert-' + alertType() + '" role="alert">' + (isDismissable()? closebutton : '') + current_text + '</div>'
+          $('#alert-demo').html(template);
+        }
+
+        function insertShortcode(event) {
+          top.tinymce.activeEditor.insertContent(alertShortcode());
+          top.tinymce.activeEditor.windowManager.close();
+          event.preventDefault();
+        }
+
+        function showResetButton() {
+          $('#reset-button').show();
+        }
+
+        function resetPreview() {
+          $('#reset-button').hide();
+          renderAlertPreview();
+        }
+
+        $('#alert-type-input').on('change', renderAlertPreview);
+		$('#alert-text-input').on('keypress', renderAlertPreview);
+        $('#is-dismissable-input').on('change', renderAlertPreview);
+        $('#alert-form').on('submit', insertShortcode);
+        // I think Boostrap's custom event "closed.bs.alert" fails to bubble up
+        // so we'll just listen for the actual click on the close button
+        $('#alert-demo').on('click', '.close', showResetButton);
+        $('#reset-button').on('click', resetPreview);
+        resetPreview();
+    });
+    </script>
+</head>
+
+<body>
+<div id="bs-wrapper">
+    <div id="bs-grid">
+		<form id="alert-form">
+		<div class="container">
+        <div class="row">
+			<div class="col-md-12">
+				<div class="form-group">
+					<label for="alert-text-input">Text:</label>
+					<textarea id="alert-text-input" class="form-control"></textarea>
+				</div>
+			</div>
+            <div class="col-xs-6">
+                    <div class="form-group">
+						<label for="alert-type-input">Type:</label>
+                        <select id="alert-type-input" class="form-control">
+                            <option value="success">Success</option>
+                            <option value="warning">Warning</option>
+                            <option value="info">Info</option>
+                            <option value="danger">Danger</option>
+                        </select>
+						<div class="checkbox">
+                            <label>
+                                <input id="is-dismissable-input" type="checkbox" checked> Dismissable?
+                            </label>
+                        </div>
+                    </div>
+			</div>
+		</div>
+		<div class="row">
+            <div class="col-md-12">
+                <h4>Preview</h4>
+                <div id="alert-demo"></div>
+                    <button id="reset-button" class="btn btn-warning">Restore alert</button>
+            </div>
+			 <div class="col-md-12 text-right">
+                        <button type="submit" class="btn btn-primary">Insert Shortcode</button>
+             </div>
+		</div>
+		</div>
+		</form>
+    </div>
+</div>
+</body>
+</html>

@@ -1027,7 +1027,7 @@ class WPvivid_Uploads_Cleaner
 
         $menu['id']='wpvivid_admin_menu_cleaner';
         $menu['parent']='wpvivid_admin_menu';
-        $menu['title']=__('Image Cleaner (Beta)', 'wpvivid-backuprestore');
+        $menu['title']=__('Image Cleaner', 'wpvivid-backuprestore');
         $menu['tab']= 'admin.php?page='.apply_filters('wpvivid_white_label_plugin_name', 'wpvivid-cleaner');
         $menu['href']=$admin_url . 'admin.php?page='.apply_filters('wpvivid_white_label_plugin_name', 'wpvivid-cleaner');
         $menu['capability']='administrator';
@@ -1040,7 +1040,7 @@ class WPvivid_Uploads_Cleaner
     {
         $submenu['parent_slug']=apply_filters('wpvivid_white_label_slug', WPVIVID_PLUGIN_SLUG);
         $submenu['page_title']= apply_filters('wpvivid_white_label_display', 'WPvivid Backup');
-        $submenu['menu_title']=__('Image Cleaner (Beta)', 'wpvivid-backuprestore');
+        $submenu['menu_title']=__('Image Cleaner', 'wpvivid-backuprestore');
         $submenu['capability']='administrator';
         $submenu['menu_slug']=strtolower(sprintf('%s-cleaner', apply_filters('wpvivid_white_label_slug', 'wpvivid')));
         $submenu['index']=3;
@@ -1075,7 +1075,7 @@ class WPvivid_Uploads_Cleaner
         <div class="wrap" style="max-width:1720px;">
             <h1>
                 <?php
-                echo __('WPvivid Image Cleaner (Beta)', 'wpvivid');
+                echo __('WPvivid Image Cleaner', 'wpvivid');
                 ?>
             </h1>
             <?php

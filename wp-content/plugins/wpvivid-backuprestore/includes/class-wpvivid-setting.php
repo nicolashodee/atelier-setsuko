@@ -616,55 +616,32 @@ class WPvivid_Setting
 
     public static function get_sync_data()
     {
-        $wpvivid_info=apply_filters('wpvivid_get_wpvivid_info_addon_mainwp', false);
-        if(!$wpvivid_info){
-            $data['need_update']=false;
-            $data['current_version']='';
-        }
-        else{
-            $data['need_update']=$wpvivid_info['need_update'];
-            $data['current_version']=$wpvivid_info['current_version'];
-        }
-        $check_ret=apply_filters('wpvivid_check_is_pro_mainwp', false);
-        if(!$check_ret){
-            $data['is_pro']=false;
-            $data['is_install']=false;
-            $data['is_login']=false;
-            $data['latest_version']='';
-        }
-        else{
-            $data['is_pro']=$check_ret['check_pro'];
-            $data['is_install']=isset($check_ret['check_install']) ? $check_ret['check_install'] : false;
-            $data['is_login']=isset($check_ret['check_login']) ? $check_ret['check_login'] : false;
-            $data['latest_version']=$check_ret['latest_version'];
-        }
-        $data['time_zone']=apply_filters('wpvivid_get_time_zone_addon_mainwp', false);
         $data['setting']['wpvivid_compress_setting']=self::get_option('wpvivid_compress_setting');
         $data['setting']['wpvivid_local_setting']=self::get_option('wpvivid_local_setting');
         $data['setting']['wpvivid_common_setting']=self::get_option('wpvivid_common_setting');
         $data['setting']['wpvivid_email_setting']=self::get_option('wpvivid_email_setting');
         $data['setting']['cron_backup_count']=self::get_option('cron_backup_count');
-
-        $data['setting_addon'] = $data['setting'];
-        $data['setting_addon']['wpvivid_staging_options']=apply_filters('wpvivid_get_staging_setting_mainwp', array());
-
         $data['schedule']=self::get_option('wpvivid_schedule_setting');
-        $data['schedule_addon']=apply_filters('wpvivid_archieve_schedule_add_settings', array());
-
         $data['remote']['upload']=self::get_option('wpvivid_upload_setting');
         $data['remote']['history']=self::get_option('wpvivid_user_history');
 
-        $data['backup_custom_setting']=apply_filters('wpvivid_get_backup_custom_setting_mainwp', array());
-
-        //$data['report_addon'] = apply_filters('wpvivid_archieve_report_addon_mainwp', array());
-
-        $data['menu_capability'] = apply_filters('wpvivid_get_menu_capability_mainwp', array());
-
-        $data['white_label_setting'] = apply_filters('wpvivid_get_white_label_mainwp', array());
-
-        $data['incremental_backup_setting'] = apply_filters('wpvivid_get_incremental_backup_mainwp', array());
-
-        $data['last_backup_report'] = apply_filters('wpvivid_get_backup_report_addon_mainwp', array());
+        $data['setting_addon'] = $data['setting'];
+        $data['setting_addon']['wpvivid_staging_options']=array();
+        $data['backup_custom_setting']=array();
+        $data['menu_capability']=array();
+        $data['white_label_setting']=array();
+        $data['incremental_backup_setting']=array();
+        $data['last_backup_report']=array();
+        $data['schedule_addon']=array();
+        $data['time_zone']=false;
+        $data['is_pro']=false;
+        $data['is_install']=false;
+        $data['is_login']=false;
+        $data['latest_version']='';
+        $data['current_version']='';
+        $data['dashboard_version'] = '';
+        $data['addons_info'] = array();
+        $data=apply_filters('wpvivid_get_wpvivid_info_addon_mainwp_ex', $data);
         return $data;
     }
 }

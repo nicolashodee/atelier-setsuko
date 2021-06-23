@@ -1132,6 +1132,13 @@ $wpvivid_old_time=0;
 
 function wpvivid_function_per_add_callback($p_event, &$p_header)
 {
+    if(!file_exists($p_header['filename'])){
+        return 0;
+    }
+    if($p_header['size'] === 0){
+        return 0;
+    }
+
     global $wpvivid_old_time;
     if(time()-$wpvivid_old_time>30)
     {
@@ -1148,34 +1155,45 @@ function wpvivid_function_pre_extract_callback($p_event, &$p_header)
 {
     $plugins = substr(WP_PLUGIN_DIR, strpos(WP_PLUGIN_DIR, 'wp-content/'));
 
-    $option = $GLOBALS['wpvivid_extract_option'];
-    if (isset($option['file_type'])) {
-        if ($option['file_type'] == 'themes') {
-            if (isset($option['remove_themes'])) {
-                foreach ($option['remove_themes'] as $slug => $themes) {
-                    if (empty($slug))
-                        continue;
-                    if(strpos($p_header['filename'],$plugins.DIRECTORY_SEPARATOR.$slug)!==false)
+    if ( isset( $GLOBALS['wpvivid_extract_option'] ) )
+    {
+        $option = $GLOBALS['wpvivid_extract_option'];
+        if (isset($option['file_type']))
+        {
+            if ($option['file_type'] == 'themes')
+            {
+                if (isset($option['remove_themes']))
+                {
+                    foreach ($option['remove_themes'] as $slug => $themes)
                     {
-                        return 0;
+                        if (empty($slug))
+                            continue;
+                        if(strpos($p_header['filename'],$plugins.DIRECTORY_SEPARATOR.$slug)!==false)
+                        {
+                            return 0;
+                        }
                     }
                 }
             }
-        } else if ($option['file_type'] == 'plugin') {
-            if (isset($option['remove_plugin'])) {
-                foreach ($option['remove_plugin'] as $slug => $plugin) {
-                    if (empty($slug))
-                        continue;
-                    if(strpos($p_header['filename'],$plugins.'/'.$slug)!==false)
+            else if ($option['file_type'] == 'plugin')
+            {
+                if (isset($option['remove_plugin']))
+                {
+                    foreach ($option['remove_plugin'] as $slug => $plugin)
                     {
-                        return 0;
+                        if (empty($slug))
+                            continue;
+                        if(strpos($p_header['filename'],$plugins.'/'.$slug)!==false)
+                        {
+                            return 0;
+                        }
                     }
                 }
             }
         }
     }
 
-    if(strpos($p_header['filename'],$plugins.DIRECTORY_SEPARATOR.'wpvivid-backuprestore')!==false)
+    if(strpos($p_header['filename'],$plugins.'/wpvivid-backuprestore')!==false)
     {
         return 0;
     }
