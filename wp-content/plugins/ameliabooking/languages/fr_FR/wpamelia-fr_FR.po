@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Amelia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-17 09:57+0200\n"
-"PO-Revision-Date: 2021-06-23 17:17+0200\n"
+"PO-Revision-Date: 2021-06-26 15:22+0200\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -265,7 +265,7 @@ msgstr "Vous n'avez pas encore de clients ici..."
 
 #: BackendStrings.php:84 FrontendStrings.php:555
 msgid "There are no results..."
-msgstr "Il n'y a aucun résultat..."
+msgstr "Vous n’avez pas encore pris de rendez vous"
 
 #: BackendStrings.php:85
 msgid "You don't have any packages here yet..."
@@ -422,7 +422,7 @@ msgstr "Rendez-vous groupés"
 
 #: BackendStrings.php:118 FrontendStrings.php:605
 msgid "Save"
-msgstr "Enregistrer"
+msgstr "Enregister"
 
 #: BackendStrings.php:119 FrontendStrings.php:613
 msgid "Please select date"
@@ -5312,7 +5312,7 @@ msgstr "La capacité maximale est atteinte"
 
 #: BackendStrings.php:1474
 msgid "All employees"
-msgstr "Tous les employés"
+msgstr "Peu importe"
 
 #: BackendStrings.php:1475
 msgid "This will change the time of the appointment. Continue?"
@@ -5391,7 +5391,7 @@ msgstr "Tous les évènements"
 
 #: BackendStrings.php:1510 FrontendStrings.php:253
 msgid "Any Employee"
-msgstr "Tous les employés"
+msgstr "Peu importe"
 
 #: BackendStrings.php:1511
 msgid "Bringing Anyone with You?"
@@ -5844,7 +5844,7 @@ msgstr "Ajouter au calendrier"
 
 #: FrontendStrings.php:91
 msgid "All slots are selected"
-msgstr "Tous les emplacements sont sélectionnés"
+msgstr "Tous les créneaux sont pris ! :("
 
 #: FrontendStrings.php:95
 msgid "at"
@@ -6194,7 +6194,7 @@ msgstr "Vue d’ensemble"
 
 #: FrontendStrings.php:261
 msgid "Save "
-msgstr "Enregistrer "
+msgstr "Economisez "
 
 #: FrontendStrings.php:262
 msgid "All services are booked separately."
@@ -6222,7 +6222,7 @@ msgstr "le premier cours doit être réservé maintenant."
 
 #: FrontendStrings.php:270
 msgid "appointments are required to be booked now."
-msgstr "les rendez-vous doivent être réservés maintenant."
+msgstr "rendez-vous doivent être réservés maintenant."
 
 #: FrontendStrings.php:271
 msgid "Person"
