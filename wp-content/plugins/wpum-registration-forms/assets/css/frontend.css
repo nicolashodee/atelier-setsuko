@@ -1,0 +1,63 @@
+.step-progress-wrapper {
+    position: relative;
+    display: block;
+    width: 100%;
+}
+
+.step-progress-bar {
+    display: block;
+    background: #c2c4cf;
+    height: 5px;
+    margin-bottom: 20px;
+    z-index: 10;
+    transition: width .5s ease-in-out;
+}
+
+.step-progress-bar::before {
+    content: '';
+    display: block;
+    width: 100%;
+    background: #E8EAF6;
+    height: 5px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.button[name="submit_registration"] {
+    display: none;
+}
+
+.step-breadcrumb {
+    font-size: 14px;
+    padding: 1em;
+    margin-right: .5em;
+	margin-bottom: 20px;
+    outline: none;
+    border-radius: 4px;
+    text-transform: capitalize;
+}
+
+.step-button-wrappers {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.step-button-wrappers button {
+    font-size: 14px;
+    padding: 1em;
+    margin: 0;
+    outline: none;
+    border-radius: 3px;
+    text-transform: capitalize;
+    width: 150px;
+}
+
+.step-button-wrappers button:not(.available),
+.step-breadcrumb:not(.active) {
+	background: #c2c4cf;
+}

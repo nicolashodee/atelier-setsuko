@@ -1,0 +1,312 @@
+# Copyright (C) 2021 WP User Manager
+# This file is distributed under the GPLv3+.
+msgid ""
+msgstr ""
+"Project-Id-Version: WPUM Registration Forms 1.3.1\n"
+"Report-Msgid-Bugs-To: "
+"https://wordpress.org/support/plugin/wpum-registration-forms\n"
+"POT-Creation-Date: 2021-05-29 05:27:01+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2021-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: grunt-wp-i18n 1.0.3\n"
+
+#: includes/admin-hooks.php:26 includes/admin-hooks.php:48
+msgid "Something went wrong: could not create new registration form."
+msgstr ""
+
+#: includes/admin-hooks.php:67
+msgid "Something went wrong: could not delete the registration form."
+msgstr ""
+
+#: includes/admin-hooks.php:133
+msgid "Redirect After Registration"
+msgstr ""
+
+#: includes/admin-hooks.php:134
+msgid ""
+"Select the page where you want to redirect users after they successfully "
+"register. (Overrides the global redirect setting)"
+msgstr ""
+
+#: includes/admin-hooks.php:140
+msgid "Next Step Button Label"
+msgstr ""
+
+#: includes/admin-hooks.php:141
+msgid "The button label text for the Next step button"
+msgstr ""
+
+#: includes/admin-hooks.php:143 includes/templates.php:95
+msgid "Next"
+msgstr ""
+
+#: includes/admin-hooks.php:147
+msgid "Previous Step Button Label"
+msgstr ""
+
+#: includes/admin-hooks.php:148
+msgid "The button label text for the Previous step button"
+msgstr ""
+
+#: includes/admin-hooks.php:150 includes/templates.php:94
+msgid "Previous"
+msgstr ""
+
+#: includes/admin-hooks.php:154 includes/admin-hooks.php:155
+msgid "Show Step Titles & Description"
+msgstr ""
+
+#: includes/admin-hooks.php:161 includes/admin-hooks.php:162
+msgid "Show Step Progress Bar"
+msgstr ""
+
+#: includes/admin-hooks.php:168 includes/admin-hooks.php:169
+msgid "Show Step Breadcrumbs"
+msgstr ""
+
+#: includes/assets.php:39
+msgid "Field options"
+msgstr ""
+
+#: includes/assets.php:40
+msgid "Add option"
+msgstr ""
+
+#: includes/assets.php:41
+msgid "Option label"
+msgstr ""
+
+#: includes/assets.php:42
+msgid "Option value"
+msgstr ""
+
+#: includes/assets.php:43
+msgid "Save changes"
+msgstr ""
+
+#: includes/assets.php:44 includes/assets.php:48
+msgid "Something went wrong, could not find the settings for this field type."
+msgstr ""
+
+#: includes/assets.php:45
+msgid "Error: this setting is required."
+msgstr ""
+
+#: includes/assets.php:46
+msgid "Error: this setting cannot contain special characters."
+msgstr ""
+
+#: includes/assets.php:47
+msgid ""
+"There are some errors with your changes. Please check the errors "
+"highlighted below."
+msgstr ""
+
+#: includes/assets.php:49
+msgid "Something went wrong, no changes were saved."
+msgstr ""
+
+#: includes/assets.php:50
+msgid "Add new custom field"
+msgstr ""
+
+#: includes/assets.php:51
+msgid "Drag and drop the rows below to change the order."
+msgstr ""
+
+#: includes/assets.php:52
+msgid "Field name"
+msgstr ""
+
+#: includes/assets.php:53
+msgid "Type"
+msgstr ""
+
+#: includes/assets.php:54
+msgid "Required"
+msgstr ""
+
+#: includes/assets.php:55
+msgid "Privacy"
+msgstr ""
+
+#: includes/assets.php:56
+msgid "Edit field"
+msgstr ""
+
+#: includes/assets.php:57
+msgid "Delete field"
+msgstr ""
+
+#: includes/assets.php:58
+msgid "Editable"
+msgstr ""
+
+#: includes/assets.php:59
+msgid ""
+"Fields marked as required will be compulsory within the registration and "
+"account form."
+msgstr ""
+
+#: includes/assets.php:60
+msgid ""
+"Fields marked as locked, can only be edited by an administrator and will "
+"not be visible in any form."
+msgstr ""
+
+#: includes/assets.php:61
+msgid "Hidden fields are not publicly visible within profiles."
+msgstr ""
+
+#: includes/assets.php:62
+msgid "Actions"
+msgstr ""
+
+#: includes/assets.php:63
+msgid "Add new sub field"
+msgstr ""
+
+#: includes/assets.php:64
+msgid "Add sub field"
+msgstr ""
+
+#: includes/assets.php:69
+msgid "Fields Editor"
+msgstr ""
+
+#: includes/assets.php:70
+msgid "Changes successfully saved."
+msgstr ""
+
+#: includes/directories.php:26 includes/directories.php:37
+msgid "Registration Forms"
+msgstr ""
+
+#: includes/directories.php:27
+msgid ""
+"Only display users who have registered through specific registration forms. "
+"Leave blank to display all users."
+msgstr ""
+
+#: includes/directories.php:59
+msgid "All"
+msgstr ""
+
+#: includes/fields/types/class-wpumrf-field-html-content.php:19
+msgid "HTML content"
+msgstr ""
+
+#: includes/fields/types/class-wpumrf-field-step.php:19
+msgid "Step"
+msgstr ""
+
+#: includes/settings.php:13
+msgid "Existing User Registration Form"
+msgstr ""
+
+#: includes/settings.php:14
+msgid "This form is used to collect data from an already registered user."
+msgstr ""
+
+#: includes/shortcode.php:31
+msgid "Select form:"
+msgstr ""
+
+#: includes/shortcode.php:88
+msgid "Content not available."
+msgstr ""
+
+#: includes/shortcode.php:92
+msgid ""
+"Registration complete. We have sent you a confirmation email with your "
+"details."
+msgstr ""
+
+#: includes/shortcode.php:112
+msgid "Registrations are currently disabled."
+msgstr ""
+
+#: includes/templates/forms/form-registration.php:88
+#: includes/wpum-widgets/class-wpumrf-registration-form-widget.php:43
+msgid "Register"
+msgstr ""
+
+#: includes/templates.php:103
+msgid "Profile successfully updated."
+msgstr ""
+
+#: includes/wpum-forms/class-wpum-form-registration-multi.php:85
+msgid ""
+"The registration form cannot be used because either a username or email "
+"field is required to process registrations. Please edit the form and add at "
+"least the email field."
+msgstr ""
+
+#: includes/wpum-forms/class-wpum-form-registration-multi.php:162
+msgid "Save Changes"
+msgstr ""
+
+#: includes/wpum-widgets/class-wpumrf-registration-form-widget.php:33
+msgid "[WPUM] Registration Form"
+msgstr ""
+
+#: includes/wpum-widgets/class-wpumrf-registration-form-widget.php:34
+msgid "Display the registration form."
+msgstr ""
+
+#: includes/wpum-widgets/class-wpumrf-registration-form-widget.php:39
+msgid "Title"
+msgstr ""
+
+#: includes/wpum-widgets/class-wpumrf-registration-form-widget.php:47
+msgid "Form Name"
+msgstr ""
+
+#: includes/wpum-widgets/class-wpumrf-registration-form-widget.php:55
+msgid "Select a Form"
+msgstr ""
+
+#: includes/wpum-widgets/class-wpumrf-registration-form-widget.php:69
+msgid "Display login link"
+msgstr ""
+
+#: includes/wpum-widgets/class-wpumrf-registration-form-widget.php:76
+msgid "Display password recovery link"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "WPUM Registration Forms"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://wpusermanager.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Addon for WP User Manager, lets you create multiple registration forms for "
+"your site."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "WP User Manager"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://wpusermanager.com/"
+msgstr ""

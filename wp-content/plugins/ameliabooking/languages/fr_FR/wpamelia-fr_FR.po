@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Amelia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-17 09:57+0200\n"
-"PO-Revision-Date: 2021-06-26 15:22+0200\n"
+"PO-Revision-Date: 2021-06-30 12:00+0200\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -102,7 +102,7 @@ msgstr "Code promo"
 
 #: BackendStrings.php:44 BackendStrings.php:687 FrontendStrings.php:118
 msgid "Customer"
-msgstr "Client"
+msgstr "Elève"
 
 #: BackendStrings.php:45 FrontendStrings.php:296
 msgid "Specific Date"
@@ -261,7 +261,7 @@ msgstr "Non"
 
 #: BackendStrings.php:83
 msgid "You don't have any employees here yet..."
-msgstr "Vous n'avez pas encore de clients ici..."
+msgstr "Vous n'avez pas encore d’élèves ici..."
 
 #: BackendStrings.php:84 FrontendStrings.php:555
 msgid "There are no results..."
@@ -646,7 +646,7 @@ msgid ""
 "Suggest customers to add an appointment to their calendar<br/>when booking "
 "is finalized."
 msgstr ""
-"Proposer aux clients d'ajouter un rendez-vous à leur calendrier personnel<br/"
+"Proposer aux élèves d'ajouter un rendez-vous à leur calendrier personnel<br/"
 ">\n"
 "lorsque la réservation est finalisée."
 
@@ -714,19 +714,19 @@ msgstr ""
 
 #: BackendStrings.php:192
 msgid "Allow customers to reschedule their own appointments"
-msgstr "Autoriser les clients à reporter leurs rendez-vous"
+msgstr "Autoriser les élèves à reporter leurs rendez-vous"
 
 #: BackendStrings.php:193
 msgid ""
 "Enable this option if you want to allow your customers to reschedule their "
 "own appointments."
 msgstr ""
-"Activer cette option pour permettre à vos clients de reprogrammer un rendez-"
+"Activer cette option pour permettre à vos élèves de reprogrammer un rendez-"
 "vous."
 
 #: BackendStrings.php:194
 msgid "Allow customers to delete their profile"
-msgstr "Autoriser les clients à supprimer leur profil"
+msgstr "Autoriser les élèves à supprimer leur profil"
 
 #: BackendStrings.php:195
 msgid ""
@@ -898,7 +898,7 @@ msgstr ""
 
 #: BackendStrings.php:230
 msgid "Customer Panel Page URL"
-msgstr "URL de la page gestion de profil client"
+msgstr "URL de la page gestion de profil élève"
 
 #: BackendStrings.php:231
 msgid "Employee Panel Page URL"
@@ -1054,7 +1054,7 @@ msgstr ""
 
 #: BackendStrings.php:261
 msgid "Enable Customer Panel"
-msgstr "Activer le gestion de profil client"
+msgstr "Activer le gestion de profil élève"
 
 #: BackendStrings.php:262
 msgid "Enable Employee Panel"
@@ -2340,7 +2340,7 @@ msgstr "Rendez-vous reporté"
 
 #: BackendStrings.php:551
 msgid "Customer Panel Access"
-msgstr "Accès au panneau client"
+msgstr "Accès à l’espace élève"
 
 #: BackendStrings.php:552
 msgid "Birthday Greeting"
@@ -3123,7 +3123,7 @@ msgstr "Heure:"
 
 #: BackendStrings.php:765
 msgid "To Customer"
-msgstr "Aux clients"
+msgstr "Aux élèves"
 
 #: BackendStrings.php:766
 msgid "To Employee"
@@ -4279,11 +4279,11 @@ msgstr ""
 
 #: BackendStrings.php:1135 BackendStrings.php:1470
 msgid "Add Customer"
-msgstr "Ajouter un client"
+msgstr "Ajouter un élève"
 
 #: BackendStrings.php:1136
 msgid "Start by clicking the Add Customer button"
-msgstr "Commencer en cliquant le bouton Ajouter un client"
+msgstr "Commencer en cliquant le bouton Ajouter un élève"
 
 #: BackendStrings.php:1137
 msgid "Are you sure you want to delete this customer?"
@@ -4303,7 +4303,7 @@ msgstr "Le client a été enregistré"
 
 #: BackendStrings.php:1142 BackendStrings.php:1293 FrontendStrings.php:424
 msgid "Customers"
-msgstr "Clients"
+msgstr "Elèves "
 
 #: BackendStrings.php:1143
 msgid "Customers have been deleted"
@@ -4358,7 +4358,7 @@ msgstr "Nouveau client"
 
 #: BackendStrings.php:1156
 msgid "You don't have any customers here yet..."
-msgstr "Vous n'avez pas encore de clients..."
+msgstr "Vous n'avez pas encore d’élèves inscrits…"
 
 #: BackendStrings.php:1159
 msgid "Select Date of Birth"
@@ -6214,7 +6214,7 @@ msgstr "Ajouter un rendez-vous"
 
 #: FrontendStrings.php:268
 msgid "Next Service"
-msgstr "Service suivant"
+msgstr "Passer au cours suivant "
 
 #: FrontendStrings.php:269
 msgid "appointment is required to be booked now."

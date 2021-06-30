@@ -1,0 +1,50 @@
+.droppable-fields .widget-description {
+    display: block;
+    background: #fff;
+    padding: 15px 10px;
+    border: 1px solid #ccd0d4;
+    cursor: move;
+    min-height: 50px;
+}
+
+.droppable-fields .widget-description .widget-action {
+    height: 20px;
+    width: 20px;
+    background: none;
+    border: none;
+    float: right;
+    margin: 0 0 5px 5px;
+    cursor: pointer;
+    box-sizing: content-box;
+    padding: 0 2px;
+}
+
+.droppable-fields .widget-description .widget-action:focus {
+    border: none !important;
+    outline: none !important;
+}
+
+body.users_page_wpum-registration-forms .wp-editor-container .button.button-small {
+    display: inline-block;
+    width: auto;
+    min-height: 30px;
+    font-size: 13px;
+    line-height: 1.2;
+}
+
+body.users_page_wpum-registration-forms button.button-danger {
+    background: #F44336 !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+.available-fields-holder .destroyable .widget-top {
+    background: #E53935 !important;
+    opacity: 0;
+    -webkit-transition: opacity 500ms linear;
+    transition: opacity 500ms linear;
+}
+
+.available-fields-holder .destroyable .widget-top h3 {
+    color: #fff;
+}

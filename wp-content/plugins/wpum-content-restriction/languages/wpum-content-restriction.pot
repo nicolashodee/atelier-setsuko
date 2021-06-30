@@ -1,0 +1,171 @@
+# Copyright (C) 2021 WP User Manager
+# This file is distributed under the GPLv3+.
+msgid ""
+msgstr ""
+"Project-Id-Version: WPUM Content Restriction 1.1.1\n"
+"Report-Msgid-Bugs-To: "
+"https://wordpress.org/support/plugin/wpum-content-restriction\n"
+"POT-Creation-Date: 2021-06-19 08:01:32+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2021-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: grunt-wp-i18n 1.0.3\n"
+
+#: includes/class-wpumcr-post.php:141
+msgid ""
+"This content is available to members only. Please <a "
+"href=\"%1$s\">login</a> or <a href=\"%2$s\">register</a> to view this area."
+msgstr ""
+
+#: includes/class-wpumcr-restriction-manager.php:92 includes/settings.php:105
+#: includes/settings.php:119
+msgid "Custom URL"
+msgstr ""
+
+#: includes/class-wpumcr-restriction-manager.php:99
+msgid "Enable this option to apply content restriction settings"
+msgstr ""
+
+#: includes/class-wpumcr-restriction-manager.php:103 includes/settings.php:54
+msgid "Logged in users"
+msgstr ""
+
+#: includes/class-wpumcr-restriction-manager.php:104 includes/settings.php:55
+msgid "Logged out users"
+msgstr ""
+
+#: includes/class-wpumcr-restriction-manager.php:107 includes/settings.php:50
+#: includes/settings.php:73
+msgid "Set the visibility of this restricted content."
+msgstr ""
+
+#: includes/class-wpumcr-restriction-manager.php:109 includes/settings.php:61
+msgid "Restriction by role"
+msgstr ""
+
+#: includes/class-wpumcr-restriction-manager.php:110 includes/settings.php:62
+msgid "Choose user roles for restricted content access."
+msgstr ""
+
+#: includes/class-wpumcr-restriction-manager.php:114
+msgid "Restriction behaviour:"
+msgstr ""
+
+#: includes/class-wpumcr-restriction-manager.php:116 includes/settings.php:77
+msgid "Show message"
+msgstr ""
+
+#: includes/class-wpumcr-restriction-manager.php:117 includes/settings.php:78
+msgid "Redirect"
+msgstr ""
+
+#: includes/class-wpumcr-restriction-manager.php:121
+msgid "Message type:"
+msgstr ""
+
+#: includes/class-wpumcr-restriction-manager.php:123 includes/settings.php:88
+msgid "Global default message"
+msgstr ""
+
+#: includes/class-wpumcr-restriction-manager.php:124 includes/settings.php:89
+#: includes/settings.php:96
+msgid "Custom message"
+msgstr ""
+
+#: includes/class-wpumcr-restriction-manager.php:128
+msgid "Custom message:"
+msgstr ""
+
+#: includes/class-wpumcr-restriction-manager.php:132
+msgid "Redirection page:"
+msgstr ""
+
+#: includes/class-wpumcr-restriction-manager.php:135 includes/settings.php:111
+msgid ""
+"Select the page where you want to redirect visitor after they visit this "
+"post/page."
+msgstr ""
+
+#: includes/class-wpumcr-restriction-manager.php:137
+msgid "Custom URL:"
+msgstr ""
+
+#: includes/class-wpumcr-restriction-manager.php:140 includes/settings.php:126
+msgid "Restrict Everywhere"
+msgstr ""
+
+#: includes/class-wpumcr-restriction-manager.php:142 includes/settings.php:127
+msgid ""
+"Hide from archives, RSS feeds and other places for users who do not have "
+"permission to view this content"
+msgstr ""
+
+#: includes/settings.php:23
+msgid "Content Restriction"
+msgstr ""
+
+#: includes/settings.php:40
+msgid "Post Types"
+msgstr ""
+
+#: includes/settings.php:41
+msgid "Restrict all posts from these post types"
+msgstr ""
+
+#: includes/settings.php:49
+msgid "Who can access the posts"
+msgstr ""
+
+#: includes/settings.php:65
+msgid "Select one or more user roles from the list."
+msgstr ""
+
+#: includes/settings.php:72 includes/settings.php:84
+msgid "Restriction behaviour"
+msgstr ""
+
+#: includes/settings.php:110
+msgid "Redirection page"
+msgstr ""
+
+#: includes/woocommerce.php:25
+msgid "Restriction by Products Purchased"
+msgstr ""
+
+#: includes/woocommerce.php:28
+msgid "Only show content for users who have purchased these WooCommerce products."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "WPUM Content Restriction"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://wpusermanager.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid "Content Restriction addon for WP User Manager"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "WP User Manager"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://wpusermanager.com/"
+msgstr ""

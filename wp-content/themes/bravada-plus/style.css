@@ -3174,8 +3174,8 @@ article.hentry {
 	opacity: 1;
 	-webkit-filter: none;
 	filter: none;
-	-webkit-transform: translateY(0) scale(1, 1) perspective(1000px) rotateX(0) rotateY(0);
-	transform: translateY(0) scale(1, 1) perspective(1000px) rotateX(0) rotateY(0);
+	-webkit-transform: none !important;
+	transform: none; 
 	-webkit-transition: .5s opacity ease-in-out, .5s transform ease-in-out, .5s filter ease;
 	transition: .5s opacity ease-in-out, .5s transform ease-in-out, .5s filter ease;
 }

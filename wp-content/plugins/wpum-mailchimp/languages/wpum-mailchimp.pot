@@ -1,0 +1,247 @@
+# Copyright (C) 2021 WP User Manager
+# This file is distributed under the GPLv3+.
+msgid ""
+msgstr ""
+"Project-Id-Version: WPUM Mailchimp 2.0.5\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/wpum-mailchimp\n"
+"POT-Creation-Date: 2021-06-05 06:42:36+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2021-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"X-Poedit-Basepath: ../\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: grunt-wp-i18n 1.0.3\n"
+
+#: includes/account-tab.php:26
+#: includes/class-wpum-form-email-subscriptions.php:55
+#: includes/class-wpum-form-email-subscriptions.php:61
+msgid "Email subscriptions"
+msgstr ""
+
+#: includes/class-wpum-form-email-subscriptions.php:223
+msgid "Email preferences successfully updated."
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:48
+msgid "WP User Manager Mailchimp Settings"
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:50
+msgid "Mailchimp"
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:100
+msgid "Mailchimp list"
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:103
+msgid "Custom list description"
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:104
+msgid "Use a custom description if you wish to display this within the forms."
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:109
+msgid "Custom field"
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:114
+msgid "Merge tag"
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:124
+msgid "Mailchimp custom fields"
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:130
+msgid ""
+"Purchase the %s if you wish to send user custom fields as merge fields to "
+"your Mailchimp lists."
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:130
+msgid "custom fields addon"
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:141
+msgid "Mailchimp Main Settings"
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:143
+msgid "Mailchimp API Key"
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:144
+msgid "Enter your Mailchimp API key here."
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:146
+msgid "Optin method"
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:147
+msgid "Select which method you wish to use to add users to your mailchimp lists."
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:150
+msgid "Automatically add users to a Mailchimp list when they register."
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:151
+msgid "Allow users to opt-in to subcribing to a Mailchimp list when they register."
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:155
+msgid "How many lists"
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:156
+msgid "Select whether you wish to allow users to select one or more lists."
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:159
+msgid "Allow users to select a single list"
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:160
+msgid "Allow users to select multiple lists"
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:164
+msgid "Account subscription"
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:165
+msgid "Allow users to subscribe/unsubcribe from their account page."
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:169
+msgid "After user verification"
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:170
+msgid "Only subscribe users to lists after they have been approved or verified."
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:173
+msgid "Lists settings"
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:175
+msgid "Enabled Mailchimp lists"
+msgstr ""
+
+#: includes/class-wpum-mailchimp-settings.php:198
+msgid "Invalid Mailchimp API key."
+msgstr ""
+
+#: includes/sync.php:224
+msgid "Import to Mailchimp"
+msgstr ""
+
+#: includes/sync.php:261
+msgid "MailChimp Sync"
+msgstr ""
+
+#: includes/sync.php:293
+msgid "Select a specific role to synchronize."
+msgstr ""
+
+#: includes/sync.php:304
+msgid "Select the list to synchronize your user base with."
+msgstr ""
+
+#: includes/sync.php:316
+msgid "WP User Manager Sync to MailChimp"
+msgstr ""
+
+#: includes/sync.php:319
+msgid "A MailChimp api key is required before you can start syncing your users."
+msgstr ""
+
+#: includes/sync.php:324
+msgid ""
+"The sync routine has started. Please be patient as this may take several "
+"minutes to complete."
+msgstr ""
+
+#: includes/sync.php:324
+msgid "Loading..."
+msgstr ""
+
+#: includes/sync.php:325
+msgid ""
+"Currently on step %1$d of a possible %2$d (steps may be less if your limit "
+"exceeds available users )."
+msgstr ""
+
+#: includes/sync.php:348
+msgid "Select a role"
+msgstr ""
+
+#: includes/sync.php:352
+msgid "Select a list"
+msgstr ""
+
+#: includes/sync.php:364
+msgid "Sync Users"
+msgstr ""
+
+#: includes/sync.php:387
+msgid ""
+"The sync routine has been completed! Users should appear into your "
+"MailChimp lists within the next few minutes."
+msgstr ""
+
+#: includes/sync.php:388
+msgid "Start another Sync"
+msgstr ""
+
+#: includes/upgrade.php:77
+msgid ""
+"The mapping between custom fields and Mailchimp mergetags needs to be "
+"reviewed and updated where necessary."
+msgstr ""
+
+#: templates/forms/email-subscriptions-form.php:76
+msgid "Update subscriptions preferences"
+msgstr ""
+
+#: wpum-mailchimp.php:187
+msgid "View settings"
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "WPUM Mailchimp"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://wpusermanager.com"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Addon for WP User Manager, provides simple and flexible Mailchimp "
+"integration."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "WP User Manager"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://wpusermanager.com/"
+msgstr ""

@@ -468,7 +468,7 @@ class WP_Upgrader {
 		$destination       = $args['destination'];
 		$clear_destination = $args['clear_destination'];
 
-		set_time_limit( 300 );
+		// set_time_limit( 300 ); this was commented out to install WPML
 
 		if ( empty( $source ) || empty( $destination ) ) {
 			return new WP_Error( 'bad_request', $this->strings['bad_request'] );
