@@ -38,7 +38,7 @@ class WPUM_Password_Recovery extends WPH_Widget {
 				'id'     => 'title',
 				'type'   => 'text',
 				'class'  => 'widefat',
-				'std'    => __( 'Reset password', 'wp-user-manager' ),
+				'std'    => __( 'Réinitialiser le mot de passe', 'wp-user-manager' ),
 				'filter' => 'strip_tags|esc_attr'
 			)
 		);

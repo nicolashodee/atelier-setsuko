@@ -63,7 +63,7 @@ class WPUM_Form_Password_Recovery extends WPUM_Form {
 				'priority' => 11
 			),
 			'reset' => array(
-				'name'     => esc_html__( 'Reset password', 'wp-user-manager' ),
+				'name'     => esc_html__( 'Réinitialiser le mot de passe', 'wp-user-manager' ),
 				'view'     => array( $this, 'reset' ),
 				'handler'  => array( $this, 'reset_handler' ),
 				'priority' => 12
@@ -171,7 +171,7 @@ class WPUM_Form_Password_Recovery extends WPUM_Form {
 			'action'  => $this->get_action(),
 			'fields'  => $this->get_fields( 'user' ),
 			'step'    => $this->get_step(),
-			'message' => apply_filters( 'wpum_lost_password_message', esc_html__( 'Lost your password? Please enter your username or email address. You will receive a link to create a new password via email.', 'wp-user-manager' ) )
+			'message' => apply_filters( 'wpum_lost_password_message', esc_html__( 'Vous avez perdu votre mot de passe ? Entrez votre email ou nom d\'utilisateur. Vous recevrez un lien pour par email pour réinitialiser votre mot de passe', 'wp-user-manager' ) )
 		];
 
 		WPUM()->templates
@@ -317,7 +317,7 @@ class WPUM_Form_Password_Recovery extends WPUM_Form {
 					'action'  => $this->get_action(),
 					'fields'  => $this->get_fields( 'password' ),
 					'step'    => $this->get_step(),
-					'message' => apply_filters( 'wpum_new_password_message', esc_html__( 'Enter a new password below.', 'wp-user-manager' ) )
+					'message' => apply_filters( 'wpum_new_password_message', esc_html__( 'Entrez un nouveau mot de passe ci dessous', 'wp-user-manager' ) )
 				];
 
 				WPUM()->templates
@@ -432,7 +432,7 @@ class WPUM_Form_Password_Recovery extends WPUM_Form {
 	public function done() {
 
 		$data = [
-			'message' => esc_html__( 'Password successfully reset.', 'wp-user-manager' ) . ' ' . '<a href="' . get_permalink( wpum_get_core_page_id( 'login' ) ) . '">' . esc_html__( 'Login now &raquo;', 'wp-user-manager' ) . '</a>'
+			'message' => esc_html__( 'Mot de passe changé avec succès', 'wp-user-manager' ) . ' ' . '<a href="' . get_permalink( wpum_get_core_page_id( 'login' ) ) . '">' . esc_html__( 'Login now &raquo;', 'wp-user-manager' ) . '</a>'
 		];
 
 		WPUM()->templates

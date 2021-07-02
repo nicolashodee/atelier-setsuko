@@ -852,7 +852,7 @@ switch ( $action ) {
 		wp_enqueue_script( 'utils' );
 		wp_enqueue_script( 'user-profile' );
 
-		login_header( __( 'Reset Password' ), '<p class="message reset-pass">' . __( 'Enter your new password below or generate one.' ) . '</p>', $errors );
+		login_header( __( 'Réinitialiser le mot de passe' ), '<p class="message reset-pass">' . __( 'Enter your new password below or generate one.' ) . '</p>', $errors );
 
 		?>
 		<form name="resetpassform" id="resetpassform" action="<?php echo esc_url( network_site_url( 'wp-login.php?action=resetpass', 'login_post' ) ); ?>" method="post" autocomplete="off">
@@ -997,19 +997,19 @@ switch ( $action ) {
 
 			?>
 			<p id="reg_passmail">
-				<?php _e( 'Registration confirmation will be emailed to you.' ); ?>
+				<?php _e( 'Une confirmation d\'inscription vous sera envoyée.' ); ?>
 			</p>
 			<br class="clear" />
 			<input type="hidden" name="redirect_to" value="<?php echo esc_attr( $redirect_to ); ?>" />
 			<p class="submit">
-				<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e( 'Register' ); ?>" />
+				<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="<?php esc_attr_e( 'S\'inscrire' ); ?>" />
 			</p>
 		</form>
 
 		<p id="nav">
 			<a href="<?php echo esc_url( wp_login_url() ); ?>"><?php _e( 'Log in' ); ?></a>
 				<?php echo esc_html( $login_link_separator ); ?>
-			<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Lost your password?' ); ?></a>
+			<a href="<?php echo esc_url( wp_lostpassword_url() ); ?>"><?php _e( 'Mot de passe oublié ?' ); ?></a>
 		</p>
 		<?php
 
@@ -1165,7 +1165,7 @@ switch ( $action ) {
 
 		if ( ! is_wp_error( $user ) && ! $reauth ) {
 			if ( $interim_login ) {
-				$message       = '<p class="message">' . __( 'You have logged in successfully.' ) . '</p>';
+				$message       = '<p class="message">' . __( 'Connexion réussie' ) . '</p>';
 				$interim_login = 'success';
 				login_header( '', $message );
 

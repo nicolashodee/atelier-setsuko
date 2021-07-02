@@ -265,7 +265,7 @@ class WPUM_Form_Registration extends WPUM_Form {
 				$first_row = isset( $values[0] ) && is_array( $values[0] ) ? $values[0] : [];
 
 				if ( ! count( $first_row ) || count( array_filter( $first_row ) ) !== count( $first_row ) ) {
-					return new WP_Error( 'repeater-validation-error', esc_html( apply_filters( 'wpum_repeater_validation_required_error_message', sprintf( __( 'Please fill out %s data', 'wp-user-manager' ), $field['label'] ), $field ) ) );
+					return new WP_Error( 'repeater-validation-error', esc_html( apply_filters( 'wpum_repeater_validation_required_error_message', sprintf( __( 'Merci de remplir %s ', 'wp-user-manager' ), $field['label'] ), $field ) ) );
 				}
 			}
 		}
