@@ -34,7 +34,7 @@ if (!isset($GLOBALS['aquilaShowAdminbarLinks']) || !$GLOBALS['aquilaShowAdminbar
 add_action('admin_bar_menu', 'aquila_remove_wp_logo_nodes', 999);
 function aquila_remove_wp_logo_nodes() {
   global $wp_admin_bar;
-  $wp_admin_bar -> remove_node('about');
+  // $wp_admin_bar -> remove_node('about');
   $wp_admin_bar -> remove_node('wporg');
   $wp_admin_bar -> remove_node('documentation');
   $wp_admin_bar -> remove_node('support-forums');
@@ -46,37 +46,37 @@ if (!isset($GLOBALS['aquilaHideLogoMenu']) || !$GLOBALS['aquilaHideLogoMenu']) {
     add_action('admin_bar_menu', 'aquila_wp_logo_links', 100);
 }
 function aquila_wp_logo_links($admin_bar){
-  $admin_bar->add_menu(array(
-    'id' => 'wpLessons',
-    'parent' => 'wp-logo',
-    'title' => __('WordPress Lessons', 'aquila-admin-theme'),
-    'href' => 'https://wordpress.org/support/article/wordpress-lessons/',
-    'meta' => array(
-      'title' => __(''),
-      'class' => __(''),
-      'target' => __('_blank'),
-    ),
-  ));
-  $admin_bar->add_menu(array(
-    'id' => 'wpGuide',
-    'parent' => 'wp-logo',
-    'title' => __('WordPress User Guide', 'aquila-admin-theme'),
-    'href' => 'http://easywpguide.com/wordpress-manual/',
-    'meta' => array(
-      'title' => __(''),
-      'class' => __(''),
-      'target' => __('_blank'),
-    ),
-  ));
-  $admin_bar->add_menu(array(
-    'id' => 'mitoSupport',
-    'parent' => 'wp-logo-external',
-    'title' => __('Aquila Support', 'aquila-admin-theme'),
-    'href' => 'https://wordpress.org/support/plugin/aquila-admin-theme/#new-post',
-    'meta' => array(
-      'title' => __(''),
-      'class' => __(''),
-      'target' => __('_blank'),
-    ),
-  ));
+  // $admin_bar->add_menu(array(
+  //   'id' => 'wpLessons',
+  //   'parent' => 'wp-logo',
+  //   'title' => __('WordPress Lessons', 'aquila-admin-theme'),
+  //   'href' => 'https://wordpress.org/support/article/wordpress-lessons/',
+  //   'meta' => array(
+  //     'title' => __(''),
+  //     'class' => __(''),
+  //     'target' => __('_blank'),
+  //   ),
+  // ));
+  // $admin_bar->add_menu(array(
+  //   'id' => 'wpGuide',
+  //   'parent' => 'wp-logo',
+  //   'title' => __('WordPress User Guide', 'aquila-admin-theme'),
+  //   'href' => 'http://easywpguide.com/wordpress-manual/',
+  //   'meta' => array(
+  //     'title' => __(''),
+  //     'class' => __(''),
+  //     'target' => __('_blank'),
+  //   ),
+  // ));
+  // $admin_bar->add_menu(array(
+  //   'id' => 'mitoSupport',
+  //   'parent' => 'wp-logo-external',
+  //   'title' => __('Support technique Nicolas', 'aquila-admin-theme'),
+  //   'href' => 'mailto:contact@nicolashodee.com',
+  //   'meta' => array(
+  //     'title' => __(''),
+  //     'class' => __(''),
+  //     'target' => __('_blank'),
+  //   ),
+  // ));
 }

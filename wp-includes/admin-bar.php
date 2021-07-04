@@ -122,17 +122,17 @@ function wp_admin_bar_render() {
  */
 function wp_admin_bar_wp_menu( $wp_admin_bar ) {
 	if ( current_user_can( 'read' ) ) {
-		$about_url = self_admin_url( 'about.php' );
+		$about_url = 'https://www.ateliersetsuko.com/wp-admin/admin.php?page=wpamelia-calendar#/calendar';
 	} elseif ( is_multisite() ) {
-		$about_url = get_dashboard_url( get_current_user_id(), 'about.php' );
+		$about_url = 'https://www.ateliersetsuko.com/wp-admin/admin.php?page=wpamelia-calendar#/calendar';
 	} else {
 		$about_url = false;
 	}
 
 	$wp_logo_menu_args = array(
 		'id'    => 'wp-logo',
-		'title' => '<span class="ab-icon"></span><span class="screen-reader-text">' . __( 'About WordPress' ) . '</span>',
-		'href'  => $about_url,
+		'title' => '<span class="ab-icon"></span><span class="screen-reader-text">' . __( '' ) . '</span>',
+		
 	);
 
 	// Set tabindex="0" to make sub menus accessible when no URL is available.
@@ -144,57 +144,57 @@ function wp_admin_bar_wp_menu( $wp_admin_bar ) {
 
 	$wp_admin_bar->add_node( $wp_logo_menu_args );
 
-	if ( $about_url ) {
-		// Add "About WordPress" link.
-		$wp_admin_bar->add_node(
-			array(
-				'parent' => 'wp-logo',
-				'id'     => 'about',
-				'title'  => __( 'About WordPress' ),
-				'href'   => $about_url,
-			)
-		);
-	}
+	// if ( $about_url ) {
+	// 	// Add "About WordPress" link.
+	// 	$wp_admin_bar->add_node(
+	// 		array(
+	// 			'parent' => 'wp-logo',
+	// 			'id'     => 'about',
+	// 			'title'  => __( 'About WordPress' ),
+	// 			'href'   => $about_url,
+	// 		)
+	// 	);
+	// }
 
 	// Add WordPress.org link.
-	$wp_admin_bar->add_node(
-		array(
-			'parent' => 'wp-logo-external',
-			'id'     => 'wporg',
-			'title'  => __( 'WordPress.org' ),
-			'href'   => __( 'https://wordpress.org/' ),
-		)
-	);
+	// $wp_admin_bar->add_node(
+	// 	array(
+	// 		'parent' => 'wp-logo-external',
+	// 		'id'     => 'wporg',
+	// 		'title'  => __( 'WordPress.org' ),
+	// 		'href'   => __( 'https://wordpress.org/' ),
+	// 	)
+	// );
 
 	// Add documentation link.
-	$wp_admin_bar->add_node(
-		array(
-			'parent' => 'wp-logo-external',
-			'id'     => 'documentation',
-			'title'  => __( 'Documentation' ),
-			'href'   => __( 'https://wordpress.org/support/' ),
-		)
-	);
+	// $wp_admin_bar->add_node(
+	// 	array(
+	// 		'parent' => 'wp-logo-external',
+	// 		'id'     => 'documentation',
+	// 		'title'  => __( 'Documentation' ),
+	// 		'href'   => __( 'https://wordpress.org/support/' ),
+	// 	)
+	// );
 
 	// Add forums link.
-	$wp_admin_bar->add_node(
-		array(
-			'parent' => 'wp-logo-external',
-			'id'     => 'support-forums',
-			'title'  => __( 'Support' ),
-			'href'   => __( 'https://wordpress.org/support/forums/' ),
-		)
-	);
+	// $wp_admin_bar->add_node(
+	// 	array(
+	// 		'parent' => 'wp-logo-external',
+	// 		'id'     => 'support-forums',
+	// 		'title'  => __( 'Support' ),
+	// 		'href'   => __( 'https://wordpress.org/support/forums/' ),
+	// 	)
+	// );
 
 	// Add feedback link.
-	$wp_admin_bar->add_node(
-		array(
-			'parent' => 'wp-logo-external',
-			'id'     => 'feedback',
-			'title'  => __( 'Feedback' ),
-			'href'   => __( 'https://wordpress.org/support/forum/requests-and-feedback' ),
-		)
-	);
+	// $wp_admin_bar->add_node(
+	// 	array(
+	// 		'parent' => 'wp-logo-external',
+	// 		'id'     => 'feedback',
+	// 		'title'  => __( 'Feedback' ),
+	// 		'href'   => __( 'https://wordpress.org/support/forum/requests-and-feedback' ),
+	// 	)
+	// );
 }
 
 /**

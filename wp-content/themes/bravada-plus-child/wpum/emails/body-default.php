@@ -144,7 +144,7 @@ if( isset( $data->preview ) && $data->preview === true ) {
                             <table cellpadding="0" cellspacing="0" border="0" width="100%" style="min-width: 100%; max-width: 100%; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-collapse: collapse;" bgcolor="#009a88" background="ia">
                                 <tbody>
                                     <tr>
-                                        <td valign="top" style="background-repeat: no-repeat; background-position: center bottom;" bgcolor="#621816" background="https://www.nicolashodee.com/ateliersetsuko-test/wp-content/uploads/2021/07/smtp-bg-2.jpg" width="640">
+                                        <td valign="top" style="background-repeat: no-repeat; background-position: center bottom;" bgcolor="#621816" background="https://www.ateliersetsuko.com/wp-content/uploads/2021/07/smtp-bg-2.jpg" width="640">
                                         <!--[if gte mso 9]>
 <v:rect xmlns:v="urn:schemas-microsoft-com:vml" fill="true" stroke="false" style="width:640px;height:250px; background-repeat: no-repeat; background-position: bottom center;">
 <v:fill type="frame" src="http://media.campaigner.com/media/0/7501/2019/2019_Email/smtp-bg-2.png" color="#009A88" />
@@ -159,7 +159,7 @@ if( isset( $data->preview ) && $data->preview === true ) {
                                                 </tr>
                                                 <tr>
                                                     <td style="padding-top: 20px;" align="left" valign="top">&nbsp;</td>
-                                                    <td align="center" valign="top"><a href="https://www.ateliersetsuko.com/" name="link atelier"><img src="https://www.nicolashodee.com/ateliersetsuko-test/wp-content/uploads/2021/07/logo-emails.png" alt="Atelier SETSUKO" width="140" style="max-width: 100%; border-width: 0px; border-style: solid;" /></a></td>
+                                                    <td align="center" valign="top"><a href="https://www.ateliersetsuko.com/" name="link atelier"><img src="https://www.ateliersetsuko.com/wp-content/uploads/2021/07/logo-emails.png" alt="Atelier SETSUKO" width="140" style="max-width: 100%; border-width: 0px; border-style: solid;" /></a></td>
                                                     <td align="right" valign="top">&nbsp;</td>
                                                 </tr>
                                                 <tr>
@@ -245,7 +245,7 @@ if( isset( $data->preview ) && $data->preview === true ) {
                                         <table class="mob_btn" cellpadding="10" cellspacing="0" border="0" width="240" style="max-width: 290px; min-width: 140px; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial; border-radius: 4px;" bgcolor="#1e0d09">
                                             <tbody>
                                                 <tr>
-                                                    <td align="center" valign="middle" style="font-family: Arial, Verdana, Tahoma, Geneva, sans-serif; color: #ffffff; font-size: 15px; font-weight: normal;" height="30"><a href="https://www.ateliersetsuko.com/" name="Connexion Espace élève" style="color: #ffffff;" id="auto_assign_link_num_2">Se connecter à l'espace élève</a></td>
+                                                    <td align="center" valign="middle" style="font-family: Arial, Verdana, Tahoma, Geneva, sans-serif; color: #ffffff; font-size: 15px; font-weight: normal;" height="30"><a href="https://www.ateliersetsuko.com/espace-eleve/" name="Connexion Espace élève" style="color: #ffffff;" id="auto_assign_link_num_2">Se connecter à l'espace élève</a></td>
                                                 </tr>
                                             </tbody>   
                                         </table>

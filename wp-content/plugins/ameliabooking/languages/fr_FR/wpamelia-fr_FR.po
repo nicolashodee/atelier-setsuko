@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Amelia\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2021-05-17 09:57+0200\n"
-"PO-Revision-Date: 2021-06-30 12:00+0200\n"
+"PO-Revision-Date: 2021-07-04 15:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: Français\n"
 "Language: fr_FR\n"
@@ -4835,11 +4835,11 @@ msgstr ""
 
 #: BackendStrings.php:1310
 msgid "customers booked this appointment out of package deal"
-msgstr "les clients ont réservé ce rendez-vous en dehors d'une offre"
+msgstr "clients ayant réservé ce rendez-vous en dehors d'une offre"
 
 #: BackendStrings.php:1311
 msgid "customers booked this appointment as a part of package:"
-msgstr "les clients ont réservé ce rendez-vous dans le cadre d'une offre:"
+msgstr "clients ayant réservé ce rendez-vous dans le cadre d'une offre:"
 
 #: BackendStrings.php:1312
 msgid "Payments for the package deal are not included in this paid amount"
@@ -6290,7 +6290,7 @@ msgstr "Réservez l'événement"
 
 #: FrontendStrings.php:320
 msgid "Book this event"
-msgstr "Pré-réservez ce stage"
+msgstr "Réservez ce stage"
 
 #: FrontendStrings.php:322
 msgid "Show from date"
