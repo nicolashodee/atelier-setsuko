@@ -1,5 +1,5 @@
 ![MOCKUP](./readme_images/mockup_crop_1700px.jpg)
-# 🌿 ATELIER SETSUKO 🌿 
+# 🏮  ATELIER SETSUKO 🏮  
 ## A BOOKING WEBSITE USING A CUSTOM CHILD THEME. 
 
 The Atelier Setsuko is a place of learning, exchange and relaxation around ceramics located in the heart of Paris.
@@ -17,7 +17,7 @@ Enjoying a good reputation, its founder Stéphane found herself in 2021 overwhel
 - ✅ Fully responsive (custom media queries).
 - ✅ 18 PHP pages 
 - ✅ Page transition animations. 
-- ✅ Account management system, with restricted access to some pages. 
+- ✅ Account management system controlled by a plugin, and customized for the client's needs (restricted pages and roles for the clients / employees)
 - ✅ Booking / management system controlled by a plugin, and customized for the client's needs. 
 - ✅ Email designs made from scratch with Visual Studio Code.  
 
