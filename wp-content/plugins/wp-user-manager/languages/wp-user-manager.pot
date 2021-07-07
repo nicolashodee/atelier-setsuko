@@ -3476,19 +3476,19 @@ msgid "Display the registration form."
 msgstr ""
 
 #: templates/action-links.php:28
-msgid "Already have an account? <a href=\"%s\">Sign In &raquo;</a>"
+msgid "Vous avez déjà un compte ? <a href=\"%s\">Connectez vous</a>"
 msgstr ""
 
 #: templates/action-links.php:33
-msgid "Don't have an account? <a href=\"%s\">Signup Now &raquo;</a>"
+msgid "Vous n'avez pas de compte ? <a href=\"%s\">Créez en un maintenant (mot de passe nécéssaire)</a>"
 msgstr ""
 
 #: templates/action-links.php:39
-msgid "Lost your password?"
+msgid "Mot de passe perdu ?"
 msgstr ""
 
 #: templates/already-logged-in.php:24
-msgid "You are currently logged in as %s."
+msgid "Vous etes connecté en tant que %s."
 msgstr ""
 
 #: templates/already-logged-in.php:26

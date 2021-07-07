@@ -121,6 +121,17 @@ if( isset( $data->preview ) && $data->preview === true ) {
         font-size: 16px !important;
         line-height: 26px !important;
         }
+        .wrapword {
+            white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+            white-space: -pre-wrap;      /* Opera 4-6 */
+            white-space: -o-pre-wrap;    /* Opera 7 */
+            white-space: pre-wrap;       /* css-3 */
+            word-wrap: break-word;       /* Internet Explorer 5.5+ */
+            white-space: -webkit-pre-wrap; /* Newer versions of Chrome/Safari*/
+            word-break: break-all;
+            white-space: normal;
+        }
+
     </style>
     <!--[if true]><xml>
 <o:OfficeDocumentSettings>
@@ -209,7 +220,7 @@ if( isset( $data->preview ) && $data->preview === true ) {
                                 <tbody>
                                     <tr>
                                         <td align="center" valign="top">
-                                        <table cellpadding="0" cellspacing="0" border="0" width="86%" style="min-width: 86%; max-width: 86%;">
+                                        <table cellpadding="0" cellspacing="0" border="0" width="86%" style="table-layout: fixed; min-width: 86%; max-width: 630px;">
                                             <tbody>
                                                 <tr>
                                                     <td valign="top" height="45">&nbsp;</td>
@@ -221,11 +232,11 @@ if( isset( $data->preview ) && $data->preview === true ) {
                                                     <td align="left" valign="top" class="mob_txt" style="font-size: 18px !important;line-height: 26px !important;font-family: Verdana, Arial, Tahoma, sans-serif;color: #757474;font-weight: 600" height="40">Bonjour {firstname}, </td>
                                                 </tr>
                                                 <tr>
-                                                    <td align="left" valign="top" class="mob_txt" style="font-size: 16px !important;line-height: 30px !important;font-family: Verdana, Arial, Tahoma, sans-serif;color: #757474;font-weight: 200">
+                                                    <td align="left" valign="top" class="mob_txt wrapword" style="font-size: 16px !important;line-height: 30px !important;font-family: Verdana, Arial, Tahoma, sans-serif;color: #757474;font-weight: 200; max-width: 630px;">
                                                         <!-- CUSTOM EMAIL CONTENT BEGINS HERE -->
 
 														<?php echo $output; ?>
-
+                                                    
                                                         <!-- CUSTOM EMAIL CONTENT ENDS HERE -->
 
                                                     </td>
