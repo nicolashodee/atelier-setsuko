@@ -3,10 +3,10 @@ use PHPUnit\Framework\TestCase;
 use Microsoft\Graph\Graph;
 use Microsoft\Graph\Http\GraphRequest;
 use Microsoft\Graph\Exception\GraphException;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\Psr7\Response;
-use GuzzleHttp\HandlerStack;
-use GuzzleHttp\Client;
+use AmeliaGuzzleHttp\Handler\MockHandler;
+use AmeliaGuzzleHttp\Psr7\Response;
+use AmeliaGuzzleHttp\HandlerStack;
+use AmeliaGuzzleHttp\Client;
 
 class HttpTest extends TestCase
 {
@@ -21,7 +21,7 @@ class HttpTest extends TestCase
             new Response(200, ['foo' => 'bar'])
         ]);
         $this->container = [];
-        $history = GuzzleHttp\Middleware::history($this->container);
+        $history = AmeliaGuzzleHttp\Middleware::history($this->container);
         $handler = HandlerStack::create($mock);
         $handler->push($history);
         $this->client = new Client(['handler' => $handler]);
@@ -84,7 +84,7 @@ class HttpTest extends TestCase
 
     public function testInvalidVerb()
     {
-        $this->expectException(GuzzleHttp\Exception\ClientException::class);
+        $this->expectException(AmeliaGuzzleHttp\Exception\ClientException::class);
 
         $mock = new MockHandler([
             new Response(400, ['foo' => 'bar'])
@@ -148,7 +148,7 @@ class HttpTest extends TestCase
 
     public function testSendStream()
     {
-        $body = GuzzleHttp\Psr7\stream_for('stream');
+        $body = AmeliaGuzzleHttp\Psr7\stream_for('stream');
         $request = $this->getRequest->attachBody($body);
         $this->assertInstanceOf(GraphRequest::class, $request);
 

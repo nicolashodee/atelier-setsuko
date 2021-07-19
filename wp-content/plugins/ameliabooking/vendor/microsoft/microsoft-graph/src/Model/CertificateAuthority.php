@@ -114,15 +114,15 @@ class CertificateAuthority extends Entity
     * Gets the certificate
     * Required. The base64 encoded string representing the public certificate.
     *
-    * @return \GuzzleHttp\Psr7\Stream The certificate
+    * @return \AmeliaGuzzleHttp\Psr7\Stream The certificate
     */
     public function getCertificate()
     {
         if (array_key_exists("certificate", $this->_propDict)) {
-            if (is_a($this->_propDict["certificate"], "Microsoft\Graph\Model\\GuzzleHttp\Psr7\Stream")) {
+            if (is_a($this->_propDict["certificate"], "Microsoft\Graph\Model\\AmeliaGuzzleHttp\Psr7\Stream")) {
                 return $this->_propDict["certificate"];
             } else {
-                $this->_propDict["certificate"] = \GuzzleHttp\Psr7\stream_for($this->_propDict["certificate"]);
+                $this->_propDict["certificate"] = \AmeliaGuzzleHttp\Psr7\stream_for($this->_propDict["certificate"]);
                 return $this->_propDict["certificate"];
             }
         }
@@ -133,7 +133,7 @@ class CertificateAuthority extends Entity
     * Sets the certificate
     * Required. The base64 encoded string representing the public certificate.
     *
-    * @param \GuzzleHttp\Psr7\Stream $val The value to assign to the certificate
+    * @param \AmeliaGuzzleHttp\Psr7\Stream $val The value to assign to the certificate
     *
     * @return CertificateAuthority The CertificateAuthority
     */

@@ -17,13 +17,13 @@ class GraphCollectionRequestTest extends TestCase
 
         $body = json_encode(array('body' => 'content', '@odata.nextLink' => 'url/version/endpoint?skiptoken=link'));
         $body2 = json_encode(array('body' => 'content'));
-        $mock = new GuzzleHttp\Handler\MockHandler([
-            new GuzzleHttp\Psr7\Response(200, ['foo' => 'bar'], $body),
-            new GuzzleHttp\Psr7\Response(200, ['foo' => 'bar'], $body2),
-            new GuzzleHttp\Psr7\Response(200, ['foo' => 'bar'], $body2),
+        $mock = new AmeliaGuzzleHttp\Handler\MockHandler([
+            new AmeliaGuzzleHttp\Psr7\Response(200, ['foo' => 'bar'], $body),
+            new AmeliaGuzzleHttp\Psr7\Response(200, ['foo' => 'bar'], $body2),
+            new AmeliaGuzzleHttp\Psr7\Response(200, ['foo' => 'bar'], $body2),
         ]);
-        $handler = GuzzleHttp\HandlerStack::create($mock);
-        $this->client = new GuzzleHttp\Client(['handler' => $handler]);
+        $handler = AmeliaGuzzleHttp\HandlerStack::create($mock);
+        $this->client = new AmeliaGuzzleHttp\Client(['handler' => $handler]);
 
         $this->reflectedRequestUrlHandler = new ReflectionMethod('Microsoft\Graph\Http\GraphRequest', '_getRequestUrl');
         $this->reflectedRequestUrlHandler->setAccessible(true);

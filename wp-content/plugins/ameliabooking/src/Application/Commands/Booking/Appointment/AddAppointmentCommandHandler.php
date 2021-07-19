@@ -78,9 +78,11 @@ class AddAppointmentCommandHandler extends CommandHandler
             );
         } catch (AuthorizationException $e) {
             $result->setResult(CommandResult::RESULT_ERROR);
-            $result->setData([
-                'reauthorize' => true
-            ]);
+            $result->setData(
+                [
+                    'reauthorize' => true
+                ]
+            );
 
             return $result;
         }
@@ -92,6 +94,8 @@ class AddAppointmentCommandHandler extends CommandHandler
         $appointmentData = $command->getFields();
 
         $service = $bookableAS->getAppointmentService($appointmentData['serviceId'], $appointmentData['providerId']);
+
+        $appointmentAS->convertTime($appointmentData);
 
         /** @var Appointment $appointment */
         $appointment = $appointmentAS->build($appointmentData, $service);
@@ -106,9 +110,11 @@ class AddAppointmentCommandHandler extends CommandHandler
         if (!$appointmentAS->canBeBooked($appointment, false)) {
             $result->setResult(CommandResult::RESULT_ERROR);
             $result->setMessage(FrontendStrings::getCommonStrings()['time_slot_unavailable']);
-            $result->setData([
-                'timeSlotUnavailable' => true
-            ]);
+            $result->setData(
+                [
+                    'timeSlotUnavailable' => true
+                ]
+            );
 
             return $result;
         }
@@ -118,18 +124,19 @@ class AddAppointmentCommandHandler extends CommandHandler
         $recurringAppointments = [];
 
         foreach ($command->getField('recurring') as $recurringData) {
-            /** @var Appointment $recurringAppointment */
-            $recurringAppointment = $appointmentAS->build(
-                array_merge(
-                    $appointmentData,
-                    [
-                        'bookingStart' => $recurringData['bookingStart'],
-                        'locationId'   => $recurringData['locationId'],
-                        'parentId'     => $appointment->getId()->getValue()
-                    ]
-                ),
-                $service
+            $recurringAppointmentData = array_merge(
+                $appointmentData,
+                [
+                    'bookingStart' => $recurringData['bookingStart'],
+                    'locationId'   => $recurringData['locationId'],
+                    'parentId'     => $appointment->getId()->getValue()
+                ]
             );
+
+            $appointmentAS->convertTime($recurringAppointmentData);
+
+            /** @var Appointment $recurringAppointment */
+            $recurringAppointment = $appointmentAS->build($recurringAppointmentData, $service);
 
             /** @var CustomerBooking $booking */
             foreach ($recurringAppointment->getBookings()->getItems() as $booking) {
@@ -139,9 +146,11 @@ class AddAppointmentCommandHandler extends CommandHandler
             if (!$appointmentAS->canBeBooked($recurringAppointment, false)) {
                 $result->setResult(CommandResult::RESULT_ERROR);
                 $result->setMessage(FrontendStrings::getCommonStrings()['time_slot_unavailable']);
-                $result->setData([
-                    'timeSlotUnavailable' => true
-                ]);
+                $result->setData(
+                    [
+                        'timeSlotUnavailable' => true
+                    ]
+                );
 
                 return $result;
             }

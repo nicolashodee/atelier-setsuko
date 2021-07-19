@@ -23,6 +23,7 @@ use AmeliaBooking\Infrastructure\WP\InstallActions\DB\Booking\EventsPeriodsTable
 use AmeliaBooking\Infrastructure\WP\InstallActions\DB\Booking\EventsProvidersTable;
 use AmeliaBooking\Infrastructure\WP\InstallActions\DB\Booking\EventsTable;
 use AmeliaBooking\Infrastructure\WP\InstallActions\DB\Booking\EventsTagsTable;
+use AmeliaBooking\Infrastructure\WP\InstallActions\DB\Cache\CacheTable;
 use AmeliaBooking\Infrastructure\WP\InstallActions\DB\Coupon\CouponsToEventsTable;
 use AmeliaBooking\Infrastructure\WP\InstallActions\DB\CustomField\CustomFieldsEventsTable;
 use AmeliaBooking\Infrastructure\WP\InstallActions\DB\CustomField\CustomFieldsOptionsTable;
@@ -163,5 +164,7 @@ class DeleteDatabaseHook
         GalleriesTable::delete();
 
         UsersTable::delete();
+
+        CacheTable::delete();
     }
 }

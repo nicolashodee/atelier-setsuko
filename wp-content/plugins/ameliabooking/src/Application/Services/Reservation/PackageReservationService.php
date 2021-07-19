@@ -105,7 +105,7 @@ class PackageReservationService extends AppointmentReservationService
         $packageRepository = $this->container->get('domain.bookable.package.repository');
 
         /** @var Package $package */
-        $package = $package = $packageRepository->getById($appointmentData['packageId']);
+        $package = $packageRepository->getById($appointmentData['packageId']);
 
         /** @var PackageCustomer $packageCustomer */
         $packageCustomer = $packageApplicationService->addPackageCustomer(
@@ -362,7 +362,12 @@ class PackageReservationService extends AppointmentReservationService
             'recurring'          => [],
             'package'            => $packageAppointmentsData,
             'deposit'            => $reservation->getApplyDeposit()->getValue(),
-            'customer'           => $reservation->getCustomer()->toArray(),
+            'customer'           => array_merge(
+                [
+                    'locale'     => $reservation->getLocale()->getValue(),
+                ],
+                $reservation->getCustomer()->toArray()
+            )
         ];
     }
 

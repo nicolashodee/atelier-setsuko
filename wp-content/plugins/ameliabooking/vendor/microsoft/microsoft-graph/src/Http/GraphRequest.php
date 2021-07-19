@@ -17,7 +17,7 @@
 
 namespace Microsoft\Graph\Http;
 
-use GuzzleHttp\Client;
+use AmeliaGuzzleHttp\Client;
 use Microsoft\Graph\Core\GraphConstants;
 use Microsoft\Graph\Exception\GraphException;
 
@@ -151,7 +151,7 @@ class GraphRequest
     public function setReturnType($returnClass)
     {
         $this->returnType = $returnClass;
-        if ($this->returnType == "GuzzleHttp\Psr7\Stream") {
+        if ($this->returnType == "AmeliaGuzzleHttp\Psr7\Stream") {
             $this->returnsStream  = true;
         } else {
             $this->returnsStream = false;
@@ -193,7 +193,7 @@ class GraphRequest
     public function attachBody($obj)
     {
         // Attach streams & JSON automatically
-        if (is_string($obj) || is_a($obj, 'GuzzleHttp\\Psr7\\Stream')) {
+        if (is_string($obj) || is_a($obj, 'AmeliaGuzzleHttp\\Psr7\\Stream')) {
             $this->requestBody = $obj;
         } 
         // By default, JSON-encode
@@ -384,7 +384,7 @@ class GraphRequest
         try {
             if (file_exists($path) && is_readable($path)) {
                 $file = fopen($path, 'r');
-                $stream = \GuzzleHttp\Psr7\stream_for($file);
+                $stream = \AmeliaGuzzleHttp\Psr7\stream_for($file);
                 $this->requestBody = $stream;
                 return $this->execute($client);
             } else {
@@ -451,7 +451,7 @@ class GraphRequest
     * If a proxyPort was passed in the constructor, all
     * requests will be forwared through this proxy.
     *
-    * @return \GuzzleHttp\Client The new client
+    * @return \AmeliaGuzzleHttp\Client The new client
     */
     protected function createGuzzleClient()
     { 

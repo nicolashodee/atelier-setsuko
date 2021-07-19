@@ -2,7 +2,7 @@
 
 namespace Http\Message\UriFactory;
 
-use GuzzleHttp\Psr7;
+use AmeliaGuzzleHttp\Psr7;
 use Http\Message\UriFactory;
 
 /**

@@ -26,13 +26,13 @@ class GraphRequestTest extends TestCase
         );
 
         $body = json_encode(array('body' => 'content'));
-        $mock = new GuzzleHttp\Handler\MockHandler([
-            new GuzzleHttp\Psr7\Response(200, ['foo' => 'bar'], $body),
-            new GuzzleHttp\Psr7\Response(201, ['foo' => 'bar']),
-            new GuzzleHttp\Psr7\Response(200, ['foo' => 'bar'], $body)
+        $mock = new AmeliaGuzzleHttp\Handler\MockHandler([
+            new AmeliaGuzzleHttp\Psr7\Response(200, ['foo' => 'bar'], $body),
+            new AmeliaGuzzleHttp\Psr7\Response(201, ['foo' => 'bar']),
+            new AmeliaGuzzleHttp\Psr7\Response(200, ['foo' => 'bar'], $body)
         ]);
-        $handler = GuzzleHttp\HandlerStack::create($mock);
-        $this->client = new GuzzleHttp\Client(['handler' => $handler]);
+        $handler = AmeliaGuzzleHttp\HandlerStack::create($mock);
+        $this->client = new AmeliaGuzzleHttp\Client(['handler' => $handler]);
     }
 
     public function testSetReturnType()
@@ -133,7 +133,7 @@ class GraphRequestTest extends TestCase
         $request = $this->requests[0];
         $client = $reflectionMethod->invokeArgs($request, array());
 
-        $this->assertInstanceOf(GuzzleHttp\Client::class, $client);
+        $this->assertInstanceOf(AmeliaGuzzleHttp\Client::class, $client);
 
     }
 
@@ -157,18 +157,18 @@ class GraphRequestTest extends TestCase
 
         $promise = $this->requests[0]
                          ->executeAsync($this->client);
-        $this->assertInstanceOf(GuzzleHttp\Promise\PromiseInterface::class, $promise);
+        $this->assertInstanceOf(AmeliaGuzzleHttp\Promise\PromiseInterface::class, $promise);
 
         $promise = $this->requests[1]
                          ->executeAsync($this->client);
-        $this->assertInstanceOf(GuzzleHttp\Promise\PromiseInterface::class, $promise);
+        $this->assertInstanceOf(AmeliaGuzzleHttp\Promise\PromiseInterface::class, $promise);
 
         $promise = $this->requests[0]
                          ->executeAsync($this->client);
         $promise2 = $this->requests[2]
                           ->executeAsync($this->client);
 
-        $response = \GuzzleHttp\Promise\unwrap(array($promise));
+        $response = \AmeliaGuzzleHttp\Promise\unwrap(array($promise));
         foreach ($response as $responseItem) {
             $this->assertInstanceOf(Microsoft\Graph\Http\GraphResponse::class, $responseItem);
         }

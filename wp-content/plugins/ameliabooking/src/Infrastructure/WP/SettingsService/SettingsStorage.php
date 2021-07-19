@@ -227,13 +227,15 @@ class SettingsStorage implements SettingsStorageInterface
             'wordpress'              => [
                 'dateFormat'  => $this->getSetting('wordpress', 'dateFormat'),
                 'timeFormat'  => $this->getSetting('wordpress', 'timeFormat'),
-                'startOfWeek' => (int)$this->getSetting('wordpress', 'startOfWeek')
+                'startOfWeek' => (int)$this->getSetting('wordpress', 'startOfWeek'),
+                'timezone'    => $this->getSetting('wordpress', 'timeZoneString'),
             ],
             'labels'                 => [
                 'enabled' => $this->getSetting('labels', 'enabled')
             ],
             'activation'             => [
-                'showActivationSettings' => $this->getSetting('activation', 'showActivationSettings')
+                'showActivationSettings' => $this->getSetting('activation', 'showActivationSettings'),
+                'stash'                  => $this->getSetting('activation', 'stash'),
             ],
             'roles'                  => [
                 'allowConfigureSchedule'      => $this->getSetting('roles', 'allowConfigureSchedule'),

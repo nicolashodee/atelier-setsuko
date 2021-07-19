@@ -65,20 +65,6 @@ class AbstractBookable
     private $settings;
 
     /**
-     * AbstractBookable constructor.
-     *
-     * @param Name        $name
-     * @param Price       $price
-     */
-    public function __construct(
-        Name $name,
-        Price $price
-    ) {
-        $this->name = $name;
-        $this->price = $price;
-    }
-
-    /**
      * @return Id
      */
     public function getId()

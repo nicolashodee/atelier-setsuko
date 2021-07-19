@@ -18,6 +18,7 @@ use AmeliaBooking\Domain\Entity\User\Provider;
 use AmeliaBooking\Domain\Services\DateTime\DateTimeService;
 use AmeliaBooking\Domain\Services\Settings\SettingsService;
 use AmeliaBooking\Domain\ValueObjects\String\BookingStatus;
+use AmeliaBooking\Domain\ValueObjects\String\NotificationSendTo;
 use AmeliaBooking\Infrastructure\Common\Exceptions\NotFoundException;
 use AmeliaBooking\Infrastructure\Common\Exceptions\QueryExecutionException;
 use AmeliaBooking\Infrastructure\Repository\Bookable\Service\CategoryRepository;
@@ -45,7 +46,7 @@ class AppointmentPlaceholderService extends PlaceholderService
      *
      * @throws ContainerException
      */
-    public function getEntityPlaceholdersDummyData()
+    public function getEntityPlaceholdersDummyData($type)
     {
         /** @var SettingsService $settingsService */
         $settingsService = $this->container->get('domain.settings.service');
@@ -60,31 +61,32 @@ class AppointmentPlaceholderService extends PlaceholderService
 
         $timestamp = date_create()->getTimestamp();
 
+
         return [
             'appointment_id'          => '1',
-            'appointment_date'        => date_i18n($dateFormat, strtotime($timestamp)),
-            'appointment_date_time'   => date_i18n($dateFormat . ' ' . $timeFormat, strtotime($timestamp)),
+            'appointment_date'        => date_i18n($dateFormat, $timestamp),
+            'appointment_date_time'   => date_i18n($dateFormat . ' ' . $timeFormat, $timestamp),
             'appointment_start_time'  => date_i18n($timeFormat, $timestamp),
             'appointment_end_time'    => date_i18n($timeFormat, date_create('1 hour')->getTimestamp()),
             'appointment_notes'       => 'Appointment note',
             'appointment_price'       => $helperService->getFormattedPrice(100),
-            'employee_email'          => 'employee@domain.com',
-            'employee_first_name'     => 'Richard',
-            'employee_last_name'      => 'Roe',
-            'employee_full_name'      => 'Richard Roe',
-            'employee_phone'          => '150-698-1858',
-            'employee_note'           => 'Employee Note',
-            'location_address'        => $companySettings['address'],
-            'location_phone'          => $companySettings['phone'],
-            'location_name'           => 'Location Name',
-            'location_description'    => 'Location Description',
+            'appointment_cancel_url'  => $type === 'email' ?
+                '<a href="#">'. BackendStrings::getNotificationsStrings()['ph_appointment_cancel_url'] .'</a>' : 'http://cancel_url.com',
+            'zoom_host_url'           => $type === 'email' ?
+                '<a href="#">' . BackendStrings::getCommonStrings()['zoom_click_to_join'] . '</a>' : 'http://join_zoom_link.com',
+            'zoom_join_url'           => $type === 'email' ?
+                '<a href="#">' . BackendStrings::getCommonStrings()['zoom_click_to_start'] . '</a>' : 'http://start_zoom_link.com',
+            'appointment_duration'    => $helperService->secondsToNiceDuration(1800),
+            'appointment_deposit_payment'     => $helperService->getFormattedPrice(20),
+            'appointment_status'      => BackendStrings::getCommonStrings()['approved'],
             'category_name'           => 'Category Name',
             'service_description'     => 'Service Description',
             'reservation_description' => 'Service Description',
             'service_duration'        => $helperService->secondsToNiceDuration(5400),
             'service_name'            => 'Service Name',
             'reservation_name'        => 'Service Name',
-            'service_price'           => $helperService->getFormattedPrice(100)
+            'service_price'           => $helperService->getFormattedPrice(100),
+            'service_extras'          => 'Extra1, Extra2, Extra3'
         ];
     }
 
@@ -119,7 +121,7 @@ class AppointmentPlaceholderService extends PlaceholderService
         $data = array_merge($data, $this->getServiceData($appointment, $bookingKey));
         $data = array_merge($data, $this->getEmployeeData($appointment));
         $data = array_merge($data, $this->getRecurringAppointmentsData($appointment, $bookingKey, $type, 'recurring'));
-        $data = array_merge($data, $this->getBookingData($appointment, $type, $bookingKey, $token));
+        $data = array_merge($data, $this->getBookingData($appointment, $type, $bookingKey, $token, $data['deposit']));
         $data = array_merge($data, $this->getCompanyData());
         $data = array_merge($data, $this->getCustomersData($appointment, $type, $bookingKey, $customer));
         $data = array_merge($data, $this->getCustomFieldsData($appointment, $bookingKey));
@@ -142,6 +144,9 @@ class AppointmentPlaceholderService extends PlaceholderService
         /** @var SettingsService $settingsService */
         $settingsService = $this->container->get('domain.settings.service');
 
+        /** @var HelperService $helperService */
+        $helperService = $this->container->get('application.helper.service');
+        
         $dateFormat = $settingsService->getSetting('wordpress', 'dateFormat');
         $timeFormat = $settingsService->getSetting('wordpress', 'timeFormat');
 
@@ -316,6 +321,7 @@ class AppointmentPlaceholderService extends PlaceholderService
         }
 
         $data["service_extras"] = substr($allExtraNames, 0, -2);
+        $data['deposit'] = $service->getDeposit() && $service->getDeposit()->getValue();
 
         return $data;
     }

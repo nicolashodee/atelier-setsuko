@@ -8,6 +8,10 @@ namespace AmeliaBooking\Infrastructure\WP\ShortcodeService;
 
 use AmeliaBooking\Application\Services\Cache\CacheApplicationService;
 use AmeliaBooking\Application\Services\CustomField\CustomFieldApplicationService;
+use AmeliaBooking\Application\Services\Stash\StashApplicationService;
+use AmeliaBooking\Domain\Common\Exceptions\InvalidArgumentException;
+use AmeliaBooking\Domain\Entity\Entities;
+use AmeliaBooking\Domain\Services\DateTime\DateTimeService;
 use AmeliaBooking\Domain\Services\Settings\SettingsService;
 use AmeliaBooking\Infrastructure\Common\Exceptions\QueryExecutionException;
 use AmeliaBooking\Infrastructure\WP\SettingsService\SettingsStorage;
@@ -22,12 +26,23 @@ class AmeliaShortcodeService
 {
     public static $counter = 0;
 
+    public static $loadedAppointmentForm = null;
+
+    public static $loadedEventForm = null;
+
     /**
      * Prepare scripts and styles
+     * @throws InvalidArgumentException
      */
     public static function prepareScriptsAndStyles()
     {
+        $container = null;
+
         self::$counter++;
+
+        if (self::$counter > 1) {
+            return;
+        }
 
         $settingsService = new SettingsService(new SettingsStorage());
 
@@ -136,8 +151,21 @@ class AmeliaShortcodeService
             array_keys(CustomFieldApplicationService::$allowedUploadedFileExtensions)
         );
 
+        if ($settingsService->getSetting('activation', 'stash') && self::$counter === 1) {
+            $container = $container ?: require AMELIA_PATH . '/src/Infrastructure/ContainerConfig/container.php';
+
+            /** @var StashApplicationService $stashAS */
+            $stashAS = $container->get('application.stash.service');
+
+            wp_localize_script(
+                'amelia_booking_scripts',
+                'ameliaEntities',
+                $stashAS->getStash()
+            );
+        }
+
         if (!empty($_GET['ameliaCache'])) {
-            $container = require AMELIA_PATH . '/src/Infrastructure/ContainerConfig/container.php';
+            $container = $container ?: require AMELIA_PATH . '/src/Infrastructure/ContainerConfig/container.php';
 
             /** @var CacheApplicationService $cacheAS */
             $cacheAS = $container->get('application.cache.service');
@@ -154,6 +182,46 @@ class AmeliaShortcodeService
             }
         }
 
+        wp_localize_script(
+            'amelia_booking_scripts',
+            'wpAmeliaTimeZone',
+            [DateTimeService::getTimeZone()->getName()]
+        );
+
         do_action('ameliaScriptsLoaded');
+    }
+
+    /**
+     * Prepare scripts and styles
+     * @param array  $attributes
+     * @param string $type
+     */
+    protected static function setApiCallAttribute(&$attributes, $type)
+    {
+        $trigger = !empty($attributes['trigger']) ? trim($attributes['trigger']) : '';
+
+        switch ($type) {
+            case (Entities::APPOINTMENT):
+                $hasAppointmentApiCall = self::$loadedAppointmentForm === null && empty($trigger);
+
+                $attributes['hasApiCall'] = $hasAppointmentApiCall || !empty($trigger) ? 1 : 0;
+
+                if ($hasAppointmentApiCall) {
+                    self::$loadedAppointmentForm = true;
+                }
+
+                break;
+
+            case (Entities::EVENT):
+                $hasEventApiCall = self::$loadedEventForm === null && empty($trigger);
+
+                $attributes['hasApiCall'] = $hasEventApiCall || !empty($trigger) ? 1 : 0;
+
+                if ($hasEventApiCall) {
+                    self::$loadedEventForm = true;
+                }
+
+                break;
+        }
     }
 }

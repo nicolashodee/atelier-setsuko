@@ -7,9 +7,14 @@
 ?>
 
 <script>
+<?php
+    $timeZones = json_encode(\DateTimeZone::listIdentifiers(\DateTimeZone::ALL));
+    echo "var wpAmeliaTimeZones = $timeZones;";
+?>
   var bookingEntitiesIds = (typeof bookingEntitiesIds === 'undefined') ? [] : bookingEntitiesIds;
   bookingEntitiesIds.push(
     {
+      'hasApiCall': 1,
       'trigger': '<?php echo $atts['trigger']; ?>',
       'counter': '<?php echo $atts['counter']; ?>',
       'appointments': '<?php echo $atts['appointments']; ?>',

@@ -132,12 +132,7 @@ class BookingReassignedEventHandler
         // appointment is rescheduled
         if ($existingAppointment === null && $newAppointment === null) {
             foreach ($oldAppointment['bookings'] as $bookingKey => $bookingArray) {
-                if ($booking['id'] === $bookingArray['id'] &&
-                    (
-                        $bookingArray['status'] === BookingStatus::APPROVED ||
-                        $bookingArray['status'] === BookingStatus::PENDING
-                    )
-                ) {
+                if ($booking['id'] === $bookingArray['id'] && $bookingArray['status'] === BookingStatus::APPROVED) {
                     $oldAppointment['bookings'][$bookingKey]['icsFiles'] = $icsService->getIcsData(
                         Entities::APPOINTMENT,
                         $bookingArray['id'],
@@ -255,9 +250,7 @@ class BookingReassignedEventHandler
 
             if ($oldAppointmentStatusChanged) {
                 foreach ($oldAppointment['bookings'] as $bookingKey => $bookingArray) {
-                    if ($bookingArray['status'] === BookingStatus::APPROVED &&
-                        $oldAppointment['status'] === BookingStatus::PENDING
-                    ) {
+                    if ($bookingArray['status'] === BookingStatus::APPROVED) {
                         $oldAppointment['bookings'][$bookingKey]['isChangedStatus'] = true;
 
                         if ($booking['id'] === $bookingArray['id']) {
@@ -311,12 +304,7 @@ class BookingReassignedEventHandler
             }
 
             foreach ($newAppointment['bookings'] as $bookingKey => $bookingArray) {
-                if ($booking['id'] === $bookingArray['id'] &&
-                    (
-                        $bookingArray['status'] === BookingStatus::APPROVED ||
-                        $bookingArray['status'] === BookingStatus::PENDING
-                    )
-                ) {
+                if ($booking['id'] === $bookingArray['id'] && $bookingArray['status'] === BookingStatus::APPROVED) {
                     $newAppointment['bookings'][$bookingKey]['icsFiles'] = $icsService->getIcsData(
                         Entities::APPOINTMENT,
                         $bookingArray['id'],

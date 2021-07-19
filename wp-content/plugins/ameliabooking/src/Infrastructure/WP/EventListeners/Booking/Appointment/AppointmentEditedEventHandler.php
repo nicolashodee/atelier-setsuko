@@ -206,13 +206,12 @@ class AppointmentEditedEventHandler
             }
         }
 
+        /** @var IcsApplicationService $icsService */
+        $icsService = $container->get('application.ics.service');
+
         if ($appointmentRescheduled === true) {
-
-            /** @var IcsApplicationService $icsService */
-            $icsService = $container->get('application.ics.service');
-
             foreach ($appointment['bookings'] as $index => $booking) {
-                if ($booking['status'] === BookingStatus::APPROVED || $booking['status'] === BookingStatus::PENDING) {
+                if ($booking['status'] === BookingStatus::APPROVED) {
                     $appointment['bookings'][$index]['icsFiles'] = $icsService->getIcsData(
                         Entities::APPOINTMENT,
                         $booking['id'],
@@ -225,6 +224,20 @@ class AppointmentEditedEventHandler
 
             if ($settingsService->getSetting('notifications', 'smsSignedIn') === true) {
                 $smsNotificationService->sendAppointmentRescheduleNotifications($appointment);
+            }
+        }
+
+        // check bookings with changed status for ICS files
+        if ($bookings) {
+            foreach ($bookings as $index => $booking) {
+                if ($booking['status'] === BookingStatus::APPROVED) {
+                    $bookings[$index]['icsFiles'] = $icsService->getIcsData(
+                        Entities::APPOINTMENT,
+                        $booking['id'],
+                        [],
+                        true
+                    );
+                }
             }
         }
 

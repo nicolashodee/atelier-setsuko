@@ -2,7 +2,9 @@
 
 namespace AmeliaBooking\Infrastructure\WP\WPMenu;
 
+use AmeliaBooking\Application\Services\Helper\HelperService;
 use AmeliaBooking\Domain\Services\Settings\SettingsService;
+use AmeliaBooking\Infrastructure\WP\Integrations\WooCommerce\WooCommerceService;
 use AmeliaBooking\Infrastructure\WP\Translations\BackendStrings;
 
 /**
@@ -69,6 +71,38 @@ class SubmenuPageHandler
             'useWindowVueInAmelia',
             [$this->settingsService->getSetting('general', 'useWindowVueInAmeliaBack') ? '1' : '0']
         );
+
+        wp_localize_script(
+            'amelia_booking_scripts',
+            'wpAmeliaLanguages',
+            HelperService::getLanguages()
+        );
+
+        $wcSettings = $this->settingsService->getSetting('payments', 'wc');
+
+        if ($wcSettings['enabled']) {
+            $products = WooCommerceService::getAllProducts(
+                [
+                    'posts_per_page' => 50,
+                ]
+            );
+
+            $product = WooCommerceService::getAllProducts(
+                [
+                    'include' => $wcSettings['productId']
+                ]
+            );
+
+            if ($product && !in_array($product[0]['id'], array_column($products, 'id'))) {
+                $products[] = $product[0];
+            }
+
+            wp_localize_script(
+                'amelia_booking_scripts',
+                'wpAmeliaWcProducts',
+                $products
+            );
+        }
 
         // Strings Localization
         switch ($page) {
@@ -170,7 +204,8 @@ class SubmenuPageHandler
 				        BackendStrings::getCustomerStrings(),
 				        BackendStrings::getAppointmentStrings(),
 				        BackendStrings::getEventStrings(),
-                        BackendStrings::getBookableStrings()
+                        BackendStrings::getBookableStrings(),
+                        BackendStrings::getRecurringStrings()
 			        )
 		        );
 
@@ -255,8 +290,8 @@ class SubmenuPageHandler
                     'amelia_booking_scripts',
                     'wpAmeliaLabels',
                     array_merge(
-                        BackendStrings::getCustomizeStrings(),
-                        BackendStrings::getCommonStrings()
+                        BackendStrings::getCommonStrings(),
+                        BackendStrings::getCustomizeStrings()
                     )
                 );
 

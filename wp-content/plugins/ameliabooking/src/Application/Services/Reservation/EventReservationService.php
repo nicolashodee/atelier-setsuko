@@ -366,6 +366,7 @@ class EventReservationService extends AbstractReservationService
                         'lastName'   => $customer->getLastName()->getValue(),
                         'phone'      => $customer->getPhone()->getValue()
                     ],
+                    'info'         => $booking->getInfo()->getValue(),
                     'persons'      => $booking->getPersons()->getValue(),
                     'extras'       => [],
                     'utcOffset'    => $booking->getUtcOffset() ? $booking->getUtcOffset()->getValue() : null,

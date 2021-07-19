@@ -21,14 +21,14 @@ class GraphResponseTest extends TestCase
         $multiBody = json_encode(array('value' => array('1' => array('givenName' => 'Bob'), '2' => array('givenName' => 'Drew'))));
         $valueBody = json_encode(array('value' => 'Bob Barker'));
 
-        $mock = new GuzzleHttp\Handler\MockHandler([
-            new GuzzleHttp\Psr7\Response(200, ['foo' => 'bar'], $body),
-            new GuzzleHttp\Psr7\Response(200, ['foo' => 'bar'], $body),
-            new GuzzleHttp\Psr7\Response(200, ['foo' => 'bar'], $multiBody),
-            new GuzzleHttp\Psr7\Response(200, ['foo' => 'bar'], $valueBody),
+        $mock = new AmeliaGuzzleHttp\Handler\MockHandler([
+            new AmeliaGuzzleHttp\Psr7\Response(200, ['foo' => 'bar'], $body),
+            new AmeliaGuzzleHttp\Psr7\Response(200, ['foo' => 'bar'], $body),
+            new AmeliaGuzzleHttp\Psr7\Response(200, ['foo' => 'bar'], $multiBody),
+            new AmeliaGuzzleHttp\Psr7\Response(200, ['foo' => 'bar'], $valueBody),
         ]);
-        $handler = GuzzleHttp\HandlerStack::create($mock);
-        $this->client = new GuzzleHttp\Client(['handler' => $handler]);
+        $handler = AmeliaGuzzleHttp\HandlerStack::create($mock);
+        $this->client = new AmeliaGuzzleHttp\Client(['handler' => $handler]);
 
         $this->request = new GraphRequest("GET", "/endpoint", "token", "baseUrl", "/version");
         $this->response = new GraphResponse($this->request, "{response}", "200", ["foo" => "bar"]);

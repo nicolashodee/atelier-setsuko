@@ -2,8 +2,8 @@
 
 namespace Http\Message\MessageFactory;
 
-use GuzzleHttp\Psr7\Request;
-use GuzzleHttp\Psr7\Response;
+use AmeliaGuzzleHttp\Psr7\Request;
+use AmeliaGuzzleHttp\Psr7\Response;
 use Http\Message\MessageFactory;
 
 /**

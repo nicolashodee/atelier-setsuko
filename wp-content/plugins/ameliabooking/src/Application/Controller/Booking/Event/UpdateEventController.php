@@ -6,6 +6,7 @@ use AmeliaBooking\Application\Commands\Booking\Event\UpdateEventCommand;
 use AmeliaBooking\Application\Commands\CommandResult;
 use AmeliaBooking\Application\Controller\Controller;
 use AmeliaBooking\Domain\Events\DomainEventBus;
+use RuntimeException;
 use Slim\Http\Request;
 
 /**
@@ -27,6 +28,8 @@ class UpdateEventController extends Controller
         'periods',
         'bookingOpens',
         'bookingCloses',
+        'bookingOpensRec',
+        'bookingClosesRec',
         'recurring',
         'bringingAnyone',
         'bookMultipleTimes',
@@ -47,6 +50,8 @@ class UpdateEventController extends Controller
         'deposit',
         'depositPayment',
         'depositPerPerson',
+        'timeZone',
+        'utc',
     ];
 
     /**
@@ -56,11 +61,12 @@ class UpdateEventController extends Controller
      * @param         $args
      *
      * @return UpdateEventCommand
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     protected function instantiateCommand(Request $request, $args)
     {
         $command = new UpdateEventCommand($args);
+
         $requestBody = $request->getParsedBody();
         $this->setCommandFields($command, $requestBody);
         $command->setToken($request);

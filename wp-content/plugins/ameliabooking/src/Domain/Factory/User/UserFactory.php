@@ -46,7 +46,7 @@ class UserFactory
      */
     public static function create($data)
     {
-        if (!isset($data['type'])) {
+        if (!isset($data['type']) || !$data['email']) {
             $data['type'] = 'customer';
         }
 

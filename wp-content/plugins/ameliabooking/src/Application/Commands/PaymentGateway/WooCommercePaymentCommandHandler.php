@@ -118,7 +118,9 @@ class WooCommercePaymentCommandHandler extends CommandHandler
         $result->setMessage('Proceed to WooCommerce Cart');
         $result->setData(
             [
-                'cartUrl' => WooCommerceService::getPageUrl()
+                'cartUrl' => WooCommerceService::getPageUrl(
+                    !empty($appointmentData['locale']) ? $appointmentData['locale'] : ''
+                )
             ]
         );
 

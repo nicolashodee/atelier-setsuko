@@ -21,7 +21,8 @@ class FetchAccessTokenWithAuthCodeOutlookController extends Controller
      */
     public $allowedFields = [
         'authCode',
-        'userId'
+        'userId',
+        'redirectUri',
     ];
 
     /**
@@ -36,6 +37,7 @@ class FetchAccessTokenWithAuthCodeOutlookController extends Controller
     protected function instantiateCommand(Request $request, $args)
     {
         $command = new FetchAccessTokenWithAuthCodeOutlookCommand($args);
+
         $requestBody = $request->getParsedBody();
         $this->setCommandFields($command, $requestBody);
 

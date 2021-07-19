@@ -35,6 +35,8 @@ class GetAppointmentController extends Controller
             unset($params['source']);
         }
 
+        $command->setField('params', $params);
+
         $command->setToken($request);
 
         $requestBody = $request->getParsedBody();

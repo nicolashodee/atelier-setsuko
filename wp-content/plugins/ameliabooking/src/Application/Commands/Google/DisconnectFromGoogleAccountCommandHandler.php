@@ -5,7 +5,10 @@ namespace AmeliaBooking\Application\Commands\Google;
 use AmeliaBooking\Application\Commands\CommandHandler;
 use AmeliaBooking\Application\Commands\CommandResult;
 use AmeliaBooking\Application\Common\Exceptions\AccessDeniedException;
+use AmeliaBooking\Application\Services\User\UserApplicationService;
+use AmeliaBooking\Domain\Common\Exceptions\AuthorizationException;
 use AmeliaBooking\Domain\Entity\Entities;
+use AmeliaBooking\Domain\Entity\User\AbstractUser;
 use AmeliaBooking\Domain\Entity\Google\GoogleCalendar;
 use AmeliaBooking\Infrastructure\Repository\Google\GoogleCalendarRepository;
 
@@ -27,8 +30,30 @@ class DisconnectFromGoogleAccountCommandHandler extends CommandHandler
      */
     public function handle(DisconnectFromGoogleAccountCommand $command)
     {
+
+        /** @var UserApplicationService $userAS */
+        $userAS = $this->getContainer()->get('application.user.service');
+
         if (!$this->getContainer()->getPermissionsService()->currentUserCanRead(Entities::EMPLOYEES)) {
-            throw new AccessDeniedException('You are not allowed to read employee.');
+            try {
+                /** @var AbstractUser $user */
+                $user = $userAS->authorization(
+                    $command->getToken(),
+                    Entities::PROVIDER
+                );
+            } catch (AuthorizationException $e) {
+                $result = new CommandResult();
+                $result->setResult(CommandResult::RESULT_ERROR);
+                $result->setData(
+                    [
+                        'reauthorize' => true
+                    ]
+                );
+                return $result;
+            }
+            if ($user === null) {
+                throw new AccessDeniedException('You are not allowed to read employee.');
+            }
         }
 
         $result = new CommandResult();

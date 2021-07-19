@@ -44,13 +44,18 @@ class PackageFactory
     public static function create($data)
     {
         /** @var Package $package */
-        $package = new Package(
-            new Name($data['name']),
-            new Price($data['price'])
-        );
+        $package = new Package();
 
         if (isset($data['id'])) {
             $package->setId(new Id($data['id']));
+        }
+
+        if (isset($data['name'])) {
+            $package->setName(new Name($data['name']));
+        }
+
+        if (isset($data['price'])) {
+            $package->setPrice(new Price($data['price']));
         }
 
         if (isset($data['description'])) {

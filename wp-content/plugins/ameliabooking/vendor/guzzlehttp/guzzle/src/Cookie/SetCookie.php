@@ -1,5 +1,5 @@
 <?php
-namespace GuzzleHttp\Cookie;
+namespace AmeliaGuzzleHttp\Cookie;
 
 /**
  * Set-Cookie object

@@ -46,13 +46,18 @@ class EventFactory
      */
     public static function create($data)
     {
-        $event = new Event(
-            new Name($data['name']),
-            new Price($data['price'])
-        );
+        $event = new Event();
 
         if (isset($data['id'])) {
             $event->setId(new Id($data['id']));
+        }
+
+        if (isset($data['name'])) {
+            $event->setName(new Name($data['name']));
+        }
+
+        if (isset($data['price'])) {
+            $event->setPrice(new Price($data['price']));
         }
 
         if (isset($data['parentId'])) {
@@ -65,6 +70,14 @@ class EventFactory
 
         if (!empty($data['bookingCloses'])) {
             $event->setBookingCloses(new DateTimeValue(DateTimeService::getCustomDateTimeObject($data['bookingCloses'])));
+        }
+
+        if (!empty($data['bookingOpensRec'])) {
+            $event->setBookingOpensRec($data['bookingOpensRec']);
+        }
+
+        if (!empty($data['bookingClosesRec'])) {
+            $event->setBookingClosesRec($data['bookingClosesRec']);
         }
 
         if (isset($data['notifyParticipants'])) {
@@ -258,10 +271,19 @@ class EventFactory
                         DateTimeService::getCustomDateTimeFromUtc($row['event_bookingOpens']) : null,
                     'bookingCloses'         => $row['event_bookingCloses'] ?
                         DateTimeService::getCustomDateTimeFromUtc($row['event_bookingCloses']) : null,
+                    'bookingOpensRec'       => isset($row['event_bookingOpensRec']) ?
+                        $row['event_bookingOpensRec'] : null,
+                    'bookingClosesRec'      => isset($row['event_bookingClosesRec']) ?
+                        $row['event_bookingClosesRec'] : null,
                     'recurring'             => [
-                        'cycle' => $row['event_recurringCycle'],
-                        'order' => $row['event_recurringOrder'],
-                        'until' => DateTimeService::getCustomDateTimeFromUtc($row['event_recurringUntil'])
+                        'cycle'            => $row['event_recurringCycle'],
+                        'order'            => $row['event_recurringOrder'],
+                        'cycleInterval'    => $row['event_recurringInterval'],
+                        'monthlyRepeat'    => isset($row['event_recurringMonthly']) ? $row['event_recurringMonthly'] : null,
+                        'monthDate'        => !empty($row['event_monthlyDate']) ? DateTimeService::getCustomDateTimeFromUtc($row['event_monthlyDate']) : null,
+                        'monthlyOnRepeat'  => isset($row['event_monthlyOnRepeat']) ? $row['event_monthlyOnRepeat'] : null,
+                        'monthlyOnDay'     => isset($row['event_monthlyOnDay']) ? $row['event_monthlyOnDay'] : null,
+                        'until'            => DateTimeService::getCustomDateTimeFromUtc($row['event_recurringUntil'])
                     ],
                     'bringingAnyone'        => $row['event_bringingAnyone'],
                     'bookMultipleTimes'     => $row['event_bookMultipleTimes'],

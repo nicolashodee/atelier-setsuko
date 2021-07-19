@@ -2,6 +2,37 @@
 
 .amelia-app-booking {
   #am-cabinet {
+    .am-cabinet-timezone {
+      padding: @padding-small;
+      font-size: 14px;
+      cursor: pointer;
+      background-color: fade(@color-gradient2, 10%);
+      &-icon {
+        svg {
+          fill: @color-white !important;
+          margin-right: 2px;
+        }
+      }
+      span {
+        color: @color-white;
+        display: flex;
+        align-items: center;
+      }
+
+      .el-input__inner {
+        color: @color-white !important;
+      }
+
+      .el-input__suffix {
+        .el-input__suffix-inner {
+          .el-icon-circle-close:before {
+            color: @color-white
+          }
+        }
+      }
+
+    }
+
     .el-input__inner {
       height: 40px !important;
       margin-bottom: 0 !important;
@@ -103,6 +134,21 @@
       overflow: hidden;
       border-radius: 4px;
 
+      .timezone_warning {
+        .el-alert__description {
+          color: #d28f2b;
+          margin: @margin-small;
+          text-align: center;
+          padding-right: 5px;
+        }
+        .el-alert__closebtn {
+          color: #d28f2b;
+          border: 1px solid #d28f2b;
+          border-radius: 50%;
+          padding: 2px;
+        }
+      }
+
       .am-cabinet-dashboard-appointments, .am-cabinet-dashboard-events {
         padding: 40px !important;
 
@@ -117,7 +163,7 @@
         padding: @padding-medium*2;
         display: flex;
         align-items: center;
-        justify-content: flex-start;
+        justify-content: space-between;
         @media @less-then-small {
           display: block;
         }
@@ -609,6 +655,88 @@
               margin-bottom: 0;
             }
           }
+
+          &__outlook {
+            display: inline-block;
+            width: 100%;
+          }
+
+          .am-google-calendar-button {
+            padding: 0;
+            height: 40px;
+            border: 1px solid transparent;
+            margin: inherit;
+            width: 100%;
+            background-color: #4285F4;
+            -webkit-border-radius: 1px;
+            border-radius: 1px;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .25);
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+            -webkit-transition: background-color .218s, border-color .218s, box-shadow .218s;
+            transition: background-color .218s, border-color .218s, box-shadow .218s;
+            -webkit-user-select: none;
+            -webkit-appearance: none;
+            background-image: none;
+            cursor: pointer;
+            outline: none;
+            overflow: hidden;
+            position: relative;
+            text-align: center;
+            vertical-align: middle;
+            white-space: nowrap;
+
+            &:hover {
+              background-color: #4285F4;
+            }
+
+            &:focus {
+              background-color: #3367D6;
+            }
+
+            &.connected {
+              background-color: #DC4E41;
+
+              &:hover {
+                background-color: #DC4E41;
+              }
+
+              &:focus {
+                background-color: #C53829;
+              }
+            }
+
+            .am-google-calendar-button-image {
+              float: left;
+              padding: 9px;
+              background: #fff;
+              border-radius: 1px;
+            }
+
+            .am-google-calendar-button-text {
+              padding: 12px 0;
+              display: inline-block;
+              margin: 0;
+            }
+          }
+
+
+          #am-google-calendar-connected {
+            .el-badge__content {
+              background-color: @color-green;
+            }
+          }
+
+          #am-google-calendar-disconnected {
+            .el-badge__content {
+              background-color: @color-red;
+            }
+          }
+
+          .am-google-calendar-tooltip {
+            margin: 28px 0 0 -12px;
+          }
+
 
           .am-cabinet-button {
             height: 90px;

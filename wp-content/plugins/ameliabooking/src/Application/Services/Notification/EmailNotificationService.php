@@ -393,8 +393,24 @@ class EmailNotificationService extends AbstractNotificationService
         $body = str_replace('class="ql-size-large"', 'style="font-size: 1.5em;"', $body);
         $body = str_replace('class="ql-size-huge"', 'style="font-size: 2.5em;"', $body);
 
-        $breakReplacement = $settingsService->getSetting('notifications', 'breakReplacement');
+        $breakReplacement = $settingsService->getSetting('notifications', 'breakReplacement') ?: '';
 
-        return !$breakReplacement ? $body : str_replace('<p><br></p>', $breakReplacement, $body);
+        return $breakReplacement ?
+            str_replace('<p><br></p>', $breakReplacement, $body) :
+            str_replace(
+                [
+                    '<br>',
+                    '</p><p>',
+                    '<p>',
+                    '</p>'
+                ],
+                [
+                    '',
+                    '<br>',
+                    '',
+                    ''
+                ],
+                $body
+            );
     }
 }

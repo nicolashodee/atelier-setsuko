@@ -118,7 +118,7 @@ class NotificationsStrings
                 'content'    =>
                     'Dear <strong>%customer_full_name%</strong>,<br><br>We would like to remind you that you have 
                      <strong>%service_name%</strong> appointment tomorrow at <strong>%appointment_start_time%</strong>.
-                     We are waiting you at <strong>%location_name%</strong>.<br><br>Thank you for 
+                     We are waiting for you at <strong>%location_name%</strong>.<br><br>Thank you for 
                      choosing our company,<br><strong>%company_name%</strong>'
             ],
             [
@@ -282,7 +282,7 @@ class NotificationsStrings
                 'content'    =>
                     'Dear %customer_full_name%,
 
-You have successfully scheduled %service_name% appointment with %employee_full_name%. We are waiting you at %location_address% on %appointment_date_time%.
+You have successfully scheduled %service_name% appointment with %employee_full_name%. We are waiting for you at %location_address% on %appointment_date_time%.
 
 Thank you for choosing our company,
 %company_name%'
@@ -378,7 +378,7 @@ Thank you for choosing our company,
                 'content'    =>
                     'Dear %customer_full_name%,
                     
-We would like to remind you that you have %service_name% appointment tomorrow at %appointment_start_time%. We are waiting you at %location_name%.
+We would like to remind you that you have %service_name% appointment tomorrow at %appointment_start_time%. We are waiting for you at %location_name%.
                     
 Thank you for choosing our company,
 %company_name%'
@@ -637,7 +637,7 @@ Thank you,
                 'content'    =>
                     'Dear <strong>%customer_full_name%</strong>,<br><br>We would like to remind you that you have
                      <strong>%event_name%</strong> event tomorrow at <strong>%event_start_date_time%</strong>.
-                     We are waiting you at <strong>%event_location%</strong>.<br><br>Thank you for
+                     We are waiting for you at <strong>%event_location%</strong>.<br><br>Thank you for
                      choosing our company,<br><strong>%company_name%</strong>'
             ],
             [
@@ -772,7 +772,7 @@ Thank you,
                 'content'    =>
                     'Dear %customer_full_name%,
 
-You have successfully scheduled %event_name% event. We are waiting you at %event_location% on %event_start_date_time%.
+You have successfully scheduled %event_name% event. We are waiting for you at %event_location% on %event_start_date_time%.
 
 Thank you for choosing our company,
 %company_name%'
@@ -851,7 +851,7 @@ Thank you for choosing our company,
                 'content'    =>
                     'Dear %customer_full_name%,
                     
-We would like to remind you that you have %event_name% event at %event_start_date_time%. We are waiting you at %event_location%.
+We would like to remind you that you have %event_name% event at %event_start_date_time%. We are waiting for you at %event_location%.
                     
 Thank you for choosing our company,
 %company_name%'

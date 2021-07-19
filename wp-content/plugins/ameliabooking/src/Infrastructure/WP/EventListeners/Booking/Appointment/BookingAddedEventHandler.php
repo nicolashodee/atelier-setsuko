@@ -127,7 +127,7 @@ class BookingAddedEventHandler
         }
 
         foreach ($reservation['bookings'] as $index => $reservationBooking) {
-            if ($reservationBooking['id'] === $booking['id']) {
+            if ($reservationBooking['id'] === $booking['id'] && $booking['status'] === BookingStatus::APPROVED) {
                 $icsFiles = $icsService->getIcsData(
                     $type,
                     $booking['id'],

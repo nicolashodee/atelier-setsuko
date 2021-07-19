@@ -143,4 +143,24 @@ class SettingsService
 
         return $data;
     }
+
+    /**
+     * @param array $entities
+     *
+     * @return void
+     */
+    public function setStashEntities($entities)
+    {
+        update_option('amelia_stash', json_encode($entities));
+    }
+
+    /**
+     * @return array
+     */
+    public function getStashEntities()
+    {
+        $entitiesStash = get_option('amelia_stash');
+
+        return $entitiesStash ? json_decode($entitiesStash, true) : [];
+    }
 }

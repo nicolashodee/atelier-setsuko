@@ -55,19 +55,6 @@ class Package extends AbstractBookable
     private $translations;
 
     /**
-     * Package constructor.
-     *
-     * @param Name  $name
-     * @param Price $price
-     */
-    public function __construct(
-        Name $name,
-        Price $price
-    ) {
-        parent::__construct($name, $price);
-    }
-
-    /**
      * @return Status
      */
     public function getStatus()

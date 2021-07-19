@@ -3,6 +3,10 @@
   tinymce.create('tinymce.plugins.ameliaBookingPlugin', {
 
     init: function (editor) {
+      if (!('wpAmeliaLabels' in window)) {
+        return
+      }
+
       let win = null
 
       let entities = null
@@ -601,7 +605,7 @@
             for (let i = 0; i < response.data.events.length; i++) {
               events.push({
                 value: response.data.events[i].id,
-                text: response.data.events[i].name + ' (id: ' + response.data.events[i].id + ')'
+                text: response.data.events[i].name + ' (id: ' + response.data.events[i].id + ') - ' + response.data.events[i].formattedPeriodStart
               })
             }
 

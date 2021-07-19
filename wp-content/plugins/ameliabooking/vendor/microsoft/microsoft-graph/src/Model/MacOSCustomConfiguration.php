@@ -88,15 +88,15 @@ class MacOSCustomConfiguration extends DeviceConfiguration
     * Gets the payload
     * Payload. (UTF8 encoded byte array)
     *
-    * @return \GuzzleHttp\Psr7\Stream The payload
+    * @return \AmeliaGuzzleHttp\Psr7\Stream The payload
     */
     public function getPayload()
     {
         if (array_key_exists("payload", $this->_propDict)) {
-            if (is_a($this->_propDict["payload"], "\GuzzleHttp\Psr7\Stream")) {
+            if (is_a($this->_propDict["payload"], "\AmeliaGuzzleHttp\Psr7\Stream")) {
                 return $this->_propDict["payload"];
             } else {
-                $this->_propDict["payload"] = \GuzzleHttp\Psr7\stream_for($this->_propDict["payload"]);
+                $this->_propDict["payload"] = \AmeliaGuzzleHttp\Psr7\stream_for($this->_propDict["payload"]);
                 return $this->_propDict["payload"];
             }
         }
@@ -107,7 +107,7 @@ class MacOSCustomConfiguration extends DeviceConfiguration
     * Sets the payload
     * Payload. (UTF8 encoded byte array)
     *
-    * @param \GuzzleHttp\Psr7\Stream $val The payload
+    * @param \AmeliaGuzzleHttp\Psr7\Stream $val The payload
     *
     * @return MacOSCustomConfiguration
     */

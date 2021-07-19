@@ -67,11 +67,11 @@ abstract class Controller
      *
      * @param DomainEventBus $eventBus
      *
-     * @param CommandResult  $data
+     * @param CommandResult  $result
      *
      * @return null
      */
-    protected function emitSuccessEvent(DomainEventBus $eventBus, CommandResult $data)
+    protected function emitSuccessEvent(DomainEventBus $eventBus, CommandResult $result)
     {
         return null;
     }

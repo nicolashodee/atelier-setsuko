@@ -358,7 +358,13 @@ class AppointmentReservationService extends AbstractReservationService
                 );
 
                 try {
-                    $appointmentAS->update($existingAppointment, $appointment, $service, $appointmentData['payment']);
+                    $appointmentAS->update(
+                        $existingAppointment,
+                        $appointment,
+                        new Collection(),
+                        $service,
+                        $appointmentData['payment']
+                    );
                 } catch (QueryExecutionException $e) {
                     throw $e;
                 }
@@ -634,6 +640,7 @@ class AppointmentReservationService extends AbstractReservationService
                         'lastName'   => $customer->getLastName()->getValue(),
                         'phone'      => $customer->getPhone()->getValue()
                     ],
+                    'info'         => $booking->getInfo()->getValue(),
                     'persons'      => $booking->getPersons()->getValue(),
                     'extras'       => [],
                     'status'       => $booking->getStatus()->getValue(),

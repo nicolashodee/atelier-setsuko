@@ -14,11 +14,13 @@ use AmeliaBooking\Domain\Collection\Collection;
 use AmeliaBooking\Domain\Common\Exceptions\AuthorizationException;
 use AmeliaBooking\Domain\Common\Exceptions\InvalidArgumentException;
 use AmeliaBooking\Domain\Entity\Bookable\Service\Service;
+use AmeliaBooking\Domain\Entity\Coupon\Coupon;
 use AmeliaBooking\Domain\Entity\Entities;
 use AmeliaBooking\Domain\Entity\User\AbstractUser;
 use AmeliaBooking\Domain\Entity\User\Customer;
 use AmeliaBooking\Domain\Entity\User\Provider;
 use AmeliaBooking\Domain\Factory\Bookable\Service\ServiceFactory;
+use AmeliaBooking\Domain\Services\Booking\EventDomainService;
 use AmeliaBooking\Domain\Services\DateTime\DateTimeService;
 use AmeliaBooking\Domain\Services\Settings\SettingsService;
 use AmeliaBooking\Infrastructure\Common\Exceptions\NotFoundException;
@@ -33,7 +35,6 @@ use AmeliaBooking\Infrastructure\Repository\CustomField\CustomFieldRepository;
 use AmeliaBooking\Infrastructure\Repository\Location\LocationRepository;
 use AmeliaBooking\Infrastructure\Repository\User\ProviderRepository;
 use AmeliaBooking\Infrastructure\Repository\User\UserRepository;
-use AmeliaBooking\Infrastructure\WP\Integrations\WooCommerce\WooCommerceService;
 use Interop\Container\Exception\ContainerException;
 
 /**
@@ -57,6 +58,9 @@ class GetEntitiesCommandHandler extends CommandHandler
     {
         /** @var UserApplicationService $userAS */
         $userAS = $this->container->get('application.user.service');
+
+        /** @var EventDomainService $eventDS */
+        $eventDS = $this->container->get('domain.booking.event.service');
 
         try {
             /** @var AbstractUser $currentUser */
@@ -82,6 +86,8 @@ class GetEntitiesCommandHandler extends CommandHandler
 
         $resultData = [];
 
+
+
         /** Events */
         if (in_array(Entities::EVENTS, $params['types'], true)) {
             /** @var EventRepository $eventRepository */
@@ -91,6 +97,8 @@ class GetEntitiesCommandHandler extends CommandHandler
             $events = $eventRepository->getFiltered(['dates' => [DateTimeService::getNowDateTime()]]);
 
             $resultData['events'] = $events->toArray();
+
+            $resultData['events'] = $eventDS->getShortcodeForEventList($this->container, $resultData['events']);
         }
 
         /** Event Tags */
@@ -231,6 +239,8 @@ class GetEntitiesCommandHandler extends CommandHandler
                 }
             }
 
+            $resultData['entitiesRelations'] = [];
+
             /** @var Provider $provider */
             foreach ($providers->getItems() as $providerId => $provider) {
                 if ($data = $providerAS->getProviderServiceLocations($provider, $locations, $services)) {
@@ -314,18 +324,48 @@ class GetEntitiesCommandHandler extends CommandHandler
             $couponRepository = $this->container->get('domain.coupon.repository');
 
             /** @var Collection $coupons */
-            $coupons = $couponRepository->getAllByCriteria([]);
+            $coupons = $couponRepository->getAllIndexedById();
+
+            /** @var CouponRepository $couponRepository */
+            $couponRepository = $this->container->get('domain.coupon.repository');
+
+            /** @var ServiceRepository $serviceRepository */
+            $serviceRepository = $this->container->get('domain.bookable.service.repository');
+
+            /** @var EventRepository $eventRepository */
+            $eventRepository = $this->container->get('domain.booking.event.repository');
+
+            /** @var Collection $allServices */
+            $allServices = $serviceRepository->getAllIndexedById();
+
+            foreach ($couponRepository->getCouponsServicesIds($coupons->keys()) as $ids) {
+                /** @var Coupon $coupon */
+                $coupon = $coupons->getItem($ids['couponId']);
+
+                $coupon->getServiceList()->addItem(
+                    $allServices->getItem($ids['serviceId']),
+                    $ids['serviceId']
+                );
+            }
+
+            /** @var Collection $allEvents */
+            $allEvents = $eventRepository->getAllIndexedById();
+
+            foreach ($couponRepository->getCouponsEventsIds($coupons->keys()) as $ids) {
+                /** @var Coupon $coupon */
+                $coupon = $coupons->getItem($ids['couponId']);
+
+                $coupon->getEventList()->addItem(
+                    $allEvents->getItem($ids['eventId']),
+                    $ids['eventId']
+                );
+            }
 
             $resultData['coupons'] = $coupons->toArray();
         }
 
         /** Settings */
-        if (in_array(Entities::SETTINGS, $params['types'], true) &&
-            in_array(
-                $currentUser->getType(),
-                [AbstractUser::USER_ROLE_PROVIDER, AbstractUser::USER_ROLE_MANAGER, AbstractUser::USER_ROLE_ADMIN]
-            )
-        ) {
+        if (in_array(Entities::SETTINGS, $params['types'], true)) {
             /** @var HelperService $helperService */
             $helperService = $this->container->get('application.helper.service');
 
@@ -348,9 +388,6 @@ class GetEntitiesCommandHandler extends CommandHandler
             }
 
             $resultData['settings'] = [
-                'payments'  => [
-                    'wc' => WooCommerceService::getAllProducts()
-                ],
                 'general'   => [
                     'usedLanguages' => $settingsDS->getSetting('general', 'usedLanguages'),
                 ],

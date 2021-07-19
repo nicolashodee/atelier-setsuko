@@ -102,6 +102,10 @@ class GetEventsCommandHandler extends CommandHandler
 
         if ($isFrontEnd) {
             $params['show'] = 1;
+
+            if (!empty($params['tag'])) {
+                $params['tag'] = str_replace('___', ' ', $params['tag']);
+            }
         }
 
         $filteredEventIds = $eventRepository->getFilteredIds(
@@ -141,13 +145,19 @@ class GetEventsCommandHandler extends CommandHandler
                 }
             }
 
-            if (($isFrontEnd || ($isCabinetPage && $userAS->isCustomer($user))) &&
-                $settingsDS->getSetting('general', 'showClientTimeZone')
+            if (($isFrontEnd && $settingsDS->getSetting('general', 'showClientTimeZone')) ||
+                $isCabinetPage
             ) {
+                $timeZone = 'UTC';
+
+                if (!empty($params['timeZone'])) {
+                    $timeZone = $params['timeZone'];
+                }
+
                 /** @var EventPeriod $period */
                 foreach ($event->getPeriods()->getItems() as $period) {
-                    $period->getPeriodStart()->getValue()->setTimezone(new DateTimeZone('UTC'));
-                    $period->getPeriodEnd()->getValue()->setTimezone(new DateTimeZone('UTC'));
+                    $period->getPeriodStart()->getValue()->setTimezone(new DateTimeZone($timeZone));
+                    $period->getPeriodEnd()->getValue()->setTimezone(new DateTimeZone($timeZone));
                 }
             }
 
@@ -171,7 +181,10 @@ class GetEventsCommandHandler extends CommandHandler
                 'cancelable' => $currentDateTime <= $minimumCancelTime,
                 'opened'     => ($currentDateTime > $bookingOpens) && ($currentDateTime < $bookingCloses),
                 'closed'     => $currentDateTime > $bookingCloses,
-                'places'     => $event->getMaxCapacity()->getValue() - $persons
+                'places'     => $event->getMaxCapacity()->getValue() - $persons,
+                'upcoming'   => $currentDateTime < $bookingOpens && $event->getStatus()->getValue() === BookingStatus::APPROVED,
+                'full'       => $event->getMaxCapacity()->getValue() <= $persons
+                                  && $currentDateTime < $event->getPeriods()->getItem(0)->getPeriodStart()->getValue()
             ];
 
             if ($isFrontEnd) {

@@ -11,11 +11,11 @@ use AmeliaBooking\Domain\Collection\Collection;
 use AmeliaBooking\Domain\Common\Exceptions\AuthorizationException;
 use AmeliaBooking\Domain\Common\Exceptions\InvalidArgumentException;
 use AmeliaBooking\Domain\Entity\Booking\Event\Event;
+use AmeliaBooking\Domain\Entity\Booking\Event\EventPeriod;
 use AmeliaBooking\Domain\Entity\Entities;
 use AmeliaBooking\Domain\Entity\User\AbstractUser;
 use AmeliaBooking\Infrastructure\Common\Exceptions\QueryExecutionException;
 use AmeliaBooking\Infrastructure\Repository\Booking\Event\EventRepository;
-use Interop\Container\Exception\ContainerException;
 use Slim\Exception\ContainerValueNotFoundException;
 
 /**
@@ -32,7 +32,6 @@ class GetEventCommandHandler extends CommandHandler
      * @throws ContainerValueNotFoundException
      * @throws AccessDeniedException
      * @throws QueryExecutionException
-     * @throws ContainerException
      * @throws InvalidArgumentException
      */
     public function handle(GetEventCommand $command)
@@ -50,9 +49,11 @@ class GetEventCommandHandler extends CommandHandler
             );
         } catch (AuthorizationException $e) {
             $result->setResult(CommandResult::RESULT_ERROR);
-            $result->setData([
-                'reauthorize' => true
-            ]);
+            $result->setData(
+                [
+                    'reauthorize' => true
+                ]
+            );
 
             return $result;
         }
@@ -65,25 +66,34 @@ class GetEventCommandHandler extends CommandHandler
         /** @var EventRepository $eventRepository */
         $eventRepository = $this->container->get('domain.booking.event.repository');
 
+        /** @var Event $event */
         $event = $eventRepository->getById((int)$command->getField('id'));
+
+        if (!empty($command->getField('params')['timeZone'])) {
+            /** @var EventPeriod $period */
+            foreach ($event->getPeriods()->getItems() as $period) {
+                $period->getPeriodStart()->getValue()->setTimezone(
+                    new \DateTimeZone($command->getField('params')['timeZone'])
+                );
+
+                $period->getPeriodEnd()->getValue()->setTimezone(
+                    new \DateTimeZone($command->getField('params')['timeZone'])
+                );
+            }
+        }
 
         /** @var CustomerApplicationService $customerAS */
         $customerAS = $this->container->get('application.user.customer.service');
 
         $customerAS->removeBookingsForOtherCustomers($user, new Collection([$event]));
 
-        if (!$event instanceof Event) {
-            $result->setResult(CommandResult::RESULT_ERROR);
-            $result->setMessage('Could not get event');
-
-            return $result;
-        }
-
         $result->setResult(CommandResult::RESULT_SUCCESS);
         $result->setMessage('Successfully retrieved event');
-        $result->setData([
-            Entities::EVENT => $event->toArray()
-        ]);
+        $result->setData(
+            [
+                Entities::EVENT => $event->toArray()
+            ]
+        );
 
         return $result;
     }

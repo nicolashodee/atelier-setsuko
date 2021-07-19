@@ -20,7 +20,9 @@ class FetchAccessTokenWithAuthCodeController extends Controller
      */
     public $allowedFields = [
         'authCode',
-        'userId'
+        'userId',
+        'redirectUri',
+        'isBackend'
     ];
 
     /**
@@ -35,6 +37,7 @@ class FetchAccessTokenWithAuthCodeController extends Controller
     protected function instantiateCommand(Request $request, $args)
     {
         $command = new FetchAccessTokenWithAuthCodeCommand($args);
+
         $requestBody = $request->getParsedBody();
         $this->setCommandFields($command, $requestBody);
 

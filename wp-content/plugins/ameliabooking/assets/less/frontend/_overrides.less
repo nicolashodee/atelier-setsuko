@@ -75,6 +75,10 @@
         position: relative;
       }
     }
+
+    & .el-button {
+      margin: 0 @margin-small @margin-small;
+    }
   }
 
   // TODO - Move from overrides
@@ -203,6 +207,14 @@
       display: none;
     }
   }
+
+  &__title {
+    line-height: 18px;
+  }
+
+  &__content {
+    line-height: 21px;
+  }
 }
 
 .el-dialog {
@@ -227,4 +239,10 @@
 
 .v-modal {
   z-index: 1000000 !important;
+}
+
+.el-scrollbar {
+  & > .el-scrollbar__bar {
+    opacity: 1 !important;
+  }
 }

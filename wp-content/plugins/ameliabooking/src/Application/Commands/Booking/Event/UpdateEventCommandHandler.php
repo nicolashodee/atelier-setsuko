@@ -13,10 +13,10 @@ use AmeliaBooking\Domain\Entity\Booking\Event\Event;
 use AmeliaBooking\Domain\Entity\Booking\Event\EventPeriod;
 use AmeliaBooking\Domain\Entity\Entities;
 use AmeliaBooking\Domain\Entity\User\AbstractUser;
-use AmeliaBooking\Domain\Factory\Booking\Event\EventFactory;
 use AmeliaBooking\Domain\Services\Settings\SettingsService;
 use AmeliaBooking\Infrastructure\Common\Exceptions\QueryExecutionException;
 use AmeliaBooking\Infrastructure\Repository\Booking\Event\EventRepository;
+use Exception;
 use Interop\Container\Exception\ContainerException;
 use Slim\Exception\ContainerValueNotFoundException;
 
@@ -46,6 +46,7 @@ class UpdateEventCommandHandler extends CommandHandler
      * @throws InvalidArgumentException
      * @throws AccessDeniedException
      * @throws ContainerException
+     * @throws Exception
      */
     public function handle(UpdateEventCommand $command)
     {
@@ -70,9 +71,11 @@ class UpdateEventCommandHandler extends CommandHandler
             );
         } catch (AuthorizationException $e) {
             $result->setResult(CommandResult::RESULT_ERROR);
-            $result->setData([
-                'reauthorize' => true
-            ]);
+            $result->setData(
+                [
+                    'reauthorize' => true
+                ]
+            );
 
             return $result;
         }
@@ -82,14 +85,7 @@ class UpdateEventCommandHandler extends CommandHandler
         }
 
         /** @var Event $event */
-        $event = EventFactory::create($command->getFields());
-
-        if (!$event instanceof Event) {
-            $result->setResult(CommandResult::RESULT_ERROR);
-            $result->setMessage('Could not update event');
-
-            return $result;
-        }
+        $event = $eventApplicationService->build($command->getFields());
 
         /** @var Event $oldEvent */
         $oldEvent = $eventRepository->getById($event->getId()->getValue());
@@ -108,13 +104,6 @@ class UpdateEventCommandHandler extends CommandHandler
         }
 
         $event->setBookings($oldEvent->getBookings());
-
-        if (!$event instanceof Event) {
-            $result->setResult(CommandResult::RESULT_ERROR);
-            $result->setMessage('Could not update event');
-
-            return $result;
-        }
 
         /** @var EventPeriod $oldEventPeriod */
         foreach ($oldEvent->getPeriods()->getItems() as $oldEventPeriod) {

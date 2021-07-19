@@ -6,6 +6,7 @@ use AmeliaBooking\Application\Commands\Booking\Appointment\UpdateAppointmentComm
 use AmeliaBooking\Application\Commands\CommandResult;
 use AmeliaBooking\Application\Controller\Controller;
 use AmeliaBooking\Domain\Events\DomainEventBus;
+use RuntimeException;
 use Slim\Http\Request;
 
 /**
@@ -22,6 +23,7 @@ class UpdateAppointmentController extends Controller
      */
     public $allowedFields = [
         'bookings',
+        'removedBookings',
         'bookingStart',
         'notifyParticipants',
         'internalNotes',
@@ -30,6 +32,8 @@ class UpdateAppointmentController extends Controller
         'locationId',
         'id',
         'payment',
+        'utc',
+        'timeZone',
     ];
 
     /**
@@ -39,11 +43,12 @@ class UpdateAppointmentController extends Controller
      * @param         $args
      *
      * @return UpdateAppointmentCommand
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     protected function instantiateCommand(Request $request, $args)
     {
         $command = new UpdateAppointmentCommand($args);
+
         $requestBody = $request->getParsedBody();
         $this->setCommandFields($command, $requestBody);
         $command->setToken($request);

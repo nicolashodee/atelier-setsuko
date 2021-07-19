@@ -168,7 +168,7 @@
         text-align: center;
         margin-top: @margin-big;
         padding: 0 @padding-medium;
-        color: #FFFFFF;
+        color: @color-white;
         white-space: normal;
         overflow-x: visible;
         box-sizing: border-box;
@@ -181,8 +181,8 @@
       }
 
       .el-button {
-        color: #FFFFFF;
-        border-color: #FFFFFF;
+        color: @color-white;
+        border-color: @color-white;
         background: transparent;
         position: absolute;
         bottom: 24px;
@@ -191,7 +191,7 @@
         transform: translateX(-50%);
 
         span {
-          color: #FFFFFF;
+          color: @color-white;
         }
       }
     }
@@ -251,6 +251,7 @@
 
     .am-category-service-info {
       position: relative;
+      height: ~"calc(100% - 140px)";
       padding: @padding-big @padding-medium;
       background-color: #FFFFFF;
     }

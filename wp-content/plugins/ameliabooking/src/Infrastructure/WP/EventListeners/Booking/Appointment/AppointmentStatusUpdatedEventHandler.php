@@ -8,6 +8,7 @@ namespace AmeliaBooking\Infrastructure\WP\EventListeners\Booking\Appointment;
 
 use AmeliaBooking\Application\Commands\CommandResult;
 use AmeliaBooking\Application\Services\Booking\BookingApplicationService;
+use AmeliaBooking\Application\Services\Booking\IcsApplicationService;
 use AmeliaBooking\Application\Services\Notification\EmailNotificationService;
 use AmeliaBooking\Application\Services\Notification\SMSNotificationService;
 use AmeliaBooking\Application\Services\WebHook\WebHookApplicationService;
@@ -18,6 +19,7 @@ use AmeliaBooking\Domain\Entity\Booking\Event\Event;
 use AmeliaBooking\Domain\Entity\Entities;
 use AmeliaBooking\Domain\Factory\Booking\Appointment\AppointmentFactory;
 use AmeliaBooking\Domain\Services\Settings\SettingsService;
+use AmeliaBooking\Domain\ValueObjects\String\BookingStatus;
 use AmeliaBooking\Infrastructure\Common\Container;
 use AmeliaBooking\Infrastructure\Common\Exceptions\NotFoundException;
 use AmeliaBooking\Infrastructure\Common\Exceptions\QueryExecutionException;
@@ -71,6 +73,7 @@ class AppointmentStatusUpdatedEventHandler
         $zoomService = $container->get('application.zoom.service');
 
         $appointment = $commandResult->getData()[Entities::APPOINTMENT];
+
         $oldStatus = $commandResult->getData()['oldStatus'];
 
         /** @var Appointment|Event $reservationObject */
@@ -104,6 +107,23 @@ class AppointmentStatusUpdatedEventHandler
 
         if ($reservationObject->getOutlookCalendarEventId() !== null) {
             $appointment['outlookCalendarEventId'] = $reservationObject->getOutlookCalendarEventId()->getValue();
+        }
+
+        // if appointment approved add ics file to bookings
+        if ($appointment['status'] === BookingStatus::APPROVED) {
+            /** @var IcsApplicationService $icsService */
+            $icsService = $container->get('application.ics.service');
+
+            foreach ($appointment['bookings'] as $index => $booking) {
+                if ($appointment['bookings'][$index]['isChangedStatus'] === true) {
+                    $appointment['bookings'][$index]['icsFiles'] = $icsService->getIcsData(
+                        Entities::APPOINTMENT,
+                        $booking['id'],
+                        [],
+                        true
+                    );
+                }
+            }
         }
 
         $emailNotificationService->sendAppointmentStatusNotifications($appointment, false, true);

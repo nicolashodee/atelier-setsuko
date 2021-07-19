@@ -20,19 +20,19 @@ class StreamTest extends TestCase
         $this->root = vfsStream::setup('testDir');
 
         $this->body = json_encode(array('body' => 'content'));
-        $stream = GuzzleHttp\Psr7\stream_for('content');
+        $stream = AmeliaGuzzleHttp\Psr7\stream_for('content');
 
-        $mock = new GuzzleHttp\Handler\MockHandler([
-            new GuzzleHttp\Psr7\Response(200, ['foo' => 'bar'], $this->body),
-            new GuzzleHttp\Psr7\Response(200,['foo' => 'bar'], $stream),
-            new GuzzleHttp\Psr7\Response(200, ['foo' => 'bar'], 'hello')
+        $mock = new AmeliaGuzzleHttp\Handler\MockHandler([
+            new AmeliaGuzzleHttp\Psr7\Response(200, ['foo' => 'bar'], $this->body),
+            new AmeliaGuzzleHttp\Psr7\Response(200,['foo' => 'bar'], $stream),
+            new AmeliaGuzzleHttp\Psr7\Response(200, ['foo' => 'bar'], 'hello')
         ]);
 
         $this->container = [];
-        $history = GuzzleHttp\Middleware::history($this->container);
-        $handler = GuzzleHttp\HandlerStack::create($mock);
+        $history = AmeliaGuzzleHttp\Middleware::history($this->container);
+        $handler = AmeliaGuzzleHttp\HandlerStack::create($mock);
         $handler->push($history);
-        $this->client = new GuzzleHttp\Client(['handler' => $handler]);
+        $this->client = new AmeliaGuzzleHttp\Client(['handler' => $handler]);
     }
 
     public function testUpload()
@@ -87,14 +87,14 @@ class StreamTest extends TestCase
     public function testSetReturnStream()
     {
         $request = new GraphRequest("GET", "/me", "token", "url", "/v1.0");
-        $request->setReturnType(GuzzleHttp\Psr7\Stream::class);
+        $request->setReturnType(AmeliaGuzzleHttp\Psr7\Stream::class);
 
         $this->assertAttributeEquals(true, 'returnsStream', $request);
 
         $response = $request->execute($this->client);
-        $this->assertInstanceOf(GuzzleHttp\Psr7\Stream::class, $response);
+        $this->assertInstanceOf(AmeliaGuzzleHttp\Psr7\Stream::class, $response);
 
         $response = $request->execute($this->client);
-        $this->assertInstanceOf(GuzzleHttp\Psr7\Stream::class, $response);
+        $this->assertInstanceOf(AmeliaGuzzleHttp\Psr7\Stream::class, $response);
     }
 }

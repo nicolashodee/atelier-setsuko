@@ -27,13 +27,18 @@ class GetGoogleAuthURLCommandHandler extends CommandHandler
         /** @var GoogleCalendarService $googleCalendarService */
         $googleCalendarService = $this->container->get('infrastructure.google.calendar.service');
 
-        $authUrl = $googleCalendarService->createAuthUrl((int)$command->getField('id'));
+        $authUrl = $googleCalendarService->createAuthUrl(
+            (int)$command->getField('id'),
+            $command->getField('redirectUri')
+        );
 
         $result->setResult(CommandResult::RESULT_SUCCESS);
         $result->setMessage('Successfully retrieved google authorization URL');
-        $result->setData([
-            'authUrl' => filter_var($authUrl, FILTER_SANITIZE_URL)
-        ]);
+        $result->setData(
+            [
+                 'authUrl' => filter_var($authUrl, FILTER_SANITIZE_URL)
+            ]
+        );
 
         return $result;
     }

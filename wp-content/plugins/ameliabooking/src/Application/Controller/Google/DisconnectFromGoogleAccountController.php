@@ -24,6 +24,7 @@ class DisconnectFromGoogleAccountController extends Controller
         $command = new DisconnectFromGoogleAccountCommand($args);
         $requestBody = $request->getParsedBody();
         $this->setCommandFields($command, $requestBody);
+        $command->setToken($request);
 
         return $command;
     }

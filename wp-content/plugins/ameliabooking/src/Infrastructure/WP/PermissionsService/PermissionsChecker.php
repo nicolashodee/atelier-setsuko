@@ -30,6 +30,7 @@ class PermissionsChecker implements PermissionsCheckerInterface
         if ($user instanceof Admin) {
             return true;
         }
+
         // Get the WP role name of the user, rollback to customer by default
         $wpRoleName = $user !== null ? 'wpamelia-' . $user->getType() : 'wpamelia-customer';
         // Get the wp name of capability we are looking for.

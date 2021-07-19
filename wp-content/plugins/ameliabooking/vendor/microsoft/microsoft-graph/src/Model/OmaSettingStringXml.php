@@ -67,15 +67,15 @@ class OmaSettingStringXml extends OmaSetting
     * Gets the value
     * Value. (UTF8 encoded byte array)
     *
-    * @return \GuzzleHttp\Psr7\Stream The value
+    * @return \AmeliaGuzzleHttp\Psr7\Stream The value
     */
     public function getValue()
     {
         if (array_key_exists("value", $this->_propDict)) {
-            if (is_a($this->_propDict["value"], "Microsoft\Graph\Model\\GuzzleHttp\Psr7\Stream")) {
+            if (is_a($this->_propDict["value"], "Microsoft\Graph\Model\\AmeliaGuzzleHttp\Psr7\Stream")) {
                 return $this->_propDict["value"];
             } else {
-                $this->_propDict["value"] = \GuzzleHttp\Psr7\stream_for($this->_propDict["value"]);
+                $this->_propDict["value"] = \AmeliaGuzzleHttp\Psr7\stream_for($this->_propDict["value"]);
                 return $this->_propDict["value"];
             }
         }
@@ -86,7 +86,7 @@ class OmaSettingStringXml extends OmaSetting
     * Sets the value
     * Value. (UTF8 encoded byte array)
     *
-    * @param \GuzzleHttp\Psr7\Stream $val The value to assign to the value
+    * @param \AmeliaGuzzleHttp\Psr7\Stream $val The value to assign to the value
     *
     * @return OmaSettingStringXml The OmaSettingStringXml
     */

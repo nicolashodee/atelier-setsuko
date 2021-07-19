@@ -33,7 +33,7 @@ class PackagePlaceholderService extends AppointmentPlaceholderService
      *
      * @throws ContainerException
      */
-    public function getEntityPlaceholdersDummyData()
+    public function getEntityPlaceholdersDummyData($type)
     {
         /** @var HelperService $helperService */
         $helperService = $this->container->get('application.helper.service');
@@ -41,16 +41,21 @@ class PackagePlaceholderService extends AppointmentPlaceholderService
         /** @var SettingsService $settingsService */
         $settingsService = $this->container->get('domain.settings.service');
 
-        $dateFormat = $settingsService->getSetting('wordpress', 'dateFormat');
+        /** @var PlaceholderService $placeholderService */
+        $placeholderService = $this->container->get("application.placeholder.appointment.service");
 
-        return [
-            'package_name'            => 'Package Name',
-            'reservation_name'        => 'Package Name',
-            'package_price'           => $helperService->getFormattedPrice(100),
-            'package_description'     => 'Package Description',
-            'package_duration'        => date_i18n($dateFormat, strtotime(date_create()->getTimestamp())),
-            'reservation_description' => 'Package Description',
-        ];
+        $dateFormat = $settingsService->getSetting('wordpress', 'dateFormat');
+        $timezone = get_option('timezone_string');
+
+        return array_merge([
+            'package_name'                => 'Package Name',
+            'reservation_name'            => 'Package Name',
+            'package_price'               => $helperService->getFormattedPrice(100),
+            'package_deposit_payment'     => $helperService->getFormattedPrice(20),
+            'package_description'         => 'Package Description',
+            'package_duration'            => date_i18n($dateFormat, date_create()->getTimestamp()),
+            'reservation_description'     => 'Reservation Description'
+        ], $placeholderService->getEntityPlaceholdersDummyData($type));
     }
 
     /**
@@ -124,6 +129,7 @@ class PackagePlaceholderService extends AppointmentPlaceholderService
         );
 
         $endDate = null;
+        $deposit = null;
 
         /** @var PackageCustomerService $packageCustomerService */
         foreach ($packageCustomerServices->getItems() as $packageCustomerService) {
@@ -135,6 +141,9 @@ class PackagePlaceholderService extends AppointmentPlaceholderService
                 if ($packageCustomerService->getPackageCustomer()->getEnd()->getValue() > $endDate) {
                     $endDate = $packageCustomerService->getPackageCustomer()->getEnd()->getValue();
                 }
+            }
+            if ($package['deposit'] && $packageCustomerService->getPackageCustomer()->getPayment()) {
+                $deposit = $packageCustomerService->getPackageCustomer()->getPayment()->getAmount()->getValue();
             }
         }
 
@@ -161,6 +170,7 @@ class PackagePlaceholderService extends AppointmentPlaceholderService
                 FrontendStrings::getBookingStrings()['package_book_unlimited'],
             'reservation_description' => $packageDescription,
             'package_price'           => $helperService->getFormattedPrice($price),
+            'package_deposit_payment' => $deposit !== null ? $helperService->getFormattedPrice($deposit) : '',
         ];
     }
 

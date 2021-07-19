@@ -1,6 +1,6 @@
 <?php
 
-namespace GuzzleHttp\Promise;
+namespace AmeliaGuzzleHttp\Promise;
 
 /**
  * A promise that has been fulfilled.

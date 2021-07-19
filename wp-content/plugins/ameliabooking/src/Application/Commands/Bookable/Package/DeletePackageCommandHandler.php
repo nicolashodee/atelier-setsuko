@@ -15,6 +15,8 @@ use AmeliaBooking\Domain\Entity\Bookable\Service\Package;
 use AmeliaBooking\Domain\Entity\Entities;
 use AmeliaBooking\Infrastructure\Common\Exceptions\QueryExecutionException;
 use AmeliaBooking\Infrastructure\Repository\Bookable\Service\PackageRepository;
+use Interop\Container\Exception\ContainerException;
+use Slim\Exception\ContainerValueNotFoundException;
 
 /**
  * Class DeletePackageCommandHandler
@@ -27,11 +29,11 @@ class DeletePackageCommandHandler extends CommandHandler
      * @param DeletePackageCommand $command
      *
      * @return CommandResult
-     * @throws \Slim\Exception\ContainerValueNotFoundException
+     * @throws ContainerValueNotFoundException
      * @throws InvalidArgumentException
      * @throws QueryExecutionException
      * @throws AccessDeniedException
-     * @throws \Interop\Container\Exception\ContainerException
+     * @throws ContainerException
      */
     public function handle(DeletePackageCommand $command)
     {
@@ -46,21 +48,11 @@ class DeletePackageCommandHandler extends CommandHandler
         /** @var BookableApplicationService $bookableApplicationService */
         $bookableApplicationService = $this->getContainer()->get('application.bookable.service');
 
-        $appointmentsCount = $bookableApplicationService->getAppointmentsCountForPackages([$command->getArg('id')]);
-
         /** @var PackageRepository $packageRepository */
         $packageRepository = $this->container->get('domain.bookable.package.repository');
 
         /** @var Package $package */
         $package = $packageRepository->getById($command->getArg('id'));
-
-        if ($appointmentsCount['futureAppointments']) {
-            $result->setResult(CommandResult::RESULT_CONFLICT);
-            $result->setMessage('Could not delete package.');
-            $result->setData([]);
-
-            return $result;
-        }
 
         $packageRepository->beginTransaction();
 

@@ -50,7 +50,7 @@ class OnenoteTest extends TestCase
     {
         $content = $this->_client
             ->createRequest("GET", "/me/onenote/pages/" . $this->_testPage->getId() . "/content")
-            ->setReturnType(GuzzleHttp\Psr7\Stream::class)
+            ->setReturnType(AmeliaGuzzleHttp\Psr7\Stream::class)
             ->execute();
 
         $this->assertNotNull($content->getContents());
@@ -61,7 +61,7 @@ class OnenoteTest extends TestCase
     */
     public function testPostToNotebook()
     {
-        $contentStream = GuzzleHttp\Psr7\stream_for('<html><head><title>Test Title</title></head><body>Test body</body></html>');
+        $contentStream = AmeliaGuzzleHttp\Psr7\stream_for('<html><head><title>Test Title</title></head><body>Test body</body></html>');
         $newPage = $this->_client
             ->createRequest("POST", "/me/onenote/sections/" . $this->_testSection->getId() . "/pages")
             ->addHeaders(array("Content-Type" => "application/xhtml+xml"))
@@ -110,10 +110,10 @@ class OnenoteTest extends TestCase
         $end = "\r\n\r\n" .
                 "--" . $boundary . "--";
 
-        $imageStream = GuzzleHttp\Psr7\stream_for(fopen("./tests/Functional/Resources/hamilton.jpg", "r"));
-        $docStream = GuzzleHttp\Psr7\stream_for(fopen("./tests/Functional/Resources/document.pdf", "r"));
+        $imageStream = AmeliaGuzzleHttp\Psr7\stream_for(fopen("./tests/Functional/Resources/hamilton.jpg", "r"));
+        $docStream = AmeliaGuzzleHttp\Psr7\stream_for(fopen("./tests/Functional/Resources/document.pdf", "r"));
 
-        $request = GuzzleHttp\Psr7\stream_for($html . $imageStream . $doc . $docStream . $end);
+        $request = AmeliaGuzzleHttp\Psr7\stream_for($html . $imageStream . $doc . $docStream . $end);
 
         $newPage = $this->_client
             ->createRequest("POST", "/me/onenote/sections/" . $this->_testSection->getId() . "/pages")

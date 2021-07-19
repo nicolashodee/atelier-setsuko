@@ -3,6 +3,7 @@
 namespace AmeliaBooking\Infrastructure\WP\Integrations\WooCommerce;
 
 use AmeliaBooking\Application\Commands\CommandResult;
+use AmeliaBooking\Application\Services\Helper\HelperService;
 use AmeliaBooking\Application\Services\Placeholder\PlaceholderService;
 use AmeliaBooking\Domain\Collection\Collection;
 use AmeliaBooking\Domain\Entity\Bookable\Service\Extra;
@@ -116,18 +117,42 @@ class WooCommerceService
     /**
      * Get cart page
      *
+     * @param string $locale
      * @return string
      */
-    public static function getPageUrl()
+    public static function getPageUrl($locale = '')
     {
+        $locale = $locale ? explode('_', $locale) : null;
+
         switch (self::$settingsService->getCategorySettings('payments')['wc']['page']) {
             case 'checkout':
+                if (!empty($locale[0]) &&
+                    function_exists('icl_object_id') &&
+                    ($url = apply_filters('wpml_permalink', get_permalink(get_option('woocommerce_checkout_page_id')), $locale[0], true))
+                ) {
+                    return $url;
+                }
+
                 return wc_get_checkout_url();
-                break;
             case 'cart':
+                if (!empty($locale[0]) &&
+                    function_exists('icl_object_id') &&
+                    ($url = apply_filters('wpml_permalink', get_permalink(get_option('woocommerce_cart_page_id')), $locale[0], true))
+                ) {
+                    return $url;
+                }
+
                 return wc_get_cart_url();
-                break;
             default:
+                $locale = defined(AMELIA_LOCALE) ? explode('_', AMELIA_LOCALE) : null;
+
+                if (!empty($locale[0]) &&
+                    function_exists('icl_object_id') &&
+                    ($url = apply_filters('wpml_permalink', get_permalink(get_option('woocommerce_cart_page_id')), $locale[0], true))
+                ) {
+                    return $url;
+                }
+
                 return wc_get_cart_url();
         }
     }
@@ -236,13 +261,16 @@ class WooCommerceService
     /**
      * Get existing, or new created product id
      *
+     * @param array $params
      * @return array
      */
-    public static function getAllProducts()
+    public static function getAllProducts($params)
     {
+        $params = array_merge(['post_type' => 'product', 'posts_per_page' => -1], $params);
+
         $products = [];
 
-        foreach (get_posts(['post_type' => 'product', 'posts_per_page' => -1]) as $product) {
+        foreach (get_posts($params) as $product) {
             $products[] = [
                 'id'   => $product->ID,
                 'name' => $product->post_title,
@@ -286,7 +314,7 @@ class WooCommerceService
      */
     public static function getIdForExistingOrNewProduct($postId)
     {
-        if (!in_array($postId, array_column(self::getAllProducts(), 'id'))) {
+        if (!in_array($postId, array_column(self::getAllProducts([]), 'id'))) {
             $postId = wp_insert_post([
                 'post_author'  => get_current_user(),
                 'post_title'   => FrontendStrings::getCommonStrings()['wc_product_name'],
@@ -617,6 +645,7 @@ class WooCommerceService
                     'bookable'   => [
                         'type'             => Entities::EVENT,
                         'name'             => $event->getName()->getValue(),
+                        'translations'     => $event->getTranslations() ? $event->getTranslations()->getValue() : null,
                         'description'      => $event->getDescription() ? $event->getDescription()->getValue() : null,
                         'price'            => $event->getPrice()->getValue(),
                         'aggregatedPrice'  => true,
@@ -671,6 +700,7 @@ class WooCommerceService
                 'bookable'   => [
                     'type'             => Entities::PACKAGE,
                     'name'             => $package->getName()->getValue(),
+                    'translations'     => $package->getTranslations() ? $package->getTranslations()->getValue() : null,
                     'description'      => $package->getDescription() ? $package->getDescription()->getValue() : null,
                     'price'            => $package->getPrice()->getValue(),
                     'discount'         => $package->getDiscount()->getValue(),
@@ -1157,7 +1187,21 @@ class WooCommerceService
 
             $metaData = '';
 
-            if ($booking && $wcSettings['checkoutData'][$bookingType]) {
+            /** @var HelperService $helperService */
+            $helperService = self::$container->get('application.helper.service');
+
+            $description = !empty($wcSettings['checkoutData'][$bookingType]) ?
+                $wcSettings['checkoutData'][$bookingType] : '';
+
+            if (!empty($wcSettings['checkoutData']['translations'][$bookingType])) {
+                $description = $helperService->getBookingTranslation(
+                    json_encode(['locale' => $wc_item[self::AMELIA]['locale']]),
+                    json_encode($wcSettings['checkoutData']['translations']),
+                    $bookingType
+                ) ?: $description;
+            }
+
+            if ($booking && $description) {
                 /** @var Appointment|Event $reservation */
                 $reservation = null;
 
@@ -1288,6 +1332,8 @@ class WooCommerceService
 
                 $reservationData['bookings'][0]['isChangedStatus'] = true;
 
+                $reservationData['isForCustomer'] = true;
+
                 $placeholderData = $placeholderService->getPlaceholdersData(
                     $reservationData,
                     0,
@@ -1306,7 +1352,7 @@ class WooCommerceService
                 $placeholderData['customer_phone'] = $wc_item[self::AMELIA]['bookings'][0]['customer']['phone'];
 
                 $metaData = $placeholderService->applyPlaceholders(
-                    $wcSettings['checkoutData'][$reservation->getType()->getValue()],
+                    $description,
                     $placeholderData
                 );
             }
@@ -1507,7 +1553,7 @@ class WooCommerceService
         foreach ($wooCommerceCart->get_cart() as $wc_key => $wc_item) {
             if (isset($wc_item[self::AMELIA]) && is_array($wc_item[self::AMELIA])) {
                 if ($errorMessage = self::validateBooking($wc_item[self::AMELIA])) {
-                    $cartUrl = self::getPageUrl();
+                    $cartUrl = self::getPageUrl(!empty($wc_item[self::AMELIA]['locale']) ? $wc_item[self::AMELIA]['locale'] : '');
                     $removeAppointmentMessage = FrontendStrings::getCommonStrings()['wc_appointment_is_removed'];
 
                     throw new \Exception($errorMessage . "<a href='{$cartUrl}'>{$removeAppointmentMessage}</a>");

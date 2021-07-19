@@ -30,15 +30,26 @@ class LocationFactory
      */
     public static function create($data)
     {
-        $location = new Location(
-            new Name($data['name']),
-            new Address($data['address']),
-            new Phone($data['phone']),
-            new GeoTag($data['latitude'], $data['longitude'])
-        );
+        $location = new Location();
 
         if (isset($data['id'])) {
             $location->setId(new Id($data['id']));
+        }
+
+        if (isset($data['name'])) {
+            $location->setName(new Name($data['name']));
+        }
+
+        if (isset($data['address'])) {
+            $location->setAddress(new Address($data['address']));
+        }
+
+        if (isset($data['phone'])) {
+            $location->setPhone(new Phone($data['phone']));
+        }
+
+        if (isset($data['latitude'], $data['longitude'])) {
+            $location->setCoordinates(new GeoTag($data['latitude'], $data['longitude']));
         }
 
         if (isset($data['description'])) {

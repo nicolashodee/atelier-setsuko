@@ -201,16 +201,31 @@
         }
 
         .am-extra {
-          .el-collapse-item__header {
-            background-color: @color-highlight;
-            padding: 0 0 0 @padding-medium;
-            font-size: @small-fs;
+          &.el-collapse-item > div {
+            color: inherit;
           }
 
-          .el-collapse-item__content {
-            padding: @padding-small;
-            display: inline-block;
-            width: 100%;
+          .el-collapse-item {
+            &__header {
+              background-color: rgba(0, 0, 0, 0.02);
+              color: inherit;
+              padding: 0 0 0 @padding-medium;
+              font-size: @small-fs;
+            }
+
+            &__arrow {
+              color: inherit;
+            }
+
+            &__wrap {
+              background-color: transparent;
+            }
+
+            &__content {
+              padding: @padding-small;
+              display: inline-block;
+              width: 100%;
+            }
           }
         }
       }
@@ -220,7 +235,7 @@
 
         .am-service-provider {
           display: inline-block;
-          width: 220px;
+          width: 100%;
           max-width: 220px;
           margin: 0 @margin-small @margin-big 0;
 
@@ -236,7 +251,11 @@
 
           span {
             display: inline-block;
-
+            max-width: 180px;
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            vertical-align: middle;
           }
         }
       }

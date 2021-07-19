@@ -37,8 +37,15 @@ class EventsTable extends AbstractDatabaseTable
                    `status` ENUM('approved','pending','canceled','rejected') NOT NULL,
                    `bookingOpens` DATETIME NULL,
                    `bookingCloses` DATETIME NULL,
+                   `bookingOpensRec` ENUM('same', 'calculate') DEFAULT 'same',
+                   `bookingClosesRec` ENUM('same', 'calculate') DEFAULT 'same',
                    `recurringCycle` ENUM('daily', 'weekly', 'monthly', 'yearly') NULL,
                    `recurringOrder` int(11) NULL,
+                   `recurringInterval` int(11) DEFAULT 1,
+                   `recurringMonthly` ENUM('each' , 'on') DEFAULT 'each',
+                   `monthlyDate` DATETIME NULL,
+                   `monthlyOnRepeat` ENUM('first', 'second', 'third', 'fourth', 'last') DEFAULT NULL,
+                   `monthlyOnDay` ENUM('monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday') DEFAULT NULL,
                    `recurringUntil` DATETIME NULL,
                    `maxCapacity` int(11) NOT NULL,
                    `price` double NOT NULL,
@@ -59,5 +66,16 @@ class EventsTable extends AbstractDatabaseTable
                    `deposit` double DEFAULT 0,
                    PRIMARY KEY (`id`)
                 ) DEFAULT CHARSET=utf8 COLLATE utf8_general_ci";
+    }
+
+    /**
+     * @return array
+     * @throws InvalidArgumentException
+     */
+    public static function alterTable()
+    {
+        $table = self::getTableName();
+
+        return ["ALTER TABLE {$table} MODIFY recurringInterval int(11) DEFAULT 1"];
     }
 }

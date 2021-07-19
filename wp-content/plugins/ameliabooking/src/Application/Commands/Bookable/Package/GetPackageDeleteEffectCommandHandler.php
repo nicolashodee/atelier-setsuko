@@ -4,10 +4,13 @@ namespace AmeliaBooking\Application\Commands\Bookable\Package;
 
 use AmeliaBooking\Application\Common\Exceptions\AccessDeniedException;
 use AmeliaBooking\Application\Services\Bookable\BookableApplicationService;
+use AmeliaBooking\Domain\Common\Exceptions\InvalidArgumentException;
 use AmeliaBooking\Domain\Entity\Entities;
 use AmeliaBooking\Application\Commands\CommandResult;
 use AmeliaBooking\Application\Commands\CommandHandler;
 use AmeliaBooking\Infrastructure\Common\Exceptions\QueryExecutionException;
+use Interop\Container\Exception\ContainerException;
+use Slim\Exception\ContainerValueNotFoundException;
 
 /**
  * Class GetPackageDeleteEffectCommandHandler
@@ -20,11 +23,11 @@ class GetPackageDeleteEffectCommandHandler extends CommandHandler
      * @param GetPackageDeleteEffectCommand $command
      *
      * @return CommandResult
-     * @throws \Slim\Exception\ContainerValueNotFoundException
+     * @throws ContainerValueNotFoundException
      * @throws AccessDeniedException
      * @throws QueryExecutionException
-     * @throws \Interop\Container\Exception\ContainerException
-     * @throws \AmeliaBooking\Domain\Common\Exceptions\InvalidArgumentException
+     * @throws ContainerException
+     * @throws InvalidArgumentException
      */
     public function handle(GetPackageDeleteEffectCommand $command)
     {
@@ -41,15 +44,13 @@ class GetPackageDeleteEffectCommandHandler extends CommandHandler
 
         $message = '';
 
-        if ($appointmentsCount['packageAppointments']) {
-            $message = "Could not delete package. 
-            This package is purchased and available for booking.";
-        } elseif ($appointmentsCount['futureAppointments'] > 0) {
+        if ($appointmentsCount['futureAppointments'] > 0) {
             $appointmentString = $appointmentsCount['futureAppointments'] === 1 ? 'appointment' : 'appointments';
-            $message = "Could not delete package. 
-            This package has {$appointmentsCount['futureAppointments']} {$appointmentString} in the future.";
+
+            $message = "This package has {$appointmentsCount['futureAppointments']} {$appointmentString} in the future.";
         } elseif ($appointmentsCount['pastAppointments'] > 0) {
             $appointmentString = $appointmentsCount['pastAppointments'] === 1 ? 'appointment' : 'appointments';
+
             $message = "This package has {$appointmentsCount['pastAppointments']} {$appointmentString} in the past.";
         }
 
@@ -57,8 +58,7 @@ class GetPackageDeleteEffectCommandHandler extends CommandHandler
         $result->setMessage('Successfully retrieved message.');
         $result->setData(
             [
-                'valid'   => $appointmentsCount['packageAppointments'] || $appointmentsCount['futureAppointments'] ?
-                    false : true,
+                'valid'   => true,
                 'message' => $message
             ]
         );

@@ -617,6 +617,14 @@ body.admin-bar {
     }
   }
 
+  &.full {
+    color: @color-blue;
+  }
+
+  &.upcoming {
+    color: @color-orange;
+  }
+
   &.rejected, &.closed {
     &:before {
       border-color: @color-text-prime;
@@ -866,6 +874,16 @@ i.am-tooltip-icon {
           &.closed {
             background-color: @color-gray;
             color: @color-icon;
+          }
+
+          &.full {
+            background-color: fade(@color-blue, 10%);
+            color: @color-blue;
+          }
+
+          &.upcoming {
+            background-color: fade(@color-orange, 10%);
+            color: @color-orange;
           }
 
           &.open {

@@ -11,6 +11,7 @@
   var bookingEntitiesIds = (typeof bookingEntitiesIds === 'undefined') ? [] : bookingEntitiesIds;
   bookingEntitiesIds.push(
     {
+      'hasApiCall': <?php echo $atts['hasApiCall']; ?>,
       'trigger': '<?php echo $atts['trigger']; ?>',
       'show': '<?php echo $atts['show']; ?>',
       'counter': '<?php echo $atts['counter']; ?>',

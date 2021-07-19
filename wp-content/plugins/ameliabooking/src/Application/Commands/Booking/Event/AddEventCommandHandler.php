@@ -7,12 +7,12 @@ use AmeliaBooking\Application\Commands\CommandResult;
 use AmeliaBooking\Application\Common\Exceptions\AccessDeniedException;
 use AmeliaBooking\Application\Services\Booking\EventApplicationService;
 use AmeliaBooking\Application\Services\User\UserApplicationService;
+use AmeliaBooking\Domain\Collection\Collection;
 use AmeliaBooking\Domain\Common\Exceptions\AuthorizationException;
 use AmeliaBooking\Domain\Common\Exceptions\InvalidArgumentException;
 use AmeliaBooking\Domain\Entity\Booking\Event\Event;
 use AmeliaBooking\Domain\Entity\Entities;
 use AmeliaBooking\Domain\Entity\User\AbstractUser;
-use AmeliaBooking\Domain\Factory\Booking\Event\EventFactory;
 use AmeliaBooking\Domain\Services\Settings\SettingsService;
 use AmeliaBooking\Infrastructure\Common\Exceptions\QueryExecutionException;
 use AmeliaBooking\Infrastructure\Repository\Booking\Event\EventRepository;
@@ -68,9 +68,9 @@ class AddEventCommandHandler extends CommandHandler
             );
         } catch (AuthorizationException $e) {
             $result->setResult(CommandResult::RESULT_ERROR);
-            $result->setData([
-                'reauthorize' => true
-            ]);
+            $result->setData(
+                ['reauthorize' => true]
+            );
 
             return $result;
         }
@@ -81,16 +81,11 @@ class AddEventCommandHandler extends CommandHandler
 
         $eventRepository->beginTransaction();
 
-        $event = EventFactory::create($command->getFields());
-
-        if (!$event instanceof Event) {
-            $result->setResult(CommandResult::RESULT_ERROR);
-            $result->setMessage('Could not delete event');
-
-            return $result;
-        }
+        /** @var Event $event */
+        $event = $eventApplicationService->build($command->getFields());
 
         try {
+            /** @var Collection $events */
             $events = $eventApplicationService->add($event);
         } catch (QueryExecutionException $e) {
             $eventRepository->rollback();

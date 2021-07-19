@@ -25,6 +25,8 @@ use AmeliaBooking\Infrastructure\Common\Exceptions\QueryExecutionException;
 use AmeliaBooking\Infrastructure\Repository\Bookable\Service\PackageCustomerServiceRepository;
 use AmeliaBooking\Infrastructure\Repository\Booking\Appointment\AppointmentRepository;
 use AmeliaBooking\Infrastructure\Repository\User\UserRepository;
+use AmeliaBooking\Infrastructure\Services\Google\GoogleCalendarService;
+use AmeliaBooking\Infrastructure\Services\Outlook\OutlookCalendarService;
 use AmeliaBooking\Infrastructure\WP\UserService\CreateWPUser;
 use AmeliaBooking\Infrastructure\WP\UserService\UserService;
 use Exception;
@@ -266,10 +268,18 @@ class UserApplicationService
         /** @var ProviderApplicationService $providerService */
         $providerService = $this->container->get('application.user.provider.service');
 
+        /** @var GoogleCalendarService $googleCalendarService */
+        $googleCalendarService = $this->container->get('infrastructure.google.calendar.service');
+
+        /** @var OutlookCalendarService $outlookCalendarService */
+        $outlookCalendarService = $this->container->get('infrastructure.outlook.calendar.service');
+
+
         // If cabinet is for provider, return provider with services and schedule
         if ($cabinetType === AbstractUser::USER_ROLE_PROVIDER) {
             $password = $user->getPassword();
-            $user = $providerService->getProviderWithServicesAndSchedule($user->getId()->getValue());
+            $user     = $providerService->getProviderWithServicesAndSchedule($user->getId()->getValue());
+
             $user->setPassword($password);
         }
 
@@ -279,12 +289,31 @@ class UserApplicationService
         // Set activity if it is employee cabinet
         if ($cabinetType === AbstractUser::USER_ROLE_PROVIDER) {
             $companyDaysOff = $settingsService->getCategorySettings('daysOff');
-            $companyDayOff = $providerService->checkIfTodayIsCompanyDayOff($companyDaysOff);
+
+            $companyDayOff  = $providerService->checkIfTodayIsCompanyDayOff($companyDaysOff);
 
             $userArray = $providerService->manageProvidersActivity(
                 [$userArray],
                 $companyDayOff
             )[0];
+
+            try {
+                $userArray['outlookCalendar']['calendarList'] = $outlookCalendarService->listCalendarList($user);
+
+                $userArray['outlookCalendar']['calendarId'] = $outlookCalendarService->getProviderOutlookCalendarId(
+                    $user
+                );
+            } catch (\Exception $e) {
+            }
+
+            try {
+                $userArray['googleCalendar']['calendarList'] = $googleCalendarService->listCalendarList($user);
+
+                $userArray['googleCalendar']['calendarId'] = $googleCalendarService->getProviderGoogleCalendarId(
+                    $user
+                );
+            } catch (\Exception $e) {
+            }
         }
 
         $responseData = [
@@ -319,12 +348,11 @@ class UserApplicationService
     /**
      * @param $token
      * @param $isUrlToken
-     * @param $cabinetType
+     * @param $jwtType
      *
      * @return AbstractUser|null
      *
      * @throws AccessDeniedException
-     * @throws ContainerException
      * @throws InvalidArgumentException
      * @throws QueryExecutionException
      */
@@ -397,7 +425,6 @@ class UserApplicationService
      *
      * @throws AccessDeniedException
      * @throws AuthorizationException
-     * @throws ContainerException
      * @throws InvalidArgumentException
      * @throws QueryExecutionException
      */

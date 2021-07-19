@@ -6,6 +6,9 @@
 
 namespace AmeliaBooking\Infrastructure\WP\ShortcodeService;
 
+use AmeliaBooking\Domain\Common\Exceptions\InvalidArgumentException;
+use AmeliaBooking\Domain\Entity\Entities;
+
 /**
  * Class EventsShortcodeService
  *
@@ -13,31 +16,35 @@ namespace AmeliaBooking\Infrastructure\WP\ShortcodeService;
  */
 class EventsShortcodeService extends AmeliaShortcodeService
 {
-	/**
-	 * @return string
-	 */
-	public static function shortcodeHandler($atts)
-	{
-		$atts = shortcode_atts(
-			[
+    /**
+     * @param array $atts
+     * @return string
+     * @throws InvalidArgumentException
+     */
+    public static function shortcodeHandler($atts)
+    {
+        $atts = shortcode_atts(
+            [
                 'trigger'       => '',
-				'counter'       => self::$counter,
+                'counter'       => self::$counter,
                 'event'         => null,
                 'recurring'     => null,
                 'tag'           => null,
-				'today'         => null,
+                'today'         => null,
                 'type'          => null,
-			],
-			$atts
-		);
+            ],
+            $atts
+        );
 
-		self::prepareScriptsAndStyles();
+        self::setApiCallAttribute($atts, Entities::EVENT);
 
-		ob_start();
-		include AMELIA_PATH . '/view/frontend/events.inc.php';
-		$html = ob_get_contents();
-		ob_end_clean();
+        self::prepareScriptsAndStyles();
 
-		return $html;
-	}
+        ob_start();
+        include AMELIA_PATH . '/view/frontend/events.inc.php';
+        $html = ob_get_contents();
+        ob_end_clean();
+
+        return $html;
+    }
 }

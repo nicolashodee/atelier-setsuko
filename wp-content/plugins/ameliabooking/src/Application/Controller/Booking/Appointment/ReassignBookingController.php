@@ -23,7 +23,8 @@ class ReassignBookingController extends Controller
      */
     public $allowedFields = [
         'bookingStart',
-        'utcOffset'
+        'utcOffset',
+        'timeZone',
     ];
 
     /**

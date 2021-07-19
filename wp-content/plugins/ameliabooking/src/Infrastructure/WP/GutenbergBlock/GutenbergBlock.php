@@ -12,6 +12,7 @@ use AmeliaBooking\Application\Services\User\ProviderApplicationService;
 use AmeliaBooking\Domain\Collection\Collection;
 use AmeliaBooking\Domain\Entity\User\Provider;
 use AmeliaBooking\Domain\Factory\Bookable\Service\ServiceFactory;
+use AmeliaBooking\Domain\Services\Booking\EventDomainService;
 use AmeliaBooking\Domain\Services\DateTime\DateTimeService;
 use AmeliaBooking\Infrastructure\Common\Container;
 use AmeliaBooking\Infrastructure\Repository\Bookable\Service\CategoryRepository;
@@ -222,6 +223,11 @@ class GutenbergBlock
             $events = $eventRepository->getFiltered(['dates' => [DateTimeService::getNowDateTime()]]);
 
             $finalData['events'] = $events->toArray();
+
+            /** @var EventDomainService $eventDS */
+            $eventDS = self::$container->get('domain.booking.event.service');
+
+            $finalData['events'] = $eventDS->getShortcodeForEventList(self::$container, $finalData['events']);
 
             /** @var EventTagsRepository $eventTagsRepository */
             $eventTagsRepository = self::$container->get('domain.booking.event.tag.repository');

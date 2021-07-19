@@ -41,7 +41,12 @@ class FetchAccessTokenWithAuthCodeCommandHandler extends CommandHandler
         /** @var GoogleCalendarService $googleCalService */
         $googleCalService = $this->container->get('infrastructure.google.calendar.service');
 
-        $accessToken = $googleCalService->fetchAccessTokenWithAuthCode($command->getField('authCode'));
+        $accessToken = $googleCalService->fetchAccessTokenWithAuthCode(
+            $command->getField('authCode'),
+            $command->getField('isBackend')
+                ? AMELIA_SITE_URL . '/wp-admin/admin.php?page=wpamelia-employees'
+                : $command->getField('redirectUri')
+        );
 
         $googleCalendar = GoogleCalendarFactory::create(['token' => $accessToken]);
 

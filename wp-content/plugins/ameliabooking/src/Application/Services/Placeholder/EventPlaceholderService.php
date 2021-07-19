@@ -14,6 +14,7 @@ use AmeliaBooking\Infrastructure\Common\Exceptions\NotFoundException;
 use AmeliaBooking\Infrastructure\Common\Exceptions\QueryExecutionException;
 use AmeliaBooking\Infrastructure\Repository\Booking\Appointment\CustomerBookingRepository;
 use AmeliaBooking\Infrastructure\Repository\Location\LocationRepository;
+use AmeliaBooking\Infrastructure\WP\Translations\BackendStrings;
 use DateTime;
 
 /**
@@ -29,7 +30,7 @@ class EventPlaceholderService extends PlaceholderService
      *
      * @throws \Interop\Container\Exception\ContainerException
      */
-    public function getEntityPlaceholdersDummyData()
+    public function getEntityPlaceholdersDummyData($type)
     {
         /** @var SettingsService $settingsService */
         $settingsService = $this->container->get('domain.settings.service');
@@ -39,29 +40,79 @@ class EventPlaceholderService extends PlaceholderService
 
         $companySettings = $settingsService->getCategorySettings('company');
 
+        $liStartTag = $type === 'email' ? '<li>' : '';
+        $liEndTag   = $type === 'email' ? '</li>' : PHP_EOL;
+        $ulStartTag = $type === 'email' ? '<ul>' : '';
+        $ulEndTag   = $type === 'email' ? '</ul>' : '';
+
         $dateFormat = $settingsService->getSetting('wordpress', 'dateFormat');
         $timeFormat = $settingsService->getSetting('wordpress', 'timeFormat');
 
-        $timestamp = date_create()->getTimestamp();
+        $timestamp = new DateTime();
+
+        $periodStartTime = $timestamp->format($timeFormat);
+        $periodStartDate = $timestamp->format($dateFormat);
+        $periodEndDate = $timestamp->modify('+1 day');
+        $periodEndTime = $periodEndDate->add(new \DateInterval('PT1H'))->format($timeFormat);
+        $periodEndDate = $periodEndDate->format($dateFormat);
+
+        $dateTimeString = $periodStartDate . ' - ' . $periodEndDate . ' (' . $periodStartTime . ' - ' . $periodEndTime . ')';
+
 
         return [
-            'event_name'              => 'Event Name',
-            'reservation_name'        => 'Event Name',
-            'event_location'          => $companySettings['address'],
-            'event_periods'           =>
+            'attendee_code'             => '12345',
+            'event_name'                => 'Event Name',
+            'reservation_name'          => 'Reservation Name',
+            'event_location'            => $companySettings['address'],
+            'event_cancel_url'          => $type === 'email' ?
+                '<a href="#">'. BackendStrings::getNotificationsStrings()['ph_event_cancel_url'] .'</a>' : 'http://event_cancel_url.com',
+            'event_periods'             =>
+                $ulStartTag .
+                    $liStartTag . date_i18n($dateFormat, $periodStartDate) . $liEndTag .
+                    $liStartTag . date_i18n($dateFormat, $periodEndDate) . $liEndTag .
+                $ulEndTag,
+            'event_period_date'         =>
+                $ulStartTag .
+                    $liStartTag . date_i18n($dateFormat, $periodStartDate) . $liEndTag .
+                    $liStartTag . date_i18n($dateFormat, $periodEndDate) . $liEndTag .
+                $ulEndTag,
+            'event_period_date_time'    =>
+                $ulStartTag .
+                    $liStartTag . $dateTimeString . $liEndTag .
+                $ulEndTag,
+            'event_start_date'          => date_i18n($dateFormat, $periodStartDate),
+            'event_start_time'          => date_i18n($timeFormat, $periodStartTime),
+            'event_start_date_time'     => date_i18n($dateFormat . ' ' . $timeFormat, $timestamp),
+            'event_end_date'            => date_i18n($dateFormat, $periodEndDate),
+            'event_end_time'            => date_i18n($timeFormat, $periodEndTime),
+            'event_end_date_time'       => date_i18n($dateFormat . ' ' . $timeFormat, $periodEndDate),
+            'event_deposit_payment'     => $helperService->getFormattedPrice(20),
+            'event_price'               => $helperService->getFormattedPrice(100),
+            'zoom_host_url_date'        => $type === 'email' ?
                 '<ul>' .
-                '<li>' . date_i18n($dateFormat, strtotime($timestamp)) . '</li>' .
-                '<li>' . date_i18n($dateFormat, strtotime($timestamp . ' +1 day')) . '</li>' .
-                '</ul>',
-            'event_start_date'        => date_i18n($dateFormat, strtotime($timestamp)),
-            'event_start_time'        => date_i18n($timeFormat, $timestamp),
-            'event_start_date_time'   => date_i18n($dateFormat . ' ' . $timeFormat, strtotime($timestamp)),
-            'event_end_date'          => date_i18n($dateFormat, strtotime($timestamp . ' +1 day')),
-            'event_end_time'          => date_i18n($timeFormat, $timestamp),
-            'event_end_date_time'     => date_i18n($dateFormat . ' ' . $timeFormat, strtotime($timestamp . ' +1 day')),
-            'event_price'             => $helperService->getFormattedPrice(100),
-            'event_description'       => 'Event Description',
-            'reservation_description' => 'Event Description',
+                    '<li><a href="#">' . date_i18n($dateFormat, $periodStartDate) . ' ' . BackendStrings::getCommonStrings()['zoom_click_to_start'] .'</a></li>' .
+                    '<li><a href="#">' . date_i18n($dateFormat, $periodEndDate) . ' ' . BackendStrings::getCommonStrings()['zoom_click_to_start'] . '</a></li>' .
+                '</ul>' : date_i18n($dateFormat, $periodStartDate) . ': ' . 'http://start_zoom_meeting_link.com',
+            'zoom_host_url_date_time'   => $type === 'email' ?
+                '<ul>' .
+                    '<li><a href="#">' . date_i18n($dateFormat . ' ' . $timeFormat, $timestamp) . BackendStrings::getCommonStrings()['zoom_click_to_start'] . '</a></li>' .
+                '</ul>' : date_i18n($dateFormat . ' ' . $timeFormat, $timestamp) . ': ' . 'http://start_zoom_meeting_link.com',
+            'zoom_join_url_date'        => $type === 'email' ?
+                '<ul>' .
+                    '<li><a href="#">' . date_i18n($dateFormat, $periodStartDate) . ' ' . BackendStrings::getCommonStrings()['zoom_click_to_join'] .'</a></li>' .
+                    '<li><a href="#">' . date_i18n($dateFormat, $periodEndDate) . ' ' . BackendStrings::getCommonStrings()['zoom_click_to_join'] . '</a></li>' .
+                '</ul>' : date_i18n($dateFormat, $periodStartDate) . ': ' . 'http://join_zoom_meeting_link.com',
+            'zoom_join_url_date_time'   => $type === 'email' ?
+                '<ul>' .
+                    '<li><a href="#">' . date_i18n($dateFormat . ' ' . $timeFormat, $timestamp) . BackendStrings::getCommonStrings()['zoom_click_to_join'] . '</a></li>' .
+                '</ul>' : date_i18n($dateFormat . ' ' . $timeFormat, $timestamp) . ': ' . 'http://join_zoom_meeting_link.com' ,
+            'event_description'         => 'Event Description',
+            'reservation_description'   => 'Reservation Description',
+            'employee_name_email_phone' =>
+                $ulStartTag .
+                    $liStartTag . 'John Smith, 555-0120' . $liEndTag .
+                    $liStartTag . 'Edward Williams, 555-3524' . $liEndTag .
+                $ulEndTag,
         ];
     }
 
@@ -256,10 +307,10 @@ class EventPlaceholderService extends PlaceholderService
                 $startUrl = $event['periods'][$key]['zoomMeeting']['startUrl'];
                 $joinUrl = $event['periods'][$key]['zoomMeeting']['joinUrl'];
 
-                $eventZoomStartDateList[] =  $type === 'email' ? '<li><a href="' . $startUrl . '">' . $dateString . '</a></li>' : $dateString . ': ' . $startUrl;
-                $eventZoomStartDateTimeList[] = $type === 'email' ? '<li><a href="' . $startUrl . '">' . $dateTimeString . '</a></li>' : $dateTimeString . ': ' . $startUrl;
-                $eventZoomJoinDateList[] = $type === 'email' ? '<li><a href="' . $joinUrl . '">' . $dateString . '</a></li>' : $dateString . ': ' . $joinUrl;
-                $eventZoomJoinDateTimeList[] = $type === 'email' ? '<li><a href="' . $joinUrl . '">' . $dateTimeString . '</a></li>' : $dateTimeString . ': ' . $joinUrl;
+                $eventZoomStartDateList[] =  $type === 'email' ? '<li><a href="' . $startUrl . '">' . $dateString . ' ' . BackendStrings::getCommonStrings()['zoom_click_to_start'] . '</a></li>' : $dateString . ': ' . $startUrl;
+                $eventZoomStartDateTimeList[] = $type === 'email' ? '<li><a href="' . $startUrl . '">' . $dateTimeString . ' ' . BackendStrings::getCommonStrings()['zoom_click_to_start'] . '</a></li>' : $dateTimeString . ': ' . $startUrl;
+                $eventZoomJoinDateList[] = $type === 'email' ? '<li><a href="' . $joinUrl . '">' . $dateString . ' ' . BackendStrings::getCommonStrings()['zoom_click_to_join'] . '</a></li>' : $dateString . ': ' . $joinUrl;
+                $eventZoomJoinDateTimeList[] = $type === 'email' ? '<li><a href="' . $joinUrl . '">' . $dateTimeString . ' ' . BackendStrings::getCommonStrings()['zoom_click_to_join'] . '</a></li>' : $dateTimeString . ': ' . $joinUrl;
             }
         }
 
@@ -298,9 +349,9 @@ class EventPlaceholderService extends PlaceholderService
             'location_phone'           => $locationPhone,
             'event_period_date'        => $ulStartTag . implode('', $eventDateList) . $ulEndTag,
             'event_period_date_time'   => $ulStartTag . implode('', $eventDateTimeList) . $ulEndTag,
-            'zoom_host_url_date'      => count($eventZoomStartDateList) === 0 ?
+            'zoom_host_url_date'       => count($eventZoomStartDateList) === 0 ?
                 '' : $ulStartTag . implode('', $eventZoomStartDateList) . $ulEndTag,
-            'zoom_host_url_date_time' => count($eventZoomStartDateTimeList) === 0 ?
+            'zoom_host_url_date_time'  => count($eventZoomStartDateTimeList) === 0 ?
                 '' : $ulStartTag . implode('', $eventZoomStartDateTimeList) . $ulEndTag,
             'zoom_join_url_date'       => count($eventZoomJoinDateList) === 0 ?
                 '' : $ulStartTag . implode('', $eventZoomJoinDateList) . $ulEndTag,

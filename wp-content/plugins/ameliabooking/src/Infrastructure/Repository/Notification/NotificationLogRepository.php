@@ -20,6 +20,7 @@ use AmeliaBooking\Infrastructure\WP\InstallActions\DB\Booking\EventsPeriodsTable
 use AmeliaBooking\Infrastructure\WP\InstallActions\DB\Booking\EventsProvidersTable;
 use AmeliaBooking\Infrastructure\WP\InstallActions\DB\Booking\EventsTable;
 use AmeliaBooking\Infrastructure\WP\InstallActions\DB\Coupon\CouponsTable;
+use AmeliaBooking\Infrastructure\WP\InstallActions\DB\Payment\PaymentsTable;
 
 /**
  * Class NotificationRepository
@@ -123,6 +124,7 @@ class NotificationLogRepository extends AbstractRepository
     {
         $couponsTable = CouponsTable::getTableName();
         $customerBookingsExtrasTable = CustomerBookingsToExtrasTable::getTableName();
+        $paymentsTable = PaymentsTable::getTableName();
 
         $startCurrentDate = "STR_TO_DATE('" .
             DateTimeService::getCustomDateTimeObjectInUtc(
@@ -158,6 +160,14 @@ class NotificationLogRepository extends AbstractRepository
                     cb.aggregatedPrice AS booking_aggregatedPrice,
                     cb.persons AS booking_persons,
                     
+                    p.id AS payment_id,
+                    p.amount AS payment_amount,
+                    p.dateTime AS payment_dateTime,
+                    p.status AS payment_status,
+                    p.gateway AS payment_gateway,
+                    p.gatewayTitle AS payment_gatewayTitle,
+                    p.data AS payment_data,
+       
                     cbe.id AS bookingExtra_id,
                     cbe.extraId AS bookingExtra_extraId,
                     cbe.customerBookingId AS bookingExtra_customerBookingId,
@@ -174,6 +184,7 @@ class NotificationLogRepository extends AbstractRepository
                     c.status AS coupon_status
                 FROM {$this->appointmentsTable} a
                 INNER JOIN {$this->bookingsTable} cb ON cb.appointmentId = a.id
+                LEFT JOIN {$paymentsTable} p ON p.customerBookingId = cb.id
                 LEFT JOIN {$customerBookingsExtrasTable} cbe ON cbe.customerBookingId = cb.id
                 LEFT JOIN {$couponsTable} c ON c.id = cb.couponId
                 WHERE a.bookingStart BETWEEN $startCurrentDate AND $endCurrentDate
@@ -209,7 +220,7 @@ class NotificationLogRepository extends AbstractRepository
     public function getCustomersNextDayEvents($notificationType)
     {
         $couponsTable = CouponsTable::getTableName();
-
+        $paymentsTable = PaymentsTable::getTableName();
         $eventsTable = EventsTable::getTableName();
 
         $eventsPeriodsTable = EventsPeriodsTable::getTableName();
@@ -250,6 +261,9 @@ class NotificationLogRepository extends AbstractRepository
                     e.created AS event_created,
                     e.notifyParticipants AS event_notifyParticipants,
                     e.zoomUserId AS event_zoomUserId,
+                    e.deposit AS event_deposit,
+                    e.depositPayment AS event_depositPayment,
+                    e.depositPerPerson AS event_depositPerPerson,
                     
                     ep.id AS event_periodId,
                     ep.periodStart AS event_periodStart,
@@ -265,6 +279,14 @@ class NotificationLogRepository extends AbstractRepository
                     cb.utcOffset AS booking_utcOffset,
                     cb.aggregatedPrice AS booking_aggregatedPrice,
                     cb.persons AS booking_persons,
+        
+                    p.id AS payment_id,
+                    p.amount AS payment_amount,
+                    p.dateTime AS payment_dateTime,
+                    p.status AS payment_status,
+                    p.gateway AS payment_gateway,
+                    p.gatewayTitle AS payment_gatewayTitle,
+                    p.data AS payment_data,
        
                     pu.id AS provider_id,
                     pu.firstName AS provider_firstName,
@@ -287,6 +309,7 @@ class NotificationLogRepository extends AbstractRepository
                 INNER JOIN {$eventsPeriodsTable} ep ON ep.eventId = e.id
                 INNER JOIN {$customerBookingsEventsPeriods} cbe ON cbe.eventPeriodId = ep.id
                 INNER JOIN {$this->bookingsTable} cb ON cb.id = cbe.customerBookingId
+                LEFT JOIN {$paymentsTable} p ON p.customerBookingId = cb.id
                 LEFT JOIN {$eventsProvidersTable} epr ON epr.eventId = e.id
                 LEFT JOIN {$this->usersTable} pu ON pu.id = epr.userId
                 LEFT JOIN {$couponsTable} c ON c.id = cb.couponId
@@ -323,6 +346,7 @@ class NotificationLogRepository extends AbstractRepository
     {
         $couponsTable = CouponsTable::getTableName();
         $customerBookingsExtrasTable = CustomerBookingsToExtrasTable::getTableName();
+        $paymentsTable = PaymentsTable::getTableName();
 
         $startCurrentDate = "STR_TO_DATE('" .
             DateTimeService::getCustomDateTimeObjectInUtc(
@@ -353,8 +377,16 @@ class NotificationLogRepository extends AbstractRepository
                     cb.status AS booking_status,
                     cb.price AS booking_price,
                     cb.customFields AS booking_customFields,
-                    cb.persons AS booking_persons,
-                    
+                    cb.persons AS booking_persons,        
+        
+                    p.id AS payment_id,
+                    p.amount AS payment_amount,
+                    p.dateTime AS payment_dateTime,
+                    p.status AS payment_status,
+                    p.gateway AS payment_gateway,
+                    p.gatewayTitle AS payment_gatewayTitle,
+                    p.data AS payment_data,
+       
                     cbe.id AS bookingExtra_id,
                     cbe.extraId AS bookingExtra_extraId,
                     cbe.customerBookingId AS bookingExtra_customerBookingId,
@@ -371,6 +403,7 @@ class NotificationLogRepository extends AbstractRepository
                     c.status AS coupon_status
                 FROM {$this->appointmentsTable} a
                 INNER JOIN {$this->bookingsTable} cb ON cb.appointmentId = a.id
+                LEFT JOIN {$paymentsTable} p ON p.customerBookingId = cb.id
                 LEFT JOIN {$customerBookingsExtrasTable} cbe ON cbe.customerBookingId = cb.id
                 LEFT JOIN {$couponsTable} c ON c.id = cb.couponId
                 WHERE a.bookingStart BETWEEN $startCurrentDate AND $endCurrentDate
@@ -408,6 +441,7 @@ class NotificationLogRepository extends AbstractRepository
         $eventsPeriodsTable = EventsPeriodsTable::getTableName();
         $customerBookingsEventsPeriods = CustomerBookingsToEventsPeriodsTable::getTableName();
         $eventsProvidersTable = EventsProvidersTable::getTableName();
+        $paymentsTable = PaymentsTable::getTableName();
 
         $startCurrentDate = "STR_TO_DATE('" .
             DateTimeService::getCustomDateTimeObjectInUtc(
@@ -441,6 +475,9 @@ class NotificationLogRepository extends AbstractRepository
                     e.created AS event_created,
                     e.notifyParticipants AS event_notifyParticipants,
                     e.zoomUserId AS event_zoomUserId,
+                    e.deposit AS event_deposit,
+                    e.depositPayment AS event_depositPayment,
+                    e.depositPerPerson AS event_depositPerPerson,
        
                     ep.id AS event_periodId,
                     ep.periodStart AS event_periodStart,
@@ -463,7 +500,15 @@ class NotificationLogRepository extends AbstractRepository
                     cb.price AS booking_price,
                     cb.customFields AS booking_customFields,
                     cb.persons AS booking_persons,
-                    
+                     
+                    p.id AS payment_id,
+                    p.amount AS payment_amount,
+                    p.dateTime AS payment_dateTime,
+                    p.status AS payment_status,
+                    p.gateway AS payment_gateway,
+                    p.gatewayTitle AS payment_gatewayTitle,
+                    p.data AS payment_data,
+       
                     c.id AS coupon_id,
                     c.code AS coupon_code,
                     c.discount AS coupon_discount,
@@ -475,6 +520,7 @@ class NotificationLogRepository extends AbstractRepository
                 INNER JOIN {$eventsPeriodsTable} ep ON ep.eventId = e.id
                 INNER JOIN {$customerBookingsEventsPeriods} cbe ON cbe.eventPeriodId = ep.id
                 INNER JOIN {$this->bookingsTable} cb ON cb.id = cbe.customerBookingId
+                LEFT JOIN {$paymentsTable} p ON p.customerBookingId = cb.id
                 LEFT JOIN {$couponsTable} c ON c.id = cb.couponId
                 LEFT JOIN {$eventsProvidersTable} epr ON epr.eventId = e.id
                 LEFT JOIN {$this->usersTable} pu ON pu.id = epr.userId
@@ -509,6 +555,7 @@ class NotificationLogRepository extends AbstractRepository
     {
         $couponsTable = CouponsTable::getTableName();
         $customerBookingsExtrasTable = CustomerBookingsToExtrasTable::getTableName();
+        $paymentsTable = PaymentsTable::getTableName();
 
         try {
             $notificationType = $notification->getType()->getValue();
@@ -536,6 +583,14 @@ class NotificationLogRepository extends AbstractRepository
                     cb.aggregatedPrice AS booking_aggregatedPrice,
                     cb.persons AS booking_persons,
                     
+                    p.id AS payment_id,
+                    p.amount AS payment_amount,
+                    p.dateTime AS payment_dateTime,
+                    p.status AS payment_status,
+                    p.gateway AS payment_gateway,
+                    p.gatewayTitle AS payment_gatewayTitle,
+                    p.data AS payment_data,
+       
                     cbe.id AS bookingExtra_id,
                     cbe.extraId AS bookingExtra_extraId,
                     cbe.customerBookingId AS bookingExtra_customerBookingId,
@@ -552,6 +607,7 @@ class NotificationLogRepository extends AbstractRepository
                     c.status AS coupon_status
                 FROM {$this->appointmentsTable} a
                 INNER JOIN {$this->bookingsTable} cb ON cb.appointmentId = a.id
+                LEFT JOIN {$paymentsTable} p ON p.customerBookingId = cb.id
                 LEFT JOIN {$customerBookingsExtrasTable} cbe ON cbe.customerBookingId = cb.id
                 LEFT JOIN {$couponsTable} c ON c.id = cb.couponId
                 WHERE a.bookingEnd BETWEEN DATE_SUB({$currentDateTime}, INTERVAL 172800 SECOND) AND {$currentDateTime}
@@ -592,6 +648,7 @@ class NotificationLogRepository extends AbstractRepository
         $eventsPeriodsTable = EventsPeriodsTable::getTableName();
         $customerBookingsEventsPeriods = CustomerBookingsToEventsPeriodsTable::getTableName();
         $eventsProvidersTable = EventsProvidersTable::getTableName();
+        $paymentsTable = PaymentsTable::getTableName();
 
         try {
             $notificationType = $notification->getType()->getValue();
@@ -616,6 +673,10 @@ class NotificationLogRepository extends AbstractRepository
                     e.parentId AS event_parentId,
                     e.created AS event_created,
                     e.notifyParticipants AS event_notifyParticipants,
+                    e.deposit AS event_deposit,
+                    e.depositPayment AS event_depositPayment,
+                    e.depositPerPerson AS event_depositPerPerson,
+       
                     
                     ep.id AS event_periodId,
                     ep.periodStart AS event_periodStart,
@@ -629,7 +690,15 @@ class NotificationLogRepository extends AbstractRepository
                     cb.utcOffset AS booking_utcOffset,
                     cb.aggregatedPrice AS booking_aggregatedPrice,
                     cb.persons AS booking_persons,
-                    
+                     
+                    p.id AS payment_id,
+                    p.amount AS payment_amount,
+                    p.dateTime AS payment_dateTime,
+                    p.status AS payment_status,
+                    p.gateway AS payment_gateway,
+                    p.gatewayTitle AS payment_gatewayTitle,
+                    p.data AS payment_data,
+       
                     c.id AS coupon_id,
                     c.code AS coupon_code,
                     c.discount AS coupon_discount,
@@ -641,6 +710,7 @@ class NotificationLogRepository extends AbstractRepository
                 INNER JOIN {$eventsPeriodsTable} ep ON ep.eventId = e.id
                 INNER JOIN {$customerBookingsEventsPeriods} cbe ON cbe.eventPeriodId = ep.id
                 INNER JOIN {$this->bookingsTable} cb ON cb.id = cbe.customerBookingId
+                LEFT JOIN {$paymentsTable} p ON p.customerBookingId = cb.id
                 LEFT JOIN {$couponsTable} c ON c.id = cb.couponId
                 LEFT JOIN {$eventsProvidersTable} epr ON epr.eventId = e.id
                 LEFT JOIN {$this->usersTable} pu ON pu.id = epr.userId

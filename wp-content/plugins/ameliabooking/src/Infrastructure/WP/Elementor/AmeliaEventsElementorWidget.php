@@ -154,7 +154,7 @@ class AmeliaEventsElementorWidget extends Widget_Base
         $returnEvents['0'] = BackendStrings::getWordPressStrings()['show_all_events'];
 
         foreach ($events as $event) {
-            $returnEvents[$event['id']] = $event['name'] . ' (id: ' . $event['id'] . ')';
+            $returnEvents[$event['id']] = $event['name'] . ' (id: ' . $event['id'] . ') - ' . $event['formattedPeriodStart'];
         }
 
         return $returnEvents;

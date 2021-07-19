@@ -6,6 +6,9 @@
 
 namespace AmeliaBooking\Infrastructure\WP\ShortcodeService;
 
+use AmeliaBooking\Domain\Common\Exceptions\InvalidArgumentException;
+use AmeliaBooking\Domain\Entity\Entities;
+
 /**
  * Class SearchShortcodeService
  *
@@ -14,7 +17,9 @@ namespace AmeliaBooking\Infrastructure\WP\ShortcodeService;
 class SearchShortcodeService extends AmeliaShortcodeService
 {
     /**
+     * @param array $atts
      * @return string
+     * @throws InvalidArgumentException
      */
     public static function shortcodeHandler($atts)
     {
@@ -27,6 +32,8 @@ class SearchShortcodeService extends AmeliaShortcodeService
             ],
             $atts
         );
+
+        self::setApiCallAttribute($atts, Entities::APPOINTMENT);
 
         self::prepareScriptsAndStyles();
 

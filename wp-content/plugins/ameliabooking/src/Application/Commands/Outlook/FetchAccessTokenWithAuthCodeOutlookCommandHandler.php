@@ -9,7 +9,6 @@ use AmeliaBooking\Domain\Factory\Outlook\OutlookCalendarFactory;
 use AmeliaBooking\Infrastructure\Common\Exceptions\QueryExecutionException;
 use AmeliaBooking\Infrastructure\Services\Outlook\OutlookCalendarService;
 use AmeliaBooking\Infrastructure\Repository\Outlook\OutlookCalendarRepository;
-use Interop\Container\Exception\ContainerException;
 
 /**
  * Class FetchAccessTokenWithAuthCodeOutlookCommandHandler
@@ -29,7 +28,6 @@ class FetchAccessTokenWithAuthCodeOutlookCommandHandler extends CommandHandler
      *
      * @return CommandResult
      * @throws InvalidArgumentException
-     * @throws ContainerException
      * @throws QueryExecutionException
      */
     public function handle(FetchAccessTokenWithAuthCodeOutlookCommand $command)
@@ -44,7 +42,10 @@ class FetchAccessTokenWithAuthCodeOutlookCommandHandler extends CommandHandler
         /** @var OutlookCalendarService $outlookCalendarService */
         $outlookCalendarService = $this->container->get('infrastructure.outlook.calendar.service');
 
-        $token = $outlookCalendarService->fetchAccessTokenWithAuthCode($command->getField('authCode'));
+        $token = $outlookCalendarService->fetchAccessTokenWithAuthCode(
+            $command->getField('authCode'),
+            $command->getField('redirectUri')
+        );
 
         $outlookCalendar = OutlookCalendarFactory::create(['token' => $token]);
 

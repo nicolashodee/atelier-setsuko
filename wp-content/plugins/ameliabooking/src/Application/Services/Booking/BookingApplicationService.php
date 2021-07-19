@@ -201,6 +201,7 @@ class BookingApplicationService
      * @param array $data
      *
      * @return array|null
+     * @throws \Exception
      */
     public function getAppointmentData($data)
     {
@@ -217,6 +218,14 @@ class BookingApplicationService
 
         if (isset($data['bookings'][0]['utcOffset']) && $data['bookings'][0]['utcOffset'] === '') {
             $data['bookings'][0]['utcOffset'] = null;
+        }
+
+        if (isset($data['timeZone']) && $data['timeZone'] === '') {
+            $data['timeZone'] = null;
+        }
+
+        if (isset($data['utc']) && $data['utc'] === '') {
+            $data['utc'] = null;
         }
 
         if (isset($data['bookings'][0]['customer']['id']) && $data['bookings'][0]['customer']['id'] === '') {
@@ -264,9 +273,10 @@ class BookingApplicationService
         }
 
         // Convert UTC slot to slot in TimeZone based on Settings
-        if (isset($data['bookingStart']) &&
+        if ((isset($data['bookingStart']) &&
             $data['bookings'][0]['utcOffset'] !== null &&
-            $settingsService->getSetting('general', 'showClientTimeZone')
+            $settingsService->getSetting('general', 'showClientTimeZone')) ||
+            (isset($data['utc']) ? (isset($data['bookingStart']) && $data['utc'] === true) : false)
         ) {
             $data['bookingStart'] = DateTimeService::getCustomDateTimeFromUtc(
                 $data['bookingStart']
@@ -279,6 +289,11 @@ class BookingApplicationService
                     );
                 }
             }
+        } elseif (isset($data['utc']) && $data['utc'] === false && !empty($data['timeZone'])) {
+            $data['bookingStart'] = DateTimeService::getDateTimeObjectInTimeZone(
+                $data['bookingStart'],
+                $data['timeZone']
+            )->setTimezone(DateTimeService::getTimeZone())->format('Y-m-d H:i:s');
         }
 
         if ($settingsService->getSetting('general', 'showClientTimeZone') &&

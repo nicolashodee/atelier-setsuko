@@ -33,7 +33,6 @@ class GetAppointmentCommandHandler extends CommandHandler
      * @throws ContainerValueNotFoundException
      * @throws AccessDeniedException
      * @throws QueryExecutionException
-     * @throws ContainerException
      * @throws InvalidArgumentException
      */
     public function handle(GetAppointmentCommand $command)
@@ -51,9 +50,11 @@ class GetAppointmentCommandHandler extends CommandHandler
             );
         } catch (AuthorizationException $e) {
             $result->setResult(CommandResult::RESULT_ERROR);
-            $result->setData([
-                'reauthorize' => true
-            ]);
+            $result->setData(
+                [
+                    'reauthorize' => true
+                ]
+            );
 
             return $result;
         }
@@ -66,10 +67,12 @@ class GetAppointmentCommandHandler extends CommandHandler
 
         $appointment = $appointmentRepo->getById((int)$command->getField('id'));
 
-        $recurringAppointments = $appointmentRepo->getFiltered([
-            'parentId' => $appointment->getParentId() ?
-                $appointment->getParentId()->getValue() : $appointment->getId()->getValue()
-        ]);
+        $recurringAppointments = $appointmentRepo->getFiltered(
+            [
+                'parentId' => $appointment->getParentId() ?
+                    $appointment->getParentId()->getValue() : $appointment->getId()->getValue()
+            ]
+        );
 
         $customerAS->removeBookingsForOtherCustomers($user, new Collection([$appointment]));
 
@@ -96,12 +99,24 @@ class GetAppointmentCommandHandler extends CommandHandler
             }
         }
 
+        if (!empty($command->getField('params')['timeZone'])) {
+            $appointment->getBookingStart()->getValue()->setTimezone(
+                new \DateTimeZone($command->getField('params')['timeZone'])
+            );
+
+            $appointment->getBookingEnd()->getValue()->setTimezone(
+                new \DateTimeZone($command->getField('params')['timeZone'])
+            );
+        }
+
         $result->setResult(CommandResult::RESULT_SUCCESS);
         $result->setMessage('Successfully retrieved appointment');
-        $result->setData([
-            Entities::APPOINTMENT => $appointment->toArray(),
-            'recurring'           => $recurringAppointments->toArray()
-        ]);
+        $result->setData(
+            [
+                Entities::APPOINTMENT => $appointment->toArray(),
+                'recurring'           => $recurringAppointments->toArray()
+            ]
+        );
 
         return $result;
     }

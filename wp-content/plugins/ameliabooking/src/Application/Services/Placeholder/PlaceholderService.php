@@ -83,14 +83,24 @@ abstract class PlaceholderService implements PlaceholderServiceInterface
      *
      * @throws ContainerException
      */
-    public function getPlaceholdersDummyData()
+    public function getPlaceholdersDummyData($type)
     {
         /** @var SettingsService $settingsService */
         $settingsService = $this->container->get('domain.settings.service');
 
+        /** @var string $paragraphStart */
+        $paragraphStart = $type === 'email' ? '<p>' : '';
+
+        /** @var string $paragraphEnd */
+        $paragraphEnd = $type === 'email' ? '</p>' : PHP_EOL;
+
         $companySettings = $settingsService->getCategorySettings('company');
+        $timezone = get_option('timezone_string');
 
         return array_merge([
+            'booked_customer'     => $paragraphStart . BackendStrings::getNotificationsStrings()['ph_customer_full_name'] .': John Micheal Doe ' . $paragraphEnd .
+                                     $paragraphStart . BackendStrings::getNotificationsStrings()['ph_customer_phone'] . ': 193-951-2600 ' . $paragraphEnd .
+                                     $paragraphEnd . BackendStrings::getNotificationsStrings()['ph_customer_email'] . ': customer@domain.com ' . $paragraphEnd,
             'company_address'     => $companySettings['address'],
             'company_name'        => $companySettings['name'],
             'company_phone'       => $companySettings['phone'],
@@ -101,7 +111,22 @@ abstract class PlaceholderService implements PlaceholderServiceInterface
             'customer_full_name'  => 'John Doe',
             'customer_phone'      => '193-951-2600',
             'customer_note'       => 'Customer Note',
-        ], $this->getEntityPlaceholdersDummyData());
+            'customer_panel_url'  => 'http://customer_panel_url.com',
+            'coupon_used'         => 'code123',
+            'number_of_persons'   => 2,
+            'time_zone'           => $timezone,
+            'employee_email'      => 'employee@domain.com',
+            'employee_first_name' => 'Richard',
+            'employee_last_name'  => 'Roe',
+            'employee_full_name'  => 'Richard Roe',
+            'employee_phone'      => '150-698-1858',
+            'employee_note'       => 'Employee Note',
+            'employee_panel_url'  => 'https://your_site.com/employee-panel',
+            'location_address'        => $companySettings['address'],
+            'location_phone'          => $companySettings['phone'],
+            'location_name'           => 'Location Name',
+            'location_description'    => 'Location Description',
+        ], $this->getEntityPlaceholdersDummyData($type));
     }
 
     /**
@@ -132,7 +157,7 @@ abstract class PlaceholderService implements PlaceholderServiceInterface
      *
      * @throws ContainerException
      */
-    protected function getBookingData($appointment, $type, $bookingKey = null, $token = null)
+    protected function getBookingData($appointment, $type, $bookingKey = null, $token = null, $depositEnabled = null)
     {
         /** @var HelperService $helperService */
         $helperService = $this->container->get('application.helper.service');
@@ -261,12 +286,24 @@ abstract class PlaceholderService implements PlaceholderServiceInterface
         $payment = !empty($appointment['bookings'][$bookingKey]['payments'][0]) ?
             $appointment['bookings'][$bookingKey]['payments'][0] : null;
 
+        $index = $bookingKey ?: 0;
+
+        $depositAmount = null;
+
+        if (!empty($appointment['deposit']) || $depositEnabled) {
+            $deposit = !empty($appointment['bookings'][$index]['payments'][0]) ?
+                $appointment['bookings'][$index]['payments'][0] : null;
+
+            $depositAmount = $deposit ? $deposit['amount'] : 0;
+        }
+
         return [
             "{$appointment['type']}_cancel_url" =>
                 $bookingKey !== null && isset($appointment['bookings'][$bookingKey]['id']) ?
                 AMELIA_ACTION_URL . '/bookings/cancel/' . $appointment['bookings'][$bookingKey]['id'] .
                 ($token ? '&token=' . $token : '') . "&type={$appointment['type']}" : '',
             "{$appointment['type']}_price"      => $helperService->getFormattedPrice($appointmentPrice),
+            "{$appointment['type']}_deposit_payment"    => $depositAmount !== null ? $helperService->getFormattedPrice($depositAmount) : '',
             'payment_status'                    => $payment ? $payment['status'] : '',
             'payment_gateway'                   => $payment ? $payment['gateway'] : '',
             'payment_gateway_title'             => $payment ? $payment['gatewayTitle'] : '',
@@ -394,7 +431,7 @@ abstract class PlaceholderService implements PlaceholderServiceInterface
 
         // If data is for customer
         /** @var Customer $customer */
-        $customer = $customerEntity ? $customerEntity : $userRepository->getById($appointment['bookings'][$bookingKey]['customerId']);
+        $customer = $customerEntity ?: $userRepository->getById($appointment['bookings'][$bookingKey]['customerId']);
 
         $info = !empty($appointment['bookings'][$bookingKey]['info']) ?
             json_decode($appointment['bookings'][$bookingKey]['info']) : null;

@@ -1,6 +1,10 @@
 @import "_variables";
 
 .amelia-app-booking {
+  * {
+    box-sizing: border-box;
+  }
+
   @media @less-then-small {
     .v-calendar-column {
       text-align: center;
@@ -19,20 +23,37 @@
     padding-bottom: @padding-big*4;
   }
 
+  .am-no-services {
+    box-shadow: #eaeaea 0px 6px 20px 0, #eaeaea 0px 5px 25px 0;
+    text-align: center;
+    padding: @padding-extra-big;
+    p, h4, h3, h2, h1 {
+      margin-bottom: @margin-small;
+      padding:0px;
+    }
+    h1 {
+      font-weight: bold;
+    }
+    a {
+      font-size: @small-fs;
+    }
+  }
+
   #am-step-booking, .am-step-booking-catalog {
-    opacity: 0;
-    display: flex;
-    /*align-items: center;*/
+    position: relative;
     max-width: 802px;
+    //display: flex;
+    /*align-items: center;*/
     margin: @margin-big*2 auto;
     border: 1px solid @color-divider-gray;
     border-radius: 6px;
+    opacity: 0;
     overflow: hidden;
     -moz-box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1);
     -webkit-box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1);
     box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1);
-    position: relative;
-    background: #fff;
+    //background: #fff;
+    background-color: transparent;
     @media @less-then-medium {
       -moz-box-shadow: none;
       -webkit-box-shadow: none;
@@ -69,7 +90,7 @@
     }
 
     .am-select-service, .am-select-date {
-      width: 50%;
+      //width: 50%;
       background-color: #fff;
       padding: @padding-big*2;
 
@@ -84,11 +105,25 @@
       transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
+    .am-form-full-wrapper {
+      display: flex;
+      justify-content: center;
+      width: 95%;
+    }
+
+    .am-select-picker {
+      .am-form-full-wrapper {
+        width: 50%;
+      }
+    }
+
     //STEP 1
     .am-select-service {
-      transform: translateX(45%);
+      width: 50%;
+      background-color: transparent;
 
       &.am-select-package {
+        position: relative;
         padding-left: @padding-big;
         padding-right: @padding-big;
         padding-bottom: @padding-small*19;
@@ -118,7 +153,7 @@
         .am-package-name {
           p {
             text-align: left;
-            margin-bottom: 0;
+            margin: 0;
           }
         }
 
@@ -126,7 +161,7 @@
           p {
             color: @color-accent;
             text-align: right;
-            margin-bottom: 0;
+            margin: 0;
           }
         }
 
@@ -138,7 +173,7 @@
 
           p {
             text-align: left;
-            margin-bottom: 0;
+            margin: 0;
           }
 
           .am-package-appointment-number {
@@ -179,6 +214,7 @@
         display: block;
         border-radius: @border-radius;
         border: 1px solid transparent;
+        margin-bottom: @margin-big;
 
         &:hover {
           border-color: @color-accent;
@@ -188,12 +224,26 @@
 
     //STEP 2
     .am-select-date {
-      transform: translateX(90%);
+      width: 50%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      right: -45%;
+      //transform: translateX(90%);
       background: linear-gradient(135deg, @color-gradient1 0%, @color-gradient2 100%);
+      box-sizing: border-box;
 
       * {
         color: @color-white;
       }
+
+      //&.am-form {
+      //  &-stepByStepForm {
+      //    &-calendarDateTimeForm {
+      //      background: linear-gradient(@sbs-cf-gradient-angle, @sbs-cf-gradient1 0%, @sbs-cf-gradient2 100%);
+      //    }
+      //  }
+      //}
 
       .am-back {
         display: none;
@@ -203,60 +253,71 @@
         cursor: pointer;
       }
 
-      .am-calendar-picker {
-        background-color: transparent !important;
-        border: none !important;
+      .am-calendar {
+        &-picker {
+          background-color: transparent !important;
+          border: none !important;
 
-        div {
-          color: @color-white;
-          font-weight: @light;
-        }
+          //div {
+          //  color: @color-white;
+          //  font-weight: @light;
+          //}
 
-        .c-weekdays {
-          div {
-            font-weight: @regular;
-            opacity: 0.7;
-          }
-        }
-
-        .c-day-content {
-          &:hover {
-            background-color: #fff !important;
-            color: @color-accent !important;
-
+          .c-weekdays {
             div {
+              font-weight: @regular;
+              opacity: 0.7;
+            }
+          }
+
+          .c-day-content {
+            &:hover {
+              background-color: #fff !important;
               color: @color-accent !important;
+
+              div {
+                color: @color-accent !important;
+              }
+            }
+          }
+
+          //.c-day-background {
+          //  /*background: @color-white !important;
+          //  color: @color-accent !important;*/
+          //  border: 1px solid fade(@color-white, 35%) !important;
+          //}
+
+          .popover-content {
+            div, span {
+              color: @color-text-prime;
+              font-weight: @regular;
+            }
+
+            background: #fff !important;
+
+            table {
+              padding: 0;
+              margin: 0;
+            }
+
+            tr:nth-child(odd) {
+              background: #fff;
+            }
+
+            .c-table-cell {
+              &.c-active, &:hover {
+                background: fade(@color-accent, 15%);
+                border-radius: 3px;
+              }
             }
           }
         }
 
-        .c-day-background {
-          /*background: @color-white !important;
-          color: @color-accent !important;*/
-          border: 1px solid fade(@color-white, 35%) !important;
-        }
-
-        .popover-content {
-          div, span {
-            color: @color-text-prime;
-            font-weight: @regular;
-          }
-
-          background: #fff !important;
-
-          table {
-            padding: 0;
-            margin: 0;
-          }
-
-          tr:nth-child(odd) {
-            background: #fff;
-          }
-
-          .c-table-cell {
-            &.c-active, &:hover {
-              background: fade(@color-accent, 15%);
-              border-radius: 3px;
+        &-stepByStepForm {
+          &-calendarDateTimeForm {
+            div {
+              color: @sbs-cf-text-color;
+              font-weight: @light;
             }
           }
         }
@@ -330,22 +391,22 @@
           @media @less-then-xsmall {
             flex-wrap: wrap;
           }
+        }
 
-          .el-form-item {
-            margin-bottom: @margin-medium;
-          }
+        .el-form-item {
+          margin-bottom: @margin-medium;
+        }
 
-          .el-input__inner {
-            background-color: fade(@color-black, 10%);
-            border-color: fade(@color-black, 10%);
+        .el-input__inner {
+          background-color: fade(@color-black, 10%);
+          border-color: fade(@color-black, 10%);
 
-            &::placeholder,
-            &::-webkit-input-placeholder,
-            &::-moz-placeholder,
-            &:-ms-input-placeholder,
-            &:-moz-placeholder {
-              color: fade(@color-white, 70%);
-            }
+          &::placeholder,
+          &::-webkit-input-placeholder,
+          &::-moz-placeholder,
+          &:-ms-input-placeholder,
+          &:-moz-placeholder {
+            color: fade(@color-white, 70%);
           }
         }
 
@@ -483,8 +544,15 @@
     }
 
     &.am-active-picker {
+      display: flex;
+
+      .am-form-full-wrapper {
+        width: 50%;
+      }
+
       .am-select-service {
-        transform: translateX(0%);
+        width: 100%;
+        //transform: translateX(0%);
 
         .am-button-wrapper {
           transition: all 0.3s ease;
@@ -497,7 +565,10 @@
       }
 
       .am-select-date {
-        transform: translateX(0%);
+        //transform: translateX(0%);
+        position: relative;
+        right: 0;
+        height: auto;
       }
 
       .am-package-setup {
@@ -519,6 +590,10 @@
       position: relative;
       display: block;
 
+      .am-form-full-wrapper {
+        width: 100%;
+      }
+
       .am-confirmation-booking-details {
         display: block !important;
 
@@ -527,6 +602,10 @@
           margin-bottom: @margin-medium;
           min-width: 48%;
         }
+      }
+
+      .am-select-service-wrapper {
+        width: 100%;
       }
 
       .am-select-service {
@@ -545,10 +624,11 @@
       }
 
       .am-select-date {
-        transform: translateX(101%);
+        //transform: translateX(101%);
         position: absolute;
         top: 0;
         bottom: 0;
+        right: -100%;
         width: 100%;
         z-index: 1;
 
@@ -596,8 +676,10 @@
         }
 
         .am-select-date {
-          transform: translateX(0%);
+          //transform: translateX(0%);
           position: absolute;
+          right: 0;
+
 
           .am-back {
             display: block;
@@ -624,6 +706,17 @@
 
         .am-select-service {
           position: absolute;
+        }
+
+        .am-select-date {
+          left: -97%;
+        }
+      }
+
+      &.am-active-recurring-dates {
+        .am-recurring-setup {
+          right: 0;
+          left: -97%;
         }
       }
 
@@ -1031,7 +1124,7 @@
               border-color: transparent;
             }
 
-            .popover-container, .el-select {
+            .el-input__inner, .el-select {
               background-color: @color-white;
             }
           }
@@ -1362,9 +1455,9 @@
           position: relative;
           display: inline-block;
           border-radius: @border-radius;
-          background-color: @color-light-gray;
+          background-color: rgba(0, 0, 0, 0.05);
           margin-top: 0;
-          padding: 6px 8px 6px 32px;
+          padding: @padding-small/4*3 @padding-small @padding-small/4*3 @padding-small*4;
           font-size: @small-fs;
 
           i {
@@ -1837,9 +1930,18 @@
         position: absolute;
       }
 
+      &.am-mobile-collapsed {
+        .am-select-date {
+          left: -97%;
+          position: absolute;
+          top: 0;
+          bottom: 0;
+        }
+      }
+
       .am-select-date {
-        transform: translateX(-94%);
-        left: 0;
+        //transform: translateX(-94%);
+        left: -47%;
         position: absolute;
         top: 0;
         bottom: 0;
@@ -1886,11 +1988,12 @@
       }
 
       .am-select-date {
-        transform: translateX(-94%);
-        left: 0;
         position: absolute;
         top: 0;
+        left: -47%;
+        right: auto;
         bottom: 0;
+        //transform: translateX(-94%);
 
         .am-calendar-picker, p {
           transition: all 0.1s;
@@ -1901,9 +2004,9 @@
 
       .am-confirm-booking {
         //transition-delay: 0.5s;
-        z-index: 1;
         display: block;
         width: 97%;
+        min-height: 500px;
         position: relative;
         bottom: 0;
         top: 0;
@@ -1911,6 +2014,7 @@
         right: 0;
         opacity: 1;
         padding: @padding-big @padding-medium;
+        z-index: 1;
         box-sizing: border-box;
         transform: translate(0);
 
@@ -1943,7 +2047,7 @@
 
     .am-waiting-confirmation, .am-success-payment, .am-booking-fetched {
       text-align: center;
-      background: #fff;
+      background: transparent;
       z-index: 2;
       margin: 0 auto;
       padding: @padding-big*3;
@@ -2028,7 +2132,6 @@
       -ms-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
     }
-
   }
 
   .am-package-selected {
@@ -2045,7 +2148,7 @@
 
       span {
         border-radius: @border-radius;
-        background-color: @color-light-gray;
+        background-color: rgba(0, 0, 0, 0.05);
         margin-top: @margin-small;
         padding: @padding-small;
         font-size: @small-fs;
@@ -2132,7 +2235,6 @@
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
-    background: #FFFFFF;
     margin-bottom: @margin-medium;
 
     .am-package-header-image-data-wrapper {
@@ -2255,6 +2357,23 @@
         color: @color-white;
         margin-left: @margin-small;
       }
+    }
+  }
+
+  .am-timezone {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &__text {
+      background-color: rgba(0, 0, 0, 0.1);
+      font-size: @small-fs;
+      font-weight: 400;
+      line-height: 1.15;
+      padding: @padding-small/2 @padding-small;
+      border-radius: @border-radius;
+      box-sizing: border-box;
     }
   }
 }

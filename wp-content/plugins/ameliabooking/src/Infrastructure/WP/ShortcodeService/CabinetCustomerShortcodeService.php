@@ -6,6 +6,8 @@
 
 namespace AmeliaBooking\Infrastructure\WP\ShortcodeService;
 
+use AmeliaBooking\Domain\Common\Exceptions\InvalidArgumentException;
+
 /**
  * Class CabinetCustomerShortcodeService
  *
@@ -14,7 +16,9 @@ namespace AmeliaBooking\Infrastructure\WP\ShortcodeService;
 class CabinetCustomerShortcodeService extends AmeliaShortcodeService
 {
     /**
+     * @param array $atts
      * @return string
+     * @throws InvalidArgumentException
      */
     public static function shortcodeHandler($atts)
     {

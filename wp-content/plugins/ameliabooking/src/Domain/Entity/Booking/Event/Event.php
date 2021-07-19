@@ -43,6 +43,12 @@ class Event extends AbstractBookable
     /** @var DateTimeValue */
     protected $bookingCloses;
 
+    /** @var string */
+    protected $bookingOpensRec;
+
+    /** @var string */
+    protected $bookingClosesRec;
+
     /** @var Recurring */
     private $recurring;
 
@@ -90,19 +96,6 @@ class Event extends AbstractBookable
 
     /** @var  Json */
     protected $translations;
-
-    /**
-     * Event constructor.
-     *
-     * @param Name             $name
-     * @param Price            $price
-     */
-    public function __construct(
-        Name $name,
-        Price $price
-    ) {
-        parent::__construct($name, $price);
-    }
 
     /**
      * @return Id
@@ -238,6 +231,38 @@ class Event extends AbstractBookable
     public function setBookingCloses(DateTimeValue $bookingCloses = null)
     {
         $this->bookingCloses = $bookingCloses;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBookingOpensRec()
+    {
+        return $this->bookingOpensRec;
+    }
+
+    /**
+     * @param string $bookingOpensRec
+     */
+    public function setBookingOpensRec($bookingOpensRec)
+    {
+        $this->bookingOpensRec = $bookingOpensRec;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBookingClosesRec()
+    {
+        return $this->bookingClosesRec;
+    }
+
+    /**
+     * @param string $bookingClosesRec
+     */
+    public function setBookingClosesRec($bookingClosesRec)
+    {
+        $this->bookingClosesRec = $bookingClosesRec;
     }
 
     /**
@@ -470,6 +495,8 @@ class Event extends AbstractBookable
                     $this->getBookingOpens()->getValue()->format('Y-m-d H:i:s') : null,
                 'bookingCloses'      => $this->getBookingCloses() ?
                     $this->getBookingCloses()->getValue()->format('Y-m-d H:i:s') : null,
+                'bookingOpensRec'    => $this->getBookingOpensRec(),
+                'bookingClosesRec'   => $this->getBookingClosesRec(),
                 'status'             => $this->getStatus() ? $this->getStatus()->getValue() : null,
                 'recurring'          => $this->getRecurring() ? $this->getRecurring()->toArray() : null,
                 'maxCapacity'        => $this->getMaxCapacity() ? $this->getMaxCapacity()->getValue() : null,

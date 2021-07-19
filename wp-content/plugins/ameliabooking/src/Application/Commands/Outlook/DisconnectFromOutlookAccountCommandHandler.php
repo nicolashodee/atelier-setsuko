@@ -5,8 +5,11 @@ namespace AmeliaBooking\Application\Commands\Outlook;
 use AmeliaBooking\Application\Commands\CommandHandler;
 use AmeliaBooking\Application\Commands\CommandResult;
 use AmeliaBooking\Application\Common\Exceptions\AccessDeniedException;
+use AmeliaBooking\Application\Services\User\UserApplicationService;
+use AmeliaBooking\Domain\Common\Exceptions\AuthorizationException;
 use AmeliaBooking\Domain\Entity\Entities;
 use AmeliaBooking\Domain\Entity\Outlook\OutlookCalendar;
+use AmeliaBooking\Domain\Entity\User\AbstractUser;
 use AmeliaBooking\Infrastructure\Common\Exceptions\NotFoundException;
 use AmeliaBooking\Infrastructure\Common\Exceptions\QueryExecutionException;
 use AmeliaBooking\Infrastructure\Repository\Outlook\OutlookCalendarRepository;
@@ -30,8 +33,31 @@ class DisconnectFromOutlookAccountCommandHandler extends CommandHandler
      */
     public function handle(DisconnectFromOutlookAccountCommand $command)
     {
+
+        /** @var UserApplicationService $userAS */
+        $userAS = $this->getContainer()->get('application.user.service');
+
         if (!$this->getContainer()->getPermissionsService()->currentUserCanRead(Entities::EMPLOYEES)) {
-            throw new AccessDeniedException('You are not allowed to read employee.');
+            try {
+                /** @var AbstractUser $user */
+                $user = $userAS->authorization(
+                    $command->getToken(),
+                    Entities::PROVIDER
+                );
+            } catch (AuthorizationException $e) {
+                $result = new CommandResult();
+                $result->setResult(CommandResult::RESULT_ERROR);
+                $result->setData(
+                    [
+                        'reauthorize' => true
+                    ]
+                );
+
+                return $result;
+            }
+            if ($user === null) {
+                throw new AccessDeniedException('You are not allowed to read employee.');
+            }
         }
 
         $result = new CommandResult();

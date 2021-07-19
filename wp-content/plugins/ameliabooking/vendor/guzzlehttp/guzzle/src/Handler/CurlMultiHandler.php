@@ -1,9 +1,9 @@
 <?php
-namespace GuzzleHttp\Handler;
+namespace AmeliaGuzzleHttp\Handler;
 
-use GuzzleHttp\Promise as P;
-use GuzzleHttp\Promise\Promise;
-use GuzzleHttp\Utils;
+use AmeliaGuzzleHttp\Promise as P;
+use AmeliaGuzzleHttp\Promise\Promise;
+use AmeliaGuzzleHttp\Utils;
 use Psr\Http\Message\RequestInterface;
 
 /**

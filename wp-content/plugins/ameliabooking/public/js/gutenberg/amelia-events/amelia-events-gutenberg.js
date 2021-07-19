@@ -18,7 +18,7 @@
     for (let i = 0; i < data.events.length; i++) {
       events.push({
         value: data.events[i].id,
-        text: data.events[i].name + ' (id: ' + data.events[i].id + ')'
+        text: data.events[i].name + ' (id: ' + data.events[i].id + ') - ' + data.events[i].formattedPeriodStart
       })
     }
   } else {

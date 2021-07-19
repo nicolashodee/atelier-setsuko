@@ -522,7 +522,8 @@ class PackageApplicationService extends AbstractPackageApplicationService
         $params['packageCustomerServices'] = $packageCustomerServices->keys();
 
         /** @var Collection $packageAppointments */
-        $packageAppointments = $appointmentRepository->getFiltered($params);
+        $packageAppointments = $packageCustomerServices->length() ?
+            $appointmentRepository->getFiltered($params) : new Collection();
 
         foreach ($packageAppointments->getItems() as $key => $item) {
             $appointments->addItem($item, $key);
@@ -549,6 +550,8 @@ class PackageApplicationService extends AbstractPackageApplicationService
         /** @var Collection $packages */
         $packages = $packageRepository->getByCriteria([]);
 
+        $currentDateTime = DateTimeService::getNowDateTimeObject();
+
         $packagesArray = [];
 
         /** @var Package $package */
@@ -558,7 +561,7 @@ class PackageApplicationService extends AbstractPackageApplicationService
                 [
                     'available' =>
                         !$package->getEndDate() ||
-                        $package->getEndDate()->getValue() > DateTimeService::getNowDateTimeObject()
+                        $package->getEndDate()->getValue() > $currentDateTime
                 ]
             );
         }

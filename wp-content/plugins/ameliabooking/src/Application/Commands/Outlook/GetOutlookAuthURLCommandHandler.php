@@ -4,7 +4,7 @@ namespace AmeliaBooking\Application\Commands\Outlook;
 
 use AmeliaBooking\Application\Commands\CommandHandler;
 use AmeliaBooking\Application\Commands\CommandResult;
-use AmeliaBookingOutlook\Infrastructure\Services\Outlook\OutlookCalendarService;
+use AmeliaBooking\Infrastructure\Services\Outlook\OutlookCalendarService;
 use Interop\Container\Exception\ContainerException;
 
 /**

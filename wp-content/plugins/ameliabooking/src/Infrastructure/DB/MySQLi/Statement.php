@@ -97,10 +97,12 @@ class Statement
         $parsedQuery = str_replace($paramsKeys, '?', $this->query->getValue());
 
         if ($stmt = $this->mysqli->prepare($parsedQuery)) {
-            call_user_func_array(
-                array($stmt, 'bind_param'),
-                array_merge([str_replace('N', 'i', implode('', $paramsTypes))], $referencedQueryParams)
-            );
+            if ($referencedQueryParams) {
+                call_user_func_array(
+                    array($stmt, 'bind_param'),
+                    array_merge([str_replace('N', 'i', implode('', $paramsTypes))], $referencedQueryParams)
+                );
+            }
 
             $success = $stmt->execute();
 

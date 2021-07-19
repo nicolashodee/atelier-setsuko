@@ -2982,15 +2982,15 @@ class Windows10GeneralConfiguration extends DeviceConfiguration
     * Gets the startMenuLayoutEdgeAssetsXml
     * This policy setting allows you to import Edge assets to be used with startMenuLayoutXml policy. Start layout can contain secondary tile from Edge app which looks for Edge local asset file. Edge local asset would not exist and cause Edge secondary tile to appear empty in this case. This policy only gets applied when startMenuLayoutXml policy is modified. The value should be a UTF-8 Base64 encoded byte array.
     *
-    * @return \GuzzleHttp\Psr7\Stream The startMenuLayoutEdgeAssetsXml
+    * @return \AmeliaGuzzleHttp\Psr7\Stream The startMenuLayoutEdgeAssetsXml
     */
     public function getStartMenuLayoutEdgeAssetsXml()
     {
         if (array_key_exists("startMenuLayoutEdgeAssetsXml", $this->_propDict)) {
-            if (is_a($this->_propDict["startMenuLayoutEdgeAssetsXml"], "\GuzzleHttp\Psr7\Stream")) {
+            if (is_a($this->_propDict["startMenuLayoutEdgeAssetsXml"], "\AmeliaGuzzleHttp\Psr7\Stream")) {
                 return $this->_propDict["startMenuLayoutEdgeAssetsXml"];
             } else {
-                $this->_propDict["startMenuLayoutEdgeAssetsXml"] = \GuzzleHttp\Psr7\stream_for($this->_propDict["startMenuLayoutEdgeAssetsXml"]);
+                $this->_propDict["startMenuLayoutEdgeAssetsXml"] = \AmeliaGuzzleHttp\Psr7\stream_for($this->_propDict["startMenuLayoutEdgeAssetsXml"]);
                 return $this->_propDict["startMenuLayoutEdgeAssetsXml"];
             }
         }
@@ -3001,7 +3001,7 @@ class Windows10GeneralConfiguration extends DeviceConfiguration
     * Sets the startMenuLayoutEdgeAssetsXml
     * This policy setting allows you to import Edge assets to be used with startMenuLayoutXml policy. Start layout can contain secondary tile from Edge app which looks for Edge local asset file. Edge local asset would not exist and cause Edge secondary tile to appear empty in this case. This policy only gets applied when startMenuLayoutXml policy is modified. The value should be a UTF-8 Base64 encoded byte array.
     *
-    * @param \GuzzleHttp\Psr7\Stream $val The startMenuLayoutEdgeAssetsXml
+    * @param \AmeliaGuzzleHttp\Psr7\Stream $val The startMenuLayoutEdgeAssetsXml
     *
     * @return Windows10GeneralConfiguration
     */
@@ -3015,15 +3015,15 @@ class Windows10GeneralConfiguration extends DeviceConfiguration
     * Gets the startMenuLayoutXml
     * Allows admins to override the default Start menu layout and prevents the user from changing it. The layout is modified by specifying an XML file based on a layout modification schema. XML needs to be in a UTF8 encoded byte array format.
     *
-    * @return \GuzzleHttp\Psr7\Stream The startMenuLayoutXml
+    * @return \AmeliaGuzzleHttp\Psr7\Stream The startMenuLayoutXml
     */
     public function getStartMenuLayoutXml()
     {
         if (array_key_exists("startMenuLayoutXml", $this->_propDict)) {
-            if (is_a($this->_propDict["startMenuLayoutXml"], "\GuzzleHttp\Psr7\Stream")) {
+            if (is_a($this->_propDict["startMenuLayoutXml"], "\AmeliaGuzzleHttp\Psr7\Stream")) {
                 return $this->_propDict["startMenuLayoutXml"];
             } else {
-                $this->_propDict["startMenuLayoutXml"] = \GuzzleHttp\Psr7\stream_for($this->_propDict["startMenuLayoutXml"]);
+                $this->_propDict["startMenuLayoutXml"] = \AmeliaGuzzleHttp\Psr7\stream_for($this->_propDict["startMenuLayoutXml"]);
                 return $this->_propDict["startMenuLayoutXml"];
             }
         }
@@ -3034,7 +3034,7 @@ class Windows10GeneralConfiguration extends DeviceConfiguration
     * Sets the startMenuLayoutXml
     * Allows admins to override the default Start menu layout and prevents the user from changing it. The layout is modified by specifying an XML file based on a layout modification schema. XML needs to be in a UTF8 encoded byte array format.
     *
-    * @param \GuzzleHttp\Psr7\Stream $val The startMenuLayoutXml
+    * @param \AmeliaGuzzleHttp\Psr7\Stream $val The startMenuLayoutXml
     *
     * @return Windows10GeneralConfiguration
     */

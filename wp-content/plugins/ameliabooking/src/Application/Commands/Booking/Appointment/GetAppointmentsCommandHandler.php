@@ -165,7 +165,7 @@ class GetAppointmentsCommandHandler extends CommandHandler
                     ]
                 )
             );
-        } elseif ($user && $user->getId()) {
+        } elseif ($user && $user->getId() && $isCabinetPackageRequest) {
             $availablePackageBookings = $packageAS->getPackageAvailability(
                 $appointments,
                 [
@@ -278,12 +278,17 @@ class GetAppointmentsCommandHandler extends CommandHandler
             $reschedulable = $currentDateTime <= $minimumRescheduleTime;
 
 
-            if ($isCabinetPage &&
-                $settingsDS->getSetting('general', 'showClientTimeZone') &&
-                $userAS->isCustomer($user)
-            ) {
-                    $appointment->getBookingStart()->getValue()->setTimezone(new \DateTimeZone('UTC'));
-                    $appointment->getBookingEnd()->getValue()->setTimezone(new \DateTimeZone('UTC'));
+            if ($isCabinetPage) {
+                $timeZone = 'UTC';
+
+                if (!empty($params['timeZone'])) {
+                    $timeZone = $params['timeZone'];
+                }
+
+                $appointment->getBookingStart()->getValue()->setTimezone(new \DateTimeZone($timeZone));
+                $appointment->getBookingEnd()->getValue()->setTimezone(new \DateTimeZone($timeZone));
+
+                $date = $appointment->getBookingStart()->getValue()->format('Y-m-d');
             }
 
             $groupedAppointments[$date]['date'] = $date;

@@ -38,6 +38,7 @@ class AddBookingController extends Controller
         'utcOffset',
         'locale',
         'timeZone',
+        'utc',
         'recaptcha',
         'deposit',
     ];

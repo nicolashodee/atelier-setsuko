@@ -3,8 +3,8 @@ Contributors: rpetersen29
 Donate link: https://www.paypal.me/rpetersenDev
 Tags: banner, simple, top, bar, announcement, top bar, topbar, bulletin, notification, notice, cta, free
 Requires at least: 3.0.1
-Tested up to: 5.7
-Stable tag: 2.10.2
+Tested up to: 5.7.3
+Stable tag: 2.10.3
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -117,6 +117,9 @@ Set your banner position to <code>relative</code> and try this in 'Website Custo
 4. This is the settings page... and the fourth screen shot.
 
 == Changelog ==
+
+= 2.10.3 =
+* Change to stop scam security sites from emailing me.
 
 = 2.10.2 =
 * Bug fixes for sites with no `administrator` role.
@@ -270,6 +273,9 @@ Set your banner position to <code>relative</code> and try this in 'Website Custo
 * First Version.
 
 == Upgrade Notice ==
+
+= 2.10.3 =
+* Change to stop scam security sites from emailing me.
 
 = 2.10.2 =
 * Bug fixes for sites with no `administrator` role.

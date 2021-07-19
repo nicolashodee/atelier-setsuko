@@ -203,13 +203,20 @@ class AbstractRepository
     {
         $params = [
             ":$entityColumnName"  => $entityId,
-            ':value'              => $entityColumnValue === null ? 'NULL' :  $entityColumnValue
         ];
+
+        if ($entityColumnValue !== null) {
+            $updateSql = "`{$entityColumnName}` = :value";
+
+            $params[':value'] = $entityColumnValue;
+        } else {
+            $updateSql = "`{$entityColumnName}` = NULL";
+        }
 
         try {
             $statement = $this->connection->prepare(
                 "UPDATE {$this->table} SET
-                `{$entityColumnName}` = :value
+                {$updateSql}
                 WHERE {$entityColumnName} = :{$entityColumnName}"
             );
 

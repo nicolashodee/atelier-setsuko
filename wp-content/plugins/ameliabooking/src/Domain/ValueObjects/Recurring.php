@@ -21,6 +21,31 @@ final class Recurring
     /**
      * @var WholeNumber
      */
+    private $cycleInterval;
+
+    /**
+     * @var string
+     */
+    private $monthlyRepeat;
+
+    /**
+     * @var string
+     */
+    private $monthlyOnRepeat;
+
+    /**
+     * @var string
+     */
+    private $monthlyOnDay;
+
+    /**
+     * @var DateTimeValue
+     */
+    private $monthDate;
+
+    /**
+     * @var WholeNumber
+     */
     private $order;
 
     /**
@@ -54,6 +79,86 @@ final class Recurring
     public function getCycle()
     {
         return $this->cycle;
+    }
+
+    /**
+     * @return WholeNumber
+     */
+    public function getCycleInterval()
+    {
+        return $this->cycleInterval;
+    }
+
+    /**
+     * @param WholeNumber $cycleInterval
+     */
+    public function setCycleInterval($cycleInterval)
+    {
+        $this->cycleInterval = $cycleInterval;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMonthlyRepeat()
+    {
+        return $this->monthlyRepeat;
+    }
+
+    /**
+     * @param string $monthlyRepeat
+     */
+    public function setMonthlyRepeat($monthlyRepeat)
+    {
+        $this->monthlyRepeat = $monthlyRepeat;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMonthlyOnRepeat()
+    {
+        return $this->monthlyOnRepeat;
+    }
+
+    /**
+     * @param string $monthlyOnRepeat
+     */
+    public function setMonthlyOnRepeat($monthlyOnRepeat)
+    {
+        $this->monthlyOnRepeat = $monthlyOnRepeat;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMonthlyOnDay()
+    {
+        return $this->monthlyOnDay;
+    }
+
+    /**
+     * @param string $monthlyOnDay
+     */
+    public function setMonthlyOnDay($monthlyOnDay)
+    {
+        $this->monthlyOnDay = $monthlyOnDay;
+    }
+
+    /**
+     * @return DateTimeValue
+     */
+    public function getMonthDate()
+    {
+        return $this->monthDate;
+    }
+
+    /**
+     * @param DateTimeValue $monthDate
+     */
+    public function setMonthDate($monthDate)
+    {
+        $this->monthDate = $monthDate;
     }
 
     /**
@@ -98,9 +203,14 @@ final class Recurring
     public function toArray()
     {
         return [
-            'cycle' => $this->getCycle()->getValue(),
-            'order' => $this->getOrder() ? $this->getOrder()->getValue() : null,
-            'until' => $this->getUntil() ? $this->getUntil()->getValue()->format('Y-m-d H:i:s') : null,
+            'cycle'           => $this->getCycle()->getValue(),
+            'order'           => $this->getOrder() ? $this->getOrder()->getValue() : null,
+            'until'           => $this->getUntil() ? $this->getUntil()->getValue()->format('Y-m-d H:i:s') : null,
+            'cycleInterval'   => $this->getCycleInterval() ? $this->getCycleInterval()->getValue() : null,
+            'monthlyRepeat'   => $this->getMonthlyRepeat(),
+            'monthDate'       => $this->getMonthDate() ? $this->getMonthDate()->getValue()->format('Y-m-d H:i:s') : null,
+            'monthlyOnRepeat' => $this->getMonthlyOnRepeat(),
+            'monthlyOnDay'    => $this->getMonthlyOnDay()
         ];
     }
 }

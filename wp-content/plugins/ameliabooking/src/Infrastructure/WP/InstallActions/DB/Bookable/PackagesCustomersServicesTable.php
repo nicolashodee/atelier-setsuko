@@ -4,6 +4,7 @@ namespace AmeliaBooking\Infrastructure\WP\InstallActions\DB\Bookable;
 
 use AmeliaBooking\Domain\Common\Exceptions\InvalidArgumentException;
 use AmeliaBooking\Infrastructure\WP\InstallActions\DB\AbstractDatabaseTable;
+use AmeliaBooking\Infrastructure\WP\InstallActions\DB\User\UsersTable;
 
 /**
  * Class PackagesCustomersServicesTable
@@ -32,5 +33,35 @@ class PackagesCustomersServicesTable extends AbstractDatabaseTable
                     `bookingsCount` INT(5) NOT NULL,
                     PRIMARY KEY (`id`)
                 ) DEFAULT CHARSET=utf8 COLLATE utf8_general_ci";
+    }
+
+    /**
+     * @return array
+     * @throws InvalidArgumentException
+     */
+    public static function alterTable()
+    {
+        $table = self::getTableName();
+
+        $usersTable = UsersTable::getTableName();
+
+        global $wpdb;
+
+        $deletedProviderIds = $wpdb->get_col(
+            "SELECT t1.providerId FROM {$table} t1
+            WHERE t1.providerId NOT IN (SELECT t2.id FROM {$usersTable} t2)"
+        );
+
+        foreach ($deletedProviderIds as $key => $id) {
+            $deletedProviderIds[$key] = (int)$deletedProviderIds[$key];
+        }
+
+        if ($deletedProviderIds) {
+            $deletedProvidersIdsQuery = implode(', ', $deletedProviderIds);
+
+            $wpdb->query("UPDATE {$table} SET providerId = NULL WHERE providerId IN ({$deletedProvidersIdsQuery})");
+        }
+
+        return [];
     }
 }

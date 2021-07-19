@@ -27,7 +27,8 @@ class GetTimeSlotsController extends Controller
         'excludeAppointmentId',
         'persons',
         'group',
-        'page'
+        'page',
+        'timeZone',
     ];
 
     /**
@@ -53,6 +54,7 @@ class GetTimeSlotsController extends Controller
         $command->setField('persons', (int)$request->getQueryParam('persons', 1));
         $command->setField('group', (int)$request->getQueryParam('group', 0));
         $command->setField('page', (string)$request->getQueryParam('page', ''));
+        $command->setField('timeZone', (string)$request->getQueryParam('timeZone', ''));
         $requestBody = $request->getParsedBody();
         $this->setCommandFields($command, $requestBody);
 

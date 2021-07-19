@@ -1,5 +1,5 @@
 <?php
-namespace GuzzleHttp;
+namespace AmeliaGuzzleHttp;
 
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;

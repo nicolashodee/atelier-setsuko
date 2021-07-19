@@ -2,7 +2,7 @@
 use PHPUnit\Framework\TestCase;
 use Microsoft\Graph\Test\GraphTestBase;
 use Microsoft\Graph\Model;
-use GuzzleHttp\Exception\RequestException;
+use AmeliaGuzzleHttp\Exception\RequestException;
 
 class ExcelTest extends TestCase
 {
@@ -52,7 +52,7 @@ class ExcelTest extends TestCase
 
     private function uploadTestFileContent($fileId)
     {
-        $stream = GuzzleHttp\Psr7\stream_for(fopen("./tests/Functional/Resources/excelTestResource.xlsx", "r"));
+        $stream = AmeliaGuzzleHttp\Psr7\stream_for(fopen("./tests/Functional/Resources/excelTestResource.xlsx", "r"));
     	$excelDriveItem = $this->_client->createRequest("PUT", "/me/drive/items/" . $this->_fileId . "/content")
     							        ->addHeaders(array(
     							 	         "Content-Type" => "application/octet-stream", 

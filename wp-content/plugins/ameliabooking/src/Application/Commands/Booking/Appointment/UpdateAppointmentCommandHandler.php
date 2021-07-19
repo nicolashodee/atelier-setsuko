@@ -10,6 +10,7 @@ use AmeliaBooking\Application\Services\Booking\AppointmentApplicationService;
 use AmeliaBooking\Application\Services\Booking\BookingApplicationService;
 use AmeliaBooking\Application\Services\CustomField\CustomFieldApplicationService;
 use AmeliaBooking\Application\Services\User\UserApplicationService;
+use AmeliaBooking\Domain\Collection\Collection;
 use AmeliaBooking\Domain\Common\Exceptions\AuthorizationException;
 use AmeliaBooking\Domain\Common\Exceptions\InvalidArgumentException;
 use AmeliaBooking\Domain\Entity\Bookable\Service\Service;
@@ -17,6 +18,7 @@ use AmeliaBooking\Domain\Entity\Booking\Appointment\Appointment;
 use AmeliaBooking\Domain\Entity\Booking\Appointment\CustomerBooking;
 use AmeliaBooking\Domain\Entity\Entities;
 use AmeliaBooking\Domain\Entity\User\AbstractUser;
+use AmeliaBooking\Domain\Factory\Booking\Appointment\CustomerBookingFactory;
 use AmeliaBooking\Domain\Services\Settings\SettingsService;
 use AmeliaBooking\Domain\ValueObjects\BooleanValueObject;
 use AmeliaBooking\Infrastructure\Common\Exceptions\NotFoundException;
@@ -25,6 +27,7 @@ use AmeliaBooking\Infrastructure\Repository\Booking\Appointment\AppointmentRepos
 use AmeliaBooking\Infrastructure\Repository\User\ProviderRepository;
 use AmeliaBooking\Infrastructure\Services\Zoom\ZoomService;
 use AmeliaBooking\Infrastructure\WP\Translations\FrontendStrings;
+use Exception;
 use Interop\Container\Exception\ContainerException;
 
 /**
@@ -55,6 +58,7 @@ class UpdateAppointmentCommandHandler extends CommandHandler
      * @throws QueryExecutionException
      * @throws NotFoundException
      * @throws ContainerException
+     * @throws Exception
      */
     public function handle(UpdateAppointmentCommand $command)
     {
@@ -72,6 +76,8 @@ class UpdateAppointmentCommandHandler extends CommandHandler
         $bookableAS = $this->container->get('application.bookable.service');
         /** @var CustomFieldApplicationService $customFieldService */
         $customFieldService = $this->container->get('application.customField.service');
+        /** @var ZoomService $zoomService */
+        $zoomService = $this->container->get('infrastructure.zoom.service');
         /** @var UserApplicationService $userAS */
         $userAS = $this->getContainer()->get('application.user.service');
         /** @var SettingsService $settingsDS */
@@ -106,8 +112,12 @@ class UpdateAppointmentCommandHandler extends CommandHandler
             $command->getFields()['providerId']
         );
 
+        $appointmentData = $command->getFields();
+
+        $appointmentAS->convertTime($appointmentData);
+
         /** @var Appointment $appointment */
-        $appointment = $appointmentAS->build($command->getFields(), $service);
+        $appointment = $appointmentAS->build($appointmentData, $service);
 
         /** @var Appointment $oldAppointment */
         $oldAppointment = $appointmentRepo->getById($appointment->getId()->getValue());
@@ -131,22 +141,28 @@ class UpdateAppointmentCommandHandler extends CommandHandler
         }
 
         $appointmentEmployeeChanged = null;
+
         $appointmentZoomUserChanged = false;
+
         $appointmentZoomUsersLicenced = false;
 
         if ($appointment->getProviderId()->getValue() !== $oldAppointment->getProviderId()->getValue()) {
             $appointmentEmployeeChanged = $oldAppointment->getProviderId()->getValue();
+
             $provider = $providerRepository->getById($appointment->getProviderId()->getValue());
+
             $oldProvider = $providerRepository->getById($oldAppointment->getProviderId()->getValue());
 
             if ($provider && $oldProvider && $provider->getZoomUserId() && $oldProvider->getZoomUserId() &&
                 $provider->getZoomUserId()->getValue() !== $oldProvider->getZoomUserId()->getValue()) {
                 $appointmentZoomUserChanged = true;
-                /** @var ZoomService $zoomService */
-                $zoomService = $this->container->get('infrastructure.zoom.service');
+
                 $zoomUserType = 0;
+
                 $zoomOldUserType = 0;
+
                 $zoomResult = $zoomService->getUsers();
+
                 if (!(isset($zoomResult['code']) && $zoomResult['code'] === 124) &&
                     !($zoomResult['users'] === null && isset($zoomResult['message']))) {
                     $zoomUsers = $zoomResult['users'];
@@ -188,20 +204,26 @@ class UpdateAppointmentCommandHandler extends CommandHandler
             }
         }
 
-        if (!($appointment instanceof Appointment)) {
-            $result->setResult(CommandResult::RESULT_ERROR);
-            $result->setMessage('Could not update appointment');
-
-            return $result;
-        }
-
         $appointment->setGoogleCalendarEventId($oldAppointment->getGoogleCalendarEventId());
         $appointment->setOutlookCalendarEventId($oldAppointment->getOutlookCalendarEventId());
 
         $appointmentRepo->beginTransaction();
 
+        /** @var Collection $removedBookings */
+        $removedBookings = new Collection();
+
+        foreach ($command->getField('removedBookings') as $removedBookingData) {
+            $removedBookings->addItem(CustomerBookingFactory::create($removedBookingData), $removedBookingData['id']);
+        }
+
         try {
-            $appointmentAS->update($oldAppointment, $appointment, $service, $command->getField('payment'));
+            $appointmentAS->update(
+                $oldAppointment,
+                $appointment,
+                $removedBookings,
+                $service,
+                $command->getField('payment')
+            );
         } catch (QueryExecutionException $e) {
             $appointmentRepo->rollback();
             throw $e;

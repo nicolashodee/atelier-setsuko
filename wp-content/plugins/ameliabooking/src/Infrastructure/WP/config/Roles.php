@@ -24,7 +24,7 @@ class Roles
         'amelia_read_dashboard',
         'amelia_read_calendar',
         'amelia_read_appointments',
-	    'amelia_read_events',
+        'amelia_read_events',
         'amelia_read_employees',
         'amelia_read_services',
         'amelia_read_packages',
@@ -69,7 +69,7 @@ class Roles
         'amelia_delete_dashboard',
         'amelia_delete_calendar',
         'amelia_delete_appointments',
-	    'amelia_delete_events',
+        'amelia_delete_events',
         'amelia_delete_employees',
         'amelia_delete_services',
         'amelia_delete_packages',
@@ -116,6 +116,7 @@ class Roles
                 'label'        => __('Amelia Employee', 'amelia'),
                 'capabilities' => [
                     'read'                             => true,
+                    'amelia_delete_events'             => true,
                     'amelia_read_menu'                 => true,
                     'amelia_read_calendar'             => true,
                     'amelia_read_appointments'         => true,
@@ -140,6 +141,7 @@ class Roles
                 'capabilities' => [
                     'read' => true,
 
+                    'amelia_delete_events'             => true,
                     'amelia_read_menu'                 => true,
                     'amelia_read_dashboard'            => true,
                     'amelia_read_calendar'             => true,

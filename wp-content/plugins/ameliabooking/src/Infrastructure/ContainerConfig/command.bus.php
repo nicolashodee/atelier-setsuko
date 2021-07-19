@@ -8,6 +8,7 @@ use AmeliaBooking\Application\Commands\Booking;
 use AmeliaBooking\Application\Commands\Coupon;
 use AmeliaBooking\Application\Commands\CustomField;
 use AmeliaBooking\Application\Commands\Entities;
+use AmeliaBooking\Application\Commands\Stash;
 use AmeliaBooking\Application\Commands\Google;
 use AmeliaBooking\Application\Commands\Location;
 use AmeliaBooking\Application\Commands\Notification;
@@ -30,6 +31,8 @@ $entries['command.bus'] = function ($c) {
             Activation\DeactivatePluginCommand::class                 => new Activation\DeactivatePluginCommandHandler($c),
             Activation\DeactivatePluginEnvatoCommand::class           => new Activation\DeactivatePluginEnvatoCommandHandler($c),
             Activation\ParseDomainCommand::class                      => new Activation\ParseDomainCommandHandler($c),
+            // Stash
+            Stash\UpdateStashCommand::class                           => new Stash\UpdateStashCommandHandler($c),
             // Bookable/Category
             Bookable\Category\AddCategoryCommand::class               => new Bookable\Category\AddCategoryCommandHandler($c),
             Bookable\Category\DeleteCategoryCommand::class            => new Bookable\Category\DeleteCategoryCommandHandler($c),
@@ -136,6 +139,7 @@ $entries['command.bus'] = function ($c) {
             PaymentGateway\PayPalPaymentCallbackCommand::class        => new PaymentGateway\PayPalPaymentCallbackCommandHandler($c),
             PaymentGateway\PayPalPaymentCommand::class                => new PaymentGateway\PayPalPaymentCommandHandler($c),
             PaymentGateway\WooCommercePaymentCommand::class           => new PaymentGateway\WooCommercePaymentCommandHandler($c),
+            PaymentGateway\WooCommerceProductsCommand::class          => new PaymentGateway\WooCommerceProductsCommandHandler($c),
             PaymentGateway\MolliePaymentNotifyCommand::class          => new PaymentGateway\MolliePaymentNotifyCommandHandler($c),
             PaymentGateway\MolliePaymentCommand::class                => new PaymentGateway\MolliePaymentCommandHandler($c),
             // Report

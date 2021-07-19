@@ -30,15 +30,15 @@ class Thumbnail extends Entity
     * Gets the content
     * The content stream for the thumbnail.
     *
-    * @return \GuzzleHttp\Psr7\Stream The content
+    * @return \AmeliaGuzzleHttp\Psr7\Stream The content
     */
     public function getContent()
     {
         if (array_key_exists("content", $this->_propDict)) {
-            if (is_a($this->_propDict["content"], "Microsoft\Graph\Model\\GuzzleHttp\Psr7\Stream")) {
+            if (is_a($this->_propDict["content"], "Microsoft\Graph\Model\\AmeliaGuzzleHttp\Psr7\Stream")) {
                 return $this->_propDict["content"];
             } else {
-                $this->_propDict["content"] = \GuzzleHttp\Psr7\stream_for($this->_propDict["content"]);
+                $this->_propDict["content"] = \AmeliaGuzzleHttp\Psr7\stream_for($this->_propDict["content"]);
                 return $this->_propDict["content"];
             }
         }
@@ -49,7 +49,7 @@ class Thumbnail extends Entity
     * Sets the content
     * The content stream for the thumbnail.
     *
-    * @param \GuzzleHttp\Psr7\Stream $val The value to assign to the content
+    * @param \AmeliaGuzzleHttp\Psr7\Stream $val The value to assign to the content
     *
     * @return Thumbnail The Thumbnail
     */

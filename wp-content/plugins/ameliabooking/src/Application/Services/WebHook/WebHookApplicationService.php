@@ -16,7 +16,6 @@ use AmeliaBooking\Infrastructure\Common\Container;
 use AmeliaBooking\Infrastructure\Common\Exceptions\NotFoundException;
 use AmeliaBooking\Infrastructure\Common\Exceptions\QueryExecutionException;
 use Exception;
-use Interop\Container\Exception\ContainerException;
 use Slim\Exception\ContainerValueNotFoundException;
 
 /**
@@ -30,7 +29,7 @@ class WebHookApplicationService
     private $container;
 
     /**
-     * AppointmentApplicationService constructor.
+     * WebHookApplicationService constructor.
      *
      * @param Container $container
      *
@@ -50,7 +49,6 @@ class WebHookApplicationService
      * @throws ContainerValueNotFoundException
      * @throws NotFoundException
      * @throws QueryExecutionException
-     * @throws ContainerException
      * @throws Exception
      */
     public function process($action, $reservation, $bookings)
@@ -135,11 +133,16 @@ class WebHookApplicationService
                     null,
                     isset($info['locale']) ? $info['locale'] : ''
                 );
+
+                $affectedBookingEntitiesArray[$key]['infoArray'] = $info;
             }
 
             foreach ($reservationEntityArray['bookings'] as $key => $booking) {
                 if ($booking['customFields'] && json_decode($booking['customFields'], true) !== null) {
-                    $reservationEntityArray['bookings'][$key]['customFields'] = json_decode($booking['customFields'], true);
+                    $reservationEntityArray['bookings'][$key]['customFields'] = json_decode(
+                        $booking['customFields'],
+                        true
+                    );
                 }
 
                 $reservationEntityArray['bookings'][$key]['cancelUrl'] = !empty($booking['token']) ?
@@ -158,6 +161,8 @@ class WebHookApplicationService
                     null,
                     isset($info['locale']) ? $info['locale'] : ''
                 );
+
+                $reservationEntityArray['bookings'][$key]['infoArray'] = $info;
             }
 
             foreach ($webHooks as $webHook) {

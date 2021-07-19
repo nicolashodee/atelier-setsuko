@@ -1148,7 +1148,8 @@ class ProviderRepository extends UserRepository implements ProviderRepositoryInt
      */
     public function getOnSpecialDay()
     {
-        $currentDateTime = "STR_TO_DATE('" . DateTimeService::getNowDateTime() . "', '%Y-%m-%d %H:%i:%s')";
+        $dateTimeNowString = DateTimeService::getNowDateTime();
+        $currentDateTime = "STR_TO_DATE('" . $dateTimeNowString . "', '%Y-%m-%d %H:%i:%s')";
         $currentDateString = DateTimeService::getNowDate();
 
         $params = [
@@ -1160,6 +1161,8 @@ class ProviderRepository extends UserRepository implements ProviderRepositoryInt
                 u.id AS user_id,
                 u.firstName AS user_firstName,
                 u.lastName AS user_lastName,
+                sdpt.startTime AS sdp_startTime,
+                sdpt.endTime AS sdp_endTime,
                 IF (
                     {$currentDateTime} >= STR_TO_DATE(CONCAT(DATE_FORMAT(sdt.startDate, '%Y-%m-%d'), ' 00:00:00'), '%Y-%m-%d %H:%i:%s') AND
                     {$currentDateTime} <= DATE_ADD(STR_TO_DATE(CONCAT(DATE_FORMAT(sdt.endDate, '%Y-%m-%d'), ' 00:00:00'), '%Y-%m-%d %H:%i:%s'), INTERVAL 1 DAY) AND
@@ -1172,7 +1175,7 @@ class ProviderRepository extends UserRepository implements ProviderRepositoryInt
               INNER JOIN {$this->providerSpecialDayTable} sdt ON sdt.userId = u.id
               INNER JOIN {$this->providerSpecialDayPeriodTable} sdpt ON sdpt.specialDayId = sdt.id
               WHERE u.type = :type AND
-              STR_TO_DATE('{$currentDateString}', '%Y-%m-%d') BETWEEN sdt.startDate AND sdt.endDate
+                STR_TO_DATE('{$currentDateString}', '%Y-%m-%d') BETWEEN sdt.startDate AND sdt.endDate
               ");
 
             $statement->execute($params);
@@ -1184,8 +1187,10 @@ class ProviderRepository extends UserRepository implements ProviderRepositoryInt
 
         $result = [];
 
+        $dateTimeNow = DateTimeService::getNowDateTimeObject();
         foreach ($rows as $row) {
-            if (!array_key_exists($row['user_id'], $result)) {
+            $dateTimeEnd = DateTimeService::getCustomDateTimeObject($currentDateString . " " . $row['sdp_endTime']);
+            if (!array_key_exists($row['user_id'], $result) && $dateTimeNow <= $dateTimeEnd) {
                 $result[$row['user_id']] = $row;
             }
         }

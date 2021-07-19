@@ -384,3 +384,14 @@ $entries['application.zoom.service'] = function ($c) {
 $entries['application.ics.service'] = function ($c) {
     return new AmeliaBooking\Application\Services\Booking\IcsApplicationService($c);
 };
+
+/**
+ * Stash Service
+ *
+ * @param Container $c
+ *
+ * @return AmeliaBooking\Application\Services\Stash\StashApplicationService
+ */
+$entries['application.stash.service'] = function ($c) {
+    return new AmeliaBooking\Application\Services\Stash\StashApplicationService($c);
+};

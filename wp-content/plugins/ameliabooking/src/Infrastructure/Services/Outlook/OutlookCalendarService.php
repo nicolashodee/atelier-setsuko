@@ -124,12 +124,11 @@ class OutlookCalendarService
 
     /**
      * @param $authCode
+     * @param $redirectUri
      *
      * @return bool
-     *
-     * @throws ContainerException
      */
-    public function fetchAccessTokenWithAuthCode($authCode)
+    public function fetchAccessTokenWithAuthCode($authCode, $redirectUri)
     {
         /** @var SettingsService $settingsService */
         $settingsService = $this->container->get('domain.settings.service');
@@ -137,17 +136,24 @@ class OutlookCalendarService
         /** @var array $outlookSettings */
         $outlookSettings = $settingsService->getCategorySettings('outlookCalendar');
 
-        $response = wp_remote_post('https://login.microsoftonline.com/common/oauth2/v2.0/token', array(
-            'timeout' => 25,
-            'body'    => array(
-                'client_id'     => $outlookSettings['clientID'],
-                'client_secret' => $outlookSettings['clientSecret'],
-                'grant_type'    => 'authorization_code',
-                'code'          => $authCode,
-                'redirect_uri'  => str_replace('http://', 'https://', $outlookSettings['redirectURI']),
-                'scope'         => 'offline_access calendars.readwrite',
-            )
-        ));
+        $response = wp_remote_post(
+            'https://login.microsoftonline.com/common/oauth2/v2.0/token',
+            [
+                'timeout' => 25,
+                'body'    => [
+                    'client_id'     => $outlookSettings['clientID'],
+                    'client_secret' => $outlookSettings['clientSecret'],
+                    'grant_type'    => 'authorization_code',
+                    'code'          => $authCode,
+                    'redirect_uri'  => str_replace(
+                        'http://',
+                        'https://',
+                        empty($redirectUri) ? $outlookSettings['redirectURI'] : explode('?', $redirectUri)[0]
+                    ),
+                    'scope'         => 'offline_access calendars.readwrite',
+                ]
+            ]
+        );
 
         if ($response instanceof WP_Error) {
             return false;
@@ -158,6 +164,7 @@ class OutlookCalendarService
         }
 
         $decodedToken = json_decode($response['body'], true);
+
         $decodedToken['created'] = time();
 
         return json_encode($decodedToken);

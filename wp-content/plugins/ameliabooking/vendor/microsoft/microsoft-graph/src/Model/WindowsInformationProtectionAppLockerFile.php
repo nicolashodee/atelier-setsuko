@@ -88,15 +88,15 @@ class WindowsInformationProtectionAppLockerFile extends Entity
     * Gets the file
     * File as a byte array
     *
-    * @return \GuzzleHttp\Psr7\Stream The file
+    * @return \AmeliaGuzzleHttp\Psr7\Stream The file
     */
     public function getFile()
     {
         if (array_key_exists("file", $this->_propDict)) {
-            if (is_a($this->_propDict["file"], "\GuzzleHttp\Psr7\Stream")) {
+            if (is_a($this->_propDict["file"], "\AmeliaGuzzleHttp\Psr7\Stream")) {
                 return $this->_propDict["file"];
             } else {
-                $this->_propDict["file"] = \GuzzleHttp\Psr7\stream_for($this->_propDict["file"]);
+                $this->_propDict["file"] = \AmeliaGuzzleHttp\Psr7\stream_for($this->_propDict["file"]);
                 return $this->_propDict["file"];
             }
         }
@@ -107,7 +107,7 @@ class WindowsInformationProtectionAppLockerFile extends Entity
     * Sets the file
     * File as a byte array
     *
-    * @param \GuzzleHttp\Psr7\Stream $val The file
+    * @param \AmeliaGuzzleHttp\Psr7\Stream $val The file
     *
     * @return WindowsInformationProtectionAppLockerFile
     */

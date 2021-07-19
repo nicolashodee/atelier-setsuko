@@ -200,7 +200,7 @@ class HelperService
     /**
      * @return array
      */
-    public function getLanguages()
+    public static function getLanguages()
     {
         return array(
             'af' => array(

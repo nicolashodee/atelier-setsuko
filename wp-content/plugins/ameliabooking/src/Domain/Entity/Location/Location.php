@@ -47,26 +47,6 @@ class Location
     private $pin;
 
     /**
-     * Location constructor.
-     *
-     * @param Name    $name
-     * @param Address $address
-     * @param Phone   $phone
-     * @param GeoTag  $coordinates
-     */
-    public function __construct(
-        Name $name,
-        Address $address,
-        Phone $phone,
-        GeoTag $coordinates
-    ) {
-        $this->name = $name;
-        $this->address = $address;
-        $this->phone = $phone;
-        $this->coordinates = $coordinates;
-    }
-
-    /**
      * @return Id
      */
     public function getId()

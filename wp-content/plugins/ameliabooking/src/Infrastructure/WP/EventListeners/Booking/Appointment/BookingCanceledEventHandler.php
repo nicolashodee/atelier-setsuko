@@ -103,6 +103,11 @@ class BookingCanceledEventHandler
 
         $appStatusChanged = $commandResult->getData()['appointmentStatusChanged'];
 
+        $payments = $appointment['bookings'][0]['payments'];
+        if ($payments && count($payments)) {
+            $booking['payments'] = $payments;
+        }
+
         $emailNotificationService->sendCustomerBookingNotification($appointment, $booking);
 
         if ($settingsService->getSetting('notifications', 'smsSignedIn') === true) {

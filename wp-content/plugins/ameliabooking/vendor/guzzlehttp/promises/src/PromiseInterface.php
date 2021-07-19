@@ -1,6 +1,6 @@
 <?php
 
-namespace GuzzleHttp\Promise;
+namespace AmeliaGuzzleHttp\Promise;
 
 /**
  * A promise represents the eventual result of an asynchronous operation.

@@ -62,28 +62,28 @@
     }
 
     .el-radio__input.is-checked .el-radio__inner {
-      background: @color-dark-gray;
-      border-color: @color-dark-gray;
+      //background: @color-dark-gray;
+      //border-color: @color-dark-gray;
     }
 
     .el-radio__input.is-checked .el-radio__inner,
     .el-radio__input.is-indeterminate .el-radio__inner {
-      background-color: @color-dark-gray;
-      border-color: @color-dark-gray;
+      //background-color: @color-dark-gray;
+      //border-color: @color-dark-gray;
     }
 
     .el-radio__input.is-checked + .el-radio__label {
-      color: @color-dark-gray;
+      //color: @color-dark-gray;
     }
 
     .el-checkbox__input.is-checked .el-checkbox__inner,
     .el-checkbox__input.is-indeterminate .el-checkbox__inner {
-      background-color: @color-dark-gray;
-      border-color: @color-dark-gray;
+      //background-color: @color-dark-gray;
+      //border-color: @color-dark-gray;
     }
 
     .el-checkbox__input.is-checked + .el-checkbox__label {
-      color: @color-dark-gray;
+      //color: @color-dark-gray;
     }
 
     .am-event-filter {
@@ -107,13 +107,19 @@
         &:hover {
           background-color: @color-highlight;
         }
-        &.closed {
-          background-color: #f6f6f6;
-        }
-        &.canceled {
-          background-color: #F9F2F4;
-          pointer-events: none;
-        }
+        //&.closed {
+        //  background-color: #f6f6f6;
+        //}
+        //&.full {
+        //  background-color: fade(@color-blue, 10%);
+        //}
+        //&.upcoming {
+        //  background-color: #f9f6f2;
+        //}
+        //&.canceled {
+        //  background-color: #F9F2F4;
+        //  pointer-events: none;
+        //}
 
         @media @less-then-small {
           padding: @padding-medium;
@@ -221,6 +227,20 @@
                     background: #ffffff;
                   }
                 }
+                &.full {
+                  color: #ffffff;
+                  background: @color-blue;
+                  &:before {
+                    background: #ffffff;
+                  }
+                }
+                &.upcoming {
+                  color: #ffffff;
+                  background: fade(@color-orange, 90);
+                  &:before {
+                    background: #ffffff;
+                  }
+                }
                 &.canceled {
                   color: #ffffff;
                   background: @color-red;
@@ -272,25 +292,28 @@
           border-top: 1px solid @color-divider-gray;
           padding: @padding-medium 0;
           margin-top: @margin-medium;
+
           .am-event-photos {
             overflow-x: auto;
             overflow-y: hidden;
             white-space: nowrap;
+
             >div {
               display: inline-block;
             }
+
             .lightbox {
               z-index: 1000;
             }
 
             .lightbox__thumbnail {
               img{
-                margin-right: @margin-small;
                 width: 100px;
                 height: 100px;
-                border-radius: 6px;
+                border-radius: @border-radius;
+                margin-right: @margin-small;
+                box-shadow: 0 0 0 0 transparent;
               }
-
             }
           }
           .am-event-about {
@@ -321,21 +344,23 @@
               padding: @padding-medium 0 0;
             }
 
-            &:first-child {
+            &.am-event-book-cta__inner {
+              display: flex;
+              align-items: center;
+              max-width: 170px;
+              font-size:20px;
+              font-weight: 600;
+              line-height: 26px;
               padding-left: 0;
               padding-right: @padding-big;
-              max-width: 150px;
-              font-size:20px;
-              line-height: 26px;
-              font-weight: 600;
               border-right: 1px solid @color-divider-gray;
 
               @media @less-then-small {
-                max-width: 100%;
                 width: 100%;
+                max-width: 100%;
+                padding: 0 0 @padding-medium;
                 border-right: none;
                 border-bottom: 1px solid @color-divider-gray;
-                padding: 0 0 @padding-medium;
               }
             }
             .el-form-item {
@@ -434,7 +459,7 @@
         transition: opacity 0.1s ease-in-out;
         opacity: 1;
 
-        &.loading {
+        &.am-loading {
           opacity: 0;
         }
       }
@@ -449,7 +474,7 @@
         z-index: -1;
         transition: opacity 0.1s ease-in-out;
 
-        &.loading {
+        &.am-loading {
           height: 100%;
           z-index: 10;
           opacity: 1;

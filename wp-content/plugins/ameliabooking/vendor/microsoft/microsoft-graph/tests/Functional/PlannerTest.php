@@ -84,7 +84,7 @@ class PlannerTest extends TestCase
             	->execute();
 
             $this->assertNotNull($updatedTask->getAssignments()->getProperties()[$me->getId()]);
-        } catch (GuzzleHttp\Exception\ClientException $e) {
+        } catch (AmeliaGuzzleHttp\Exception\ClientException $e) {
             print_r($e->getResponse()->getBody()->getContents());
         }
 

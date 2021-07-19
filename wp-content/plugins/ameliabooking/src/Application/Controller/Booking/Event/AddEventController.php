@@ -6,6 +6,7 @@ use AmeliaBooking\Application\Commands\Booking\Event\AddEventCommand;
 use AmeliaBooking\Application\Commands\CommandResult;
 use AmeliaBooking\Application\Controller\Controller;
 use AmeliaBooking\Domain\Events\DomainEventBus;
+use RuntimeException;
 use Slim\Http\Request;
 
 /**
@@ -25,6 +26,8 @@ class AddEventController extends Controller
         'periods',
         'bookingOpens',
         'bookingCloses',
+        'bookingOpensRec',
+        'bookingClosesRec',
         'recurring',
         'bringingAnyone',
         'bookMultipleTimes',
@@ -44,6 +47,8 @@ class AddEventController extends Controller
         'deposit',
         'depositPayment',
         'depositPerPerson',
+        'timeZone',
+        'utc',
     ];
 
     /**
@@ -53,11 +58,12 @@ class AddEventController extends Controller
      * @param         $args
      *
      * @return AddEventCommand
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     protected function instantiateCommand(Request $request, $args)
     {
         $command = new AddEventCommand($args);
+
         $requestBody = $request->getParsedBody();
         $this->setCommandFields($command, $requestBody);
         $command->setToken($request);

@@ -64,12 +64,33 @@ class AppointmentApplicationService
     }
 
     /**
+     * @param array $data
+     *
+     * @return array|null
+     * @throws Exception
+     */
+    public function convertTime(&$data)
+    {
+        if (!empty($data['utc'])) {
+            $data['bookingStart'] = DateTimeService::getCustomDateTimeFromUtc(
+                $data['bookingStart']
+            );
+        } elseif (!empty($data['timeZone'])) {
+            $data['bookingStart'] = DateTimeService::getDateTimeObjectInTimeZone(
+                $data['bookingStart'],
+                $data['timeZone']
+            )->setTimezone(DateTimeService::getTimeZone())->format('Y-m-d H:i:s');
+        }
+    }
+
+    /**
      * @param array   $data
      * @param Service $service
      *
      * @return Appointment
      * @throws ContainerValueNotFoundException
      * @throws InvalidArgumentException
+     * @throws Exception
      */
     public function build($data, $service)
     {
@@ -78,23 +99,17 @@ class AppointmentApplicationService
 
         $data['bookingEnd'] = $data['bookingStart'];
 
+        /** @var Appointment $appointment */
         $appointment = AppointmentFactory::create($data);
-
-        if (!$appointment instanceof Appointment) {
-            return null;
-        }
 
         $duration = $service->getDuration()->getValue();
 
         $includedExtrasIds = [];
 
-        foreach ($appointment->getBookings()->keys() as $customerBookingKey) {
-            $customerBooking = $appointment->getBookings()->getItem($customerBookingKey);
-
-            foreach ((array)$customerBooking->getExtras()->keys() as $extraKey) {
-                /** @var CustomerBookingExtra $customerBookingExtra */
-                $customerBookingExtra = $customerBooking->getExtras()->getItem($extraKey);
-
+        /** @var CustomerBooking $customerBooking */
+        foreach ($appointment->getBookings()->getItems() as $customerBooking) {
+            /** @var CustomerBookingExtra $customerBookingExtra */
+            foreach ($customerBooking->getExtras()->getItems() as $customerBookingExtra) {
                 $extraId = $customerBookingExtra->getExtraId()->getValue();
 
                 /** @var Extra $extra */
@@ -236,6 +251,7 @@ class AppointmentApplicationService
     /**
      * @param Appointment $oldAppointment
      * @param Appointment $newAppointment
+     * @param Collection  $removedBookings
      * @param Service     $service
      * @param array       $paymentData
      *
@@ -247,7 +263,7 @@ class AppointmentApplicationService
      * @throws QueryExecutionException
      * @throws ContainerException
      */
-    public function update($oldAppointment, $newAppointment, $service, $paymentData)
+    public function update($oldAppointment, $newAppointment, $removedBookings, $service, $paymentData)
     {
         /** @var AppointmentRepository $appointmentRepo */
         $appointmentRepo = $this->container->get('domain.booking.appointment.repository');
@@ -365,38 +381,27 @@ class AppointmentApplicationService
             }
         }
 
-        // Delete if not exist
-        foreach ((array)$oldAppointment->getBookings()->keys() as $bookingKey) {
-            /** @var CustomerBooking $oldBooking */
-            if (!($oldBooking = $oldAppointment->getBookings()->getItem($bookingKey)) instanceof CustomerBooking) {
-                throw new InvalidArgumentException('Unknown type');
+        /** @var CustomerBooking $removedBooking */
+        foreach ($removedBookings->getItems() as $removedBooking) {
+            /** @var CustomerBookingExtra $removedExtra */
+            foreach ($removedBooking->getExtras()->getItems() as $removedExtra) {
+                $customerBookingExtraRepository->delete($removedExtra->getId()->getValue());
             }
 
-            foreach ((array)$oldBooking->getExtras()->keys() as $extraKey) {
-                if (!($oldExtra = $oldBooking->getExtras()->getItem($extraKey)) instanceof CustomerBookingExtra) {
-                    throw new InvalidArgumentException('Unknown type');
-                }
+            /** @var Collection $removedPayments */
+            $removedPayments = $paymentRepository->getByEntityId(
+                $removedBooking->getId()->getValue(),
+                'customerBookingId'
+            );
 
-                if (!isset($existingExtraIds[$oldBooking->getId()->getValue()][$oldExtra->getId()->getValue()])) {
-                    $customerBookingExtraRepository->delete($oldExtra->getId()->getValue());
+            /** @var Payment $payment */
+            foreach ($removedPayments->getItems() as $payment) {
+                if (!$paymentAS->delete($payment)) {
+                    return false;
                 }
             }
 
-            if (!in_array($oldBooking->getId()->getValue(), $existingBookingIds, true)) {
-                $bookingId = $oldBooking->getId()->getValue();
-
-                /** @var Collection $payments */
-                $payments = $paymentRepository->getByEntityId($bookingId, 'customerBookingId');
-
-                /** @var Payment $payment */
-                foreach ($payments->getItems() as $payment) {
-                    if (!$paymentAS->delete($payment)) {
-                        return false;
-                    }
-                }
-
-                $bookingRepository->delete($bookingId);
-            }
+            $bookingRepository->delete($removedBooking->getId()->getValue());
         }
 
         return true;

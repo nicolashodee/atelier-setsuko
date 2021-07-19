@@ -80,12 +80,17 @@ class GoogleCalendarService
      * Create a URL to obtain user authorization.
      *
      * @param $providerId
+     * @param $redirectUri
      *
      * @return string
      */
-    public function createAuthUrl($providerId)
+    public function createAuthUrl($providerId, $redirectUri)
     {
-        $this->client->setRedirectUri(AMELIA_SITE_URL . '/wp-admin/admin.php?page=wpamelia-employees');
+        $this->client->setRedirectUri(
+            empty($redirectUri) ?
+            AMELIA_SITE_URL . '/wp-admin/admin.php?page=wpamelia-employees' :
+            explode('?', $redirectUri)[0]
+        );
         $this->client->setState($providerId);
         $this->client->addScope('https://www.googleapis.com/auth/calendar');
         $this->client->setApprovalPrompt('force');
@@ -101,9 +106,9 @@ class GoogleCalendarService
      *
      * @return string
      */
-    public function fetchAccessTokenWithAuthCode($authCode)
+    public function fetchAccessTokenWithAuthCode($authCode, $redirectUri)
     {
-        $this->client->setRedirectUri(AMELIA_SITE_URL . '/wp-admin/admin.php?page=wpamelia-employees');
+        $this->client->setRedirectUri($redirectUri);
 
         return $this->client->authenticate($authCode);
     }

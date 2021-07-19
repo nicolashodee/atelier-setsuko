@@ -150,15 +150,15 @@ class OnenotePage extends OnenoteEntitySchemaObjectModel
     * Gets the content
     * The page's HTML content.
     *
-    * @return \GuzzleHttp\Psr7\Stream The content
+    * @return \AmeliaGuzzleHttp\Psr7\Stream The content
     */
     public function getContent()
     {
         if (array_key_exists("content", $this->_propDict)) {
-            if (is_a($this->_propDict["content"], "\GuzzleHttp\Psr7\Stream")) {
+            if (is_a($this->_propDict["content"], "\AmeliaGuzzleHttp\Psr7\Stream")) {
                 return $this->_propDict["content"];
             } else {
-                $this->_propDict["content"] = \GuzzleHttp\Psr7\stream_for($this->_propDict["content"]);
+                $this->_propDict["content"] = \AmeliaGuzzleHttp\Psr7\stream_for($this->_propDict["content"]);
                 return $this->_propDict["content"];
             }
         }
@@ -169,7 +169,7 @@ class OnenotePage extends OnenoteEntitySchemaObjectModel
     * Sets the content
     * The page's HTML content.
     *
-    * @param \GuzzleHttp\Psr7\Stream $val The content
+    * @param \AmeliaGuzzleHttp\Psr7\Stream $val The content
     *
     * @return OnenotePage
     */

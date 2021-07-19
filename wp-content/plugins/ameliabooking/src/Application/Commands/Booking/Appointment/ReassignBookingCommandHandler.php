@@ -31,6 +31,7 @@ use AmeliaBooking\Infrastructure\Common\Exceptions\NotFoundException;
 use AmeliaBooking\Infrastructure\Common\Exceptions\QueryExecutionException;
 use AmeliaBooking\Infrastructure\Repository\Booking\Appointment\AppointmentRepository;
 use AmeliaBooking\Infrastructure\Repository\Booking\Appointment\CustomerBookingRepository;
+use Exception;
 use Interop\Container\Exception\ContainerException;
 
 /**
@@ -57,6 +58,7 @@ class ReassignBookingCommandHandler extends CommandHandler
      * @throws QueryExecutionException
      * @throws NotFoundException
      * @throws ContainerException
+     * @throws Exception
      */
     public function handle(ReassignBookingCommand $command)
     {
@@ -156,8 +158,18 @@ class ReassignBookingCommandHandler extends CommandHandler
 
         $bookingStart = $command->getField('bookingStart');
 
-        // Convert UTC slot to slot in TimeZone based on Settings
-        if ($command->getField('utcOffset') !== null && $settingsDS->getSetting('general', 'showClientTimeZone')) {
+        if ($command->getField('timeZone') === 'UTC') {
+            $bookingStart = DateTimeService::getCustomDateTimeFromUtc(
+                $bookingStart
+            );
+        } elseif ($command->getField('timeZone')) {
+            $bookingStart = DateTimeService::getDateTimeObjectInTimeZone(
+                $bookingStart,
+                $command->getField('timeZone')
+            )->setTimezone(DateTimeService::getTimeZone())->format('Y-m-d H:i:s');
+        } elseif ($command->getField('utcOffset') !== null &&
+            $settingsDS->getSetting('general', 'showClientTimeZone')
+        ) {
             $bookingStart = DateTimeService::getCustomDateTimeFromUtc(
                 $bookingStart
             );
@@ -178,6 +190,12 @@ class ReassignBookingCommandHandler extends CommandHandler
         /** @var Appointment $existingAppointment */
         $existingAppointment = $existingAppointments->length() ?
             $existingAppointments->getItem($existingAppointments->keys()[0]) : null;
+
+        /** @var BookingStatus $bookingStatus  */
+        $bookingStatus = $settingsDS
+            ->getEntitySettings($service->getSettings())
+            ->getGeneralSettings()
+            ->getDefaultAppointmentStatus();
 
         $existingAppointmentStatusChanged = false;
 
@@ -201,6 +219,18 @@ class ReassignBookingCommandHandler extends CommandHandler
                 )
             );
 
+            if ($oldAppointment->getStatus()->getValue() === BookingStatus::APPROVED && $bookingStatus === BookingStatus::PENDING) {
+                $oldAppointment->setStatus(new BookingStatus($bookingStatus));
+                $booking->setStatus(new BookingStatus(BookingStatus::PENDING));
+                $booking->setChangedStatus(new BooleanValueObject(true));
+
+                $bookingRepository->updateFieldById(
+                    $booking->getId()->getValue(),
+                    $bookingStatus,
+                    'status'
+                );
+            }
+
             $appointmentRepository->update($oldAppointment->getId()->getValue(), $oldAppointment);
 
             $oldAppointment->setRescheduled(new BooleanValueObject(true));
@@ -209,6 +239,17 @@ class ReassignBookingCommandHandler extends CommandHandler
 
             if ($existingAppointment !== null) {
                 $booking->setAppointmentId($existingAppointment->getId());
+
+                if ($booking->getStatus()->getValue() === BookingStatus::APPROVED && $bookingStatus === BookingStatus::PENDING) {
+                    $booking->setStatus(new BookingStatus(BookingStatus::PENDING));
+                    $booking->setChangedStatus(new BooleanValueObject(true));
+
+                    $bookingRepository->updateFieldById(
+                        $booking->getId()->getValue(),
+                        $bookingStatus,
+                        'status'
+                    );
+                }
 
                 $existingAppointment->getBookings()->addItem($booking, $booking->getId()->getValue());
 

@@ -25,7 +25,7 @@ interface PlaceholderServiceInterface
      *
      * @throws \Interop\Container\Exception\ContainerException
      */
-    public function getEntityPlaceholdersDummyData();
+    public function getEntityPlaceholdersDummyData($type);
 
     /** @noinspection MoreThanThreeArgumentsInspection */
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace GuzzleHttp\Promise;
+namespace AmeliaGuzzleHttp\Promise;
 
 /**
  * Promises/A+ implementation that avoids recursion when possible.

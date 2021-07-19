@@ -10,6 +10,7 @@
   var bookingEntitiesIds = (typeof bookingEntitiesIds === 'undefined') ? [] : bookingEntitiesIds;
   bookingEntitiesIds.push(
     {
+      'hasApiCall': <?php echo $atts['hasApiCall']; ?>,
       'trigger': '<?php echo $atts['trigger']; ?>',
       'counter': '<?php echo $atts['counter']; ?>',
       'eventId': '<?php echo $atts['event']; ?>',
@@ -24,5 +25,5 @@
 </script>
 
 <div id="amelia-app-booking<?php echo $atts['counter']; ?>" class="amelia-service amelia-frontend amelia-app-booking<?php echo $atts['trigger'] !== '' ? ' amelia-skip-load amelia-skip-load-' . $atts['counter'] : ''; ?>">
-    <?php echo $atts['type'] && $atts['type'] === 'calendar' ? '<events-calendar></events-calendar>' : '<events></events>'; ?>
+    <?php echo $atts['type'] && $atts['type'] === 'calendar' ? '<events-calendar></events-calendar>' : '<events-list></events-list>'; ?>
 </div>

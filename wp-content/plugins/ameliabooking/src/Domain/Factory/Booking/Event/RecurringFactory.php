@@ -35,6 +35,23 @@ class RecurringFactory
             $recurring->setOrder(new WholeNumber($data['order']));
         }
 
+        if (isset($data['cycleInterval'])) {
+            $recurring->setCycleInterval(new WholeNumber($data['cycleInterval']));
+        }
+
+        if (isset($data['monthlyRepeat'])) {
+            $recurring->setMonthlyRepeat($data['monthlyRepeat']);
+        }
+
+        if (isset($data['monthlyOnRepeat']) && isset($data['monthlyOnDay'])) {
+            $recurring->setMonthlyOnRepeat(strtolower($data['monthlyOnRepeat']));
+            $recurring->setMonthlyOnDay(strtolower($data['monthlyOnDay']));
+        }
+
+        if (isset($data['monthDate'])) {
+            $recurring->setMonthDate($data['monthDate'] ? new DateTimeValue(DateTimeService::getCustomDateTimeObject($data['monthDate'])) : null);
+        }
+
         if (isset($data['until'])) {
             $recurring->setUntil(new DateTimeValue(DateTimeService::getCustomDateTimeObject($data['until'])));
         }

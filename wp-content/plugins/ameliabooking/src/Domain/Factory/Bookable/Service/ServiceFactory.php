@@ -47,18 +47,38 @@ class ServiceFactory
     public static function create($data)
     {
 
-        $service = new Service(
-            new Name($data['name']),
-            new Price($data['price']),
-            new Status($data['status']),
-            new Id($data['categoryId']),
-            new IntegerValue($data['minCapacity']),
-            new IntegerValue($data['maxCapacity']),
-            new PositiveDuration($data['duration'])
-        );
+        $service = new Service();
 
         if (isset($data['id'])) {
             $service->setId(new Id($data['id']));
+        }
+
+        if (isset($data['name'])) {
+            $service->setName(new Name($data['name']));
+        }
+
+        if (isset($data['price'])) {
+            $service->setPrice(new Price($data['price']));
+        }
+
+        if (isset($data['status'])) {
+            $service->setStatus(new Status($data['status']));
+        }
+
+        if (isset($data['categoryId'])) {
+            $service->setCategoryId(new Id($data['categoryId']));
+        }
+
+        if (isset($data['minCapacity'])) {
+            $service->setMinCapacity(new IntegerValue($data['minCapacity']));
+        }
+
+        if (isset($data['maxCapacity'])) {
+            $service->setMaxCapacity(new IntegerValue($data['maxCapacity']));
+        }
+
+        if (isset($data['duration'])) {
+            $service->setDuration(new PositiveDuration($data['duration']));
         }
 
         if (isset($data['description'])) {

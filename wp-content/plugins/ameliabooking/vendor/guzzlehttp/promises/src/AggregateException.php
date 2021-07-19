@@ -1,6 +1,6 @@
 <?php
 
-namespace GuzzleHttp\Promise;
+namespace AmeliaGuzzleHttp\Promise;
 
 /**
  * Exception thrown when too many errors occur in the some() or any() methods.

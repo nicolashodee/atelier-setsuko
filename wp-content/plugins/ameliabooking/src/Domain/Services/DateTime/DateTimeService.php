@@ -150,6 +150,33 @@ class DateTimeService
     }
 
     /**
+     * Return custom date and time object in UTC
+     *
+     * @param $dateTimeString
+     * @param $timezone
+     *
+     * @return \DateTime
+     */
+    public static function getCustomDateTimeObjectInTimeZone($dateTimeString, $timezone)
+    {
+        return self::getCustomDateTimeObject($dateTimeString)->setTimezone(new \DateTimeZone($timezone));
+    }
+
+    /**
+     * Return custom date and time object in UTC
+     *
+     * @param $dateTimeString
+     * @param $timezone
+     *
+     * @return \DateTime
+     * @throws \Exception
+     */
+    public static function getDateTimeObjectInTimeZone($dateTimeString, $timezone)
+    {
+        return (new \DateTime($dateTimeString, new \DateTimeZone($timezone)));
+    }
+
+    /**
      * Return custom date and time string in UTC
      *
      * @param $dateTimeString

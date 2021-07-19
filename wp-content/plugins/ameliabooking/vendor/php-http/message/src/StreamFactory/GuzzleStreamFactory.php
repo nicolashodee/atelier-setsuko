@@ -16,6 +16,6 @@ final class GuzzleStreamFactory implements StreamFactory
      */
     public function createStream($body = null)
     {
-        return \GuzzleHttp\Psr7\stream_for($body);
+        return \AmeliaGuzzleHttp\Psr7\stream_for($body);
     }
 }

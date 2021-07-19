@@ -10584,4 +10584,15 @@ body.mobile .main {min-height:0;}
 
 }
 
+/* MY CUSTOM CODE  */
+
+@font-face {
+	font-family: 'Toledo';
+	src: url('webfonts/toledo-serial-bold.ttf') format('truetype');
+}
+@font-face {
+	font-family: 'Triplicate';
+	src: url('webfonts/triplicate-t3-regular.otf') format('opentype');
+}
+
 /* FIN! */

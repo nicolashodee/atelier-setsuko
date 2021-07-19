@@ -10,6 +10,7 @@ use AmeliaBooking\Application\Services\Notification\EmailNotificationService;
 use AmeliaBooking\Domain\Common\Exceptions\InvalidArgumentException;
 use AmeliaBooking\Domain\Entity\Entities;
 use AmeliaBooking\Application\Services\Settings\SettingsService;
+use AmeliaBooking\Domain\ValueObjects\String\NotificationSendTo;
 use AmeliaBooking\Infrastructure\Common\Exceptions\QueryExecutionException;
 use AmeliaBooking\Infrastructure\Services\Notification\MailgunService;
 use AmeliaBooking\Infrastructure\Services\Notification\PHPMailService;
@@ -65,6 +66,7 @@ class SendTestEmailCommandHandler extends CommandHandler
         $settingsService = $this->container->get('domain.settings.service');
 
         $notificationSettings = $settingsService->getCategorySettings('notifications');
+        $appointmentsSettings = $settingsService->getCategorySettings('appointments');
 
         if (!$notificationSettings['senderEmail'] || !$notificationSettings['senderName']) {
             $result->setResult(CommandResult::RESULT_ERROR);
@@ -75,7 +77,14 @@ class SendTestEmailCommandHandler extends CommandHandler
 
         $notification = $notificationService->getByNameAndType($command->getField('notificationTemplate'), 'email');
 
-        $dummyData = $placeholderService->getPlaceholdersDummyData();
+        $dummyData = $placeholderService->getPlaceholdersDummyData('email');
+
+        $isForCustomer = $notification->getSendTo()->getValue() === NotificationSendTo::CUSTOMER;
+        $placeholderStringRec = 'recurring' . 'Placeholders' . ($isForCustomer ? 'Customer' : '');
+        $placeholderStringPack = 'package' . 'Placeholders' . ($isForCustomer ? 'Customer' : '');
+
+        $dummyData['recurring_appointments_details'] = $placeholderService->applyPlaceholders($appointmentsSettings[$placeholderStringRec], $dummyData);
+        $dummyData['package_appointments_details']   =  $placeholderService->applyPlaceholders($appointmentsSettings[$placeholderStringPack], $dummyData);
 
         $subject = $placeholderService->applyPlaceholders(
             $notification->getSubject()->getValue(),

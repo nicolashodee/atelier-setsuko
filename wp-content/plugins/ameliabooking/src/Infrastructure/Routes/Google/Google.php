@@ -25,6 +25,8 @@ class Google
     {
         $app->get('/google/authorization/url/{id:[0-9]+}', GetGoogleAuthURLController::class);
 
+        $app->post('/google/authorization/url/{id:[0-9]+}', GetGoogleAuthURLController::class);
+
         $app->post('/google/disconnect/{id:[0-9]+}', DisconnectFromGoogleAccountController::class);
 
         $app->post('/google/authorization/token', FetchAccessTokenWithAuthCodeController::class);

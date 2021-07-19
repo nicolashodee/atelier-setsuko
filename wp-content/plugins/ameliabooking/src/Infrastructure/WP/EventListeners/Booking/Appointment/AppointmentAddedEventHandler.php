@@ -161,7 +161,7 @@ class AppointmentAddedEventHandler
             }
 
             foreach ($appointment['bookings'] as $index => $booking) {
-                if ($booking['status'] === BookingStatus::APPROVED || $booking['status'] === BookingStatus::PENDING) {
+                if ($booking['status'] === BookingStatus::APPROVED) {
                     $appointment['bookings'][$index]['icsFiles'] = $icsService->getIcsData(
                         Entities::APPOINTMENT,
                         $booking['id'],

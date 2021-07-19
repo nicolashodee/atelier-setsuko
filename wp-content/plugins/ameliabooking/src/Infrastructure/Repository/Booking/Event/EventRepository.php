@@ -45,6 +45,8 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
         $params = [
             ':bookingOpens'         => $data['bookingOpens'] ? DateTimeService::getCustomDateTimeInUtc($data['bookingOpens']) : null,
             ':bookingCloses'        => $data['bookingCloses'] ? DateTimeService::getCustomDateTimeInUtc($data['bookingCloses']) : null,
+            ':bookingOpensRec'      => $data['bookingOpensRec'],
+            ':bookingClosesRec'     => $data['bookingClosesRec'],
             ':status'               => $data['status'],
             ':name'                 => $data['name'],
             ':description'          => $data['description'],
@@ -54,6 +56,16 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
                 $data['recurring']['cycle'] : null,
             ':recurringOrder'       => $data['recurring'] && $data['recurring']['order'] ?
                 $data['recurring']['order'] : null,
+            ':recurringInterval'    => $data['recurring'] && $data['recurring']['cycleInterval'] ?
+                $data['recurring']['cycleInterval'] : null,
+            ':recurringMonthly'     => $data['recurring'] && $data['recurring']['monthlyRepeat'] ?
+                $data['recurring']['monthlyRepeat'] : null,
+            ':monthlyDate'          => $data['recurring'] && $data['recurring']['monthDate'] ?
+                DateTimeService::getCustomDateTimeInUtc($data['recurring']['monthDate']) : null,
+            ':monthlyOnRepeat'      => $data['recurring'] && $data['recurring']['monthlyOnRepeat'] ?
+                $data['recurring']['monthlyOnRepeat'] : null,
+            ':monthlyOnDay'         => $data['recurring'] && $data['recurring']['monthlyOnDay'] ?
+                $data['recurring']['monthlyOnDay'] : null,
             ':recurringUntil'       => $data['recurring'] && $data['recurring']['until'] ?
                 DateTimeService::getCustomDateTimeInUtc($data['recurring']['until']) : null,
             ':bringingAnyone'       => $data['bringingAnyone'] ? 1 : 0,
@@ -79,6 +91,8 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
                 (
                 `bookingOpens`,
                 `bookingCloses`,
+                `bookingOpensRec`,
+                `bookingClosesRec`,
                 `status`,
                 `name`,
                 `description`,
@@ -86,6 +100,11 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
                 `price`,
                 `recurringCycle`,
                 `recurringOrder`,
+                `recurringInterval`,
+                `recurringMonthly`,
+                `monthlyDate`,
+                `monthlyOnRepeat`,
+                `monthlyOnDay`,
                 `recurringUntil`,
                 `bringingAnyone`,
                 `bookMultipleTimes`,
@@ -106,6 +125,8 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
                 VALUES (
                 :bookingOpens,
                 :bookingCloses,
+                :bookingOpensRec,
+                :bookingClosesRec,
                 :status,
                 :name,
                 :description,
@@ -113,6 +134,11 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
                 :price,
                 :recurringCycle,
                 :recurringOrder,
+                :recurringInterval,
+                :recurringMonthly,
+                :monthlyDate,
+                :monthlyOnRepeat,
+                :monthlyOnDay,           
                 :recurringUntil,
                 :bringingAnyone,
                 :bookMultipleTimes,
@@ -159,6 +185,8 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
             ':id'                   => $id,
             ':bookingOpens'         => $data['bookingOpens'] ? DateTimeService::getCustomDateTimeInUtc($data['bookingOpens']) : null,
             ':bookingCloses'        => $data['bookingCloses'] ? DateTimeService::getCustomDateTimeInUtc($data['bookingCloses']) : null,
+            ':bookingOpensRec'      => $data['bookingOpensRec'],
+            ':bookingClosesRec'     => $data['bookingClosesRec'],
             ':status'               => $data['status'],
             ':name'                 => $data['name'],
             ':description'          => $data['description'],
@@ -166,6 +194,9 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
             ':price'                => $data['price'],
             ':recurringCycle'       => $data['recurring'] ? $data['recurring']['cycle'] : null,
             ':recurringOrder'       => $data['recurring'] ? $data['recurring']['order'] : null,
+            ':recurringInterval'    => $data['recurring'] ? $data['recurring']['cycleInterval'] : null,
+            ':monthlyDate'          => $data['recurring'] && $data['recurring']['monthDate'] ?
+                DateTimeService::getCustomDateTimeInUtc($data['recurring']['monthDate']) : null,
             ':recurringUntil'       => $data['recurring'] ?
                 DateTimeService::getCustomDateTimeInUtc($data['recurring']['until']) : null,
             ':bringingAnyone'       => $data['bringingAnyone'] ? 1 : 0,
@@ -190,6 +221,8 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
                 SET
                 `bookingOpens` = :bookingOpens,
                 `bookingCloses` = :bookingCloses, 
+                `bookingOpensRec` = :bookingOpensRec,
+                `bookingClosesRec` = :bookingClosesRec, 
                 `status` = :status,
                 `name` = :name,
                 `description` = :description,
@@ -197,6 +230,8 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
                 `price` = :price,
                 `recurringCycle` = :recurringCycle,
                 `recurringOrder` = :recurringOrder,
+                `recurringInterval` = :recurringInterval,
+                `monthlyDate` = :monthlyDate,    
                 `recurringUntil` = :recurringUntil,
                 `bringingAnyone` = :bringingAnyone,
                 `bookMultipleTimes` = :bookMultipleTimes,
@@ -483,8 +518,15 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
                     e.status AS event_status,
                     e.bookingOpens AS event_bookingOpens,
                     e.bookingCloses AS event_bookingCloses,
+                    e.bookingOpensRec AS event_bookingOpensRec,
+                    e.bookingClosesRec AS event_bookingClosesRec,
                     e.recurringCycle AS event_recurringCycle,
                     e.recurringOrder AS event_recurringOrder,
+                    e.recurringInterval AS event_recurringInterval,
+                    e.recurringMonthly AS event_recurringMonthly, 
+                    e.monthlyDate AS event_monthlyDate,
+                    e.monthlyOnRepeat AS event_monthlyOnRepeat,
+                    e.monthlyOnDay AS event_monthlyOnDay,
                     e.recurringUntil AS event_recurringUntil,
                     e.bringingAnyone AS event_bringingAnyone,
                     e.bookMultipleTimes AS event_bookMultipleTimes,
@@ -628,7 +670,12 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
                     e.bookingCloses AS event_bookingCloses,
                     e.recurringCycle AS event_recurringCycle,
                     e.recurringOrder AS event_recurringOrder,
+                    e.recurringInterval AS event_recurringInterval,
                     e.recurringUntil AS event_recurringUntil,
+                    e.recurringMonthly AS event_recurringMonthly, 
+                    e.monthlyDate AS event_monthlyDate,
+                    e.monthlyOnRepeat AS event_monthlyOnRepeat,
+                    e.monthlyOnDay AS event_monthlyOnDay,
                     e.bringingAnyone AS event_bringingAnyone,
                     e.bookMultipleTimes AS event_bookMultipleTimes,
                     e.maxCapacity AS event_maxCapacity,
@@ -919,9 +966,16 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
                     e.name AS event_name,
                     e.status AS event_status,
                     e.bookingOpens AS event_bookingOpens,
-                    e.bookingCloses AS event_bookingCloses,
+                    e.bookingCloses AS event_bookingCloses, 
+                    e.bookingOpensRec AS event_bookingOpensRec,
+                    e.bookingClosesRec AS event_bookingClosesRec,
                     e.recurringCycle AS event_recurringCycle,
                     e.recurringOrder AS event_recurringOrder,
+                    e.recurringInterval AS event_recurringInterval,
+                    e.recurringMonthly AS event_recurringMonthly, 
+                    e.monthlyDate AS event_monthlyDate,
+                    e.monthlyOnRepeat AS event_monthlyOnRepeat,
+                    e.monthlyOnDay AS event_monthlyOnDay,
                     e.recurringUntil AS event_recurringUntil,
                     e.bringingAnyone AS event_bringingAnyone,
                     e.bookMultipleTimes AS event_bookMultipleTimes,
@@ -1034,7 +1088,9 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
      */
     public function getByBookingIds($ids)
     {
+        $paymentsTable = PaymentsTable::getTableName();
         $eventsPeriodsTable = EventsPeriodsTable::getTableName();
+        $eventsTagsTable = EventsTagsTable::getTableName();
 
         $usersTable = UsersTable::getTableName();
         $customerBookingsTable = CustomerBookingsTable::getTableName();
@@ -1062,6 +1118,7 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
                     e.bookingCloses AS event_bookingCloses,
                     e.recurringCycle AS event_recurringCycle,
                     e.recurringOrder AS event_recurringOrder,
+                    e.recurringInterval AS event_recurringInterval,
                     e.recurringUntil AS event_recurringUntil,
                     e.bringingAnyone AS event_bringingAnyone,
                     e.bookMultipleTimes AS event_bookMultipleTimes,
@@ -1087,6 +1144,9 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
                     ep.periodEnd AS event_periodEnd,
                     ep.zoomMeeting AS event_periodZoomMeeting,
                     
+                    et.id AS event_tagId,
+                    et.name AS event_tagName,
+                    
                     cb.id AS booking_id,
                     cb.appointmentId AS booking_appointmentId,
                     cb.customerId AS booking_customerId,
@@ -1107,6 +1167,14 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
                     cu.phone AS customer_phone,
                     cu.gender AS customer_gender,
                     cu.birthday AS customer_birthday,
+       
+                    p.id AS payment_id,
+                    p.amount AS payment_amount,
+                    p.dateTime AS payment_dateTime,
+                    p.status AS payment_status,
+                    p.gateway AS payment_gateway,
+                    p.gatewayTitle AS payment_gatewayTitle,
+                    p.data AS payment_data,
                     
                     pu.id AS provider_id,
                     pu.firstName AS provider_firstName,
@@ -1131,6 +1199,8 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
                 LEFT JOIN {$couponsTable} c ON c.id = cb.couponId
                 LEFT JOIN {$eventsProvidersTable} epr ON epr.eventId = e.id
                 LEFT JOIN {$usersTable} pu ON pu.id = epr.userId
+                LEFT JOIN {$paymentsTable} p ON p.customerBookingId = cb.id
+                LEFT JOIN {$eventsTagsTable} et ON et.eventId = e.id
                 
                 {$where}"
             );
@@ -1188,6 +1258,7 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
                     e.bookingCloses AS event_bookingCloses,
                     e.recurringCycle AS event_recurringCycle,
                     e.recurringOrder AS event_recurringOrder,
+                    e.recurringInterval AS event_recurringInterval,
                     e.recurringUntil AS event_recurringUntil,
                     e.bringingAnyone AS event_bringingAnyone,
                     e.bookMultipleTimes AS event_bookMultipleTimes,

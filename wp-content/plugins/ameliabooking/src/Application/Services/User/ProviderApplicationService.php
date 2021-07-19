@@ -32,6 +32,7 @@ use AmeliaBooking\Domain\ValueObjects\Number\Integer\Id;
 use AmeliaBooking\Domain\ValueObjects\String\Status;
 use AmeliaBooking\Infrastructure\Common\Container;
 use AmeliaBooking\Infrastructure\Common\Exceptions\QueryExecutionException;
+use AmeliaBooking\Infrastructure\Repository\Bookable\Service\PackageCustomerServiceRepository;
 use AmeliaBooking\Infrastructure\Repository\Bookable\Service\PackageServiceProviderRepository;
 use AmeliaBooking\Infrastructure\Repository\Bookable\Service\ProviderServiceRepository;
 use AmeliaBooking\Infrastructure\Repository\Bookable\Service\ServiceRepository;
@@ -1051,15 +1052,17 @@ class ProviderApplicationService
         return $provider;
     }
 
+    /** @noinspection MoreThanThreeArgumentsInspection */
     /**
      * @param Provider   $provider
      * @param Collection $locations
      * @param Collection $services
+     * @param bool       $ignoreTime
      *
      * @return array
      * @throws InvalidArgumentException
      */
-    public function getProviderServiceLocations($provider, $locations, $services)
+    public function getProviderServiceLocations($provider, $locations, $services, $ignoreTime = false)
     {
         $data = [];
 
@@ -1077,6 +1080,7 @@ class ProviderApplicationService
         }
 
         $hasLocations = $locations->length();
+
         $hasServices = $services->length();
 
         /** @var Location $providerLocation */
@@ -1151,7 +1155,7 @@ class ProviderApplicationService
             $specialDayCopy = clone $specialDay->getEndDate()->getValue();
             $specialDayCopy->modify('+1 days');
 
-            if ($specialDayCopy < $currentDate) {
+            if ($specialDayCopy < $currentDate && !$ignoreTime) {
                 continue;
             }
 
@@ -1198,6 +1202,10 @@ class ProviderApplicationService
             }
         }
 
+        foreach ($data as $serviceId => $serviceLocations) {
+            $data[$serviceId] = array_values(array_unique($serviceLocations));
+        }
+
         return $data;
     }
 
@@ -1236,6 +1244,9 @@ class ProviderApplicationService
 
         /** @var PackageServiceProviderRepository $packageServiceProviderRepository */
         $packageServiceProviderRepository = $this->container->get('domain.bookable.package.packageServiceProvider.repository');
+
+        /** @var PackageCustomerServiceRepository $packageCustomerServiceRepository */
+        $packageCustomerServiceRepository = $this->container->get('domain.bookable.packageCustomerService.repository');
 
         /** @var EventProvidersRepository $eventProvidersRepository */
         $eventProvidersRepository = $this->container->get('domain.booking.event.provider.repository');
@@ -1279,6 +1290,7 @@ class ProviderApplicationService
             $outlookCalendarRepository->deleteByEntityId($provider->getId()->getValue(), 'userId') &&
             $eventProvidersRepository->deleteByEntityId($provider->getId()->getValue(), 'userId') &&
             $packageServiceProviderRepository->deleteByEntityId($provider->getId()->getValue(), 'userId') &&
+            $packageCustomerServiceRepository->updateByEntityId($provider->getId()->getValue(), null, 'providerId') &&
             $providerRepository->deleteViewStats($provider->getId()->getValue()) &&
             $customerApplicationService->delete($provider);
     }

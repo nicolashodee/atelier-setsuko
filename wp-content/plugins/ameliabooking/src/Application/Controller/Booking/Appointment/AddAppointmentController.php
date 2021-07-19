@@ -6,6 +6,7 @@ use AmeliaBooking\Application\Commands\Booking\Appointment\AddAppointmentCommand
 use AmeliaBooking\Application\Commands\CommandResult;
 use AmeliaBooking\Application\Controller\Controller;
 use AmeliaBooking\Domain\Events\DomainEventBus;
+use RuntimeException;
 use Slim\Http\Request;
 
 /**
@@ -30,6 +31,8 @@ class AddAppointmentController extends Controller
         'locationId',
         'payment',
         'recurring',
+        'utc',
+        'timeZone',
     ];
 
     /**
@@ -39,11 +42,12 @@ class AddAppointmentController extends Controller
      * @param         $args
      *
      * @return AddAppointmentCommand
-     * @throws \RuntimeException
+     * @throws RuntimeException
      */
     protected function instantiateCommand(Request $request, $args)
     {
         $command = new AddAppointmentCommand($args);
+
         $requestBody = $request->getParsedBody();
         $this->setCommandFields($command, $requestBody);
         $command->setToken($request);

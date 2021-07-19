@@ -2,7 +2,7 @@
 
 namespace Omnipay\Mollie\Test\Message;
 
-use GuzzleHttp\Psr7\Request;
+use AmeliaGuzzleHttp\Psr7\Request;
 use Omnipay\Common\Exception\InvalidRequestException;
 use Omnipay\Mollie\Item;
 use Omnipay\Mollie\Message\Request\CreateCustomerRequest;
