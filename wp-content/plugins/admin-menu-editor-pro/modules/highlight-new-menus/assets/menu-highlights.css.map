@@ -1,7 +1,9 @@
 {
-"version": 3,
-"mappings": "AAIC;;8CAEoC;EACnC,gBAAgB,EAAE,kBAAsB;AAGzC,oCAA0B;EACzB,KAAK,EAAE,eAAgB;EAEvB,8DAA0B;IACzB,KAAK,EAAE,wBAAgB;AAIzB,gCAAsB;EACrB,OAAO,EAAE,IAAI",
-"sources": ["menu-highlights.scss"],
-"names": [],
-"file": "menu-highlights.css"
+    "version": 3,
+    "mappings": "AAAA,AAIC,UAJS,CAIT,CAAC,AAAA,mBAAmB;AAJrB,UAAU,CAKT,EAAE,AAAA,mBAAmB,GAAG,CAAC,AAAA,SAAS;AALnC,UAAU,CAMT,WAAW,GAAG,EAAE,AAAA,mBAAmB,CAAC;EACnC,gBAAgB,EANJ,OAAO,CAMW,UAAU;CACxC;;AARF,AAUC,UAVS,CAUT,EAAE,AAAA,mBAAmB,GAAG,CAAC,CAAC;EACzB,KAAK,EATC,IAAI,CASG,UAAU;CAKvB;;AAhBF,AAaE,UAbQ,CAUT,EAAE,AAAA,mBAAmB,GAAG,CAAC,CAGxB,GAAG,AAAA,cAAc,AAAA,QAAQ,CAAC;EACzB,KAAK,EAZA,wBAAI;CAaT;;AAfH,AAkBC,UAlBS,CAkBT,qBAAqB,CAAC;EACrB,OAAO,EAAE,IAAI;CACb",
+    "sources": [
+        "menu-highlights.scss"
+    ],
+    "names": [],
+    "file": "menu-highlights.css"
 }

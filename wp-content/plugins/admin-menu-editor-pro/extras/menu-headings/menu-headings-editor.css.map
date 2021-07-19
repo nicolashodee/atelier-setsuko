@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAAA,AAAA,aAAa,CAAC,wBAAwB,CAAC;EACtC,gBAAgB,EAAE,kBAAkB;CACpC",
+    "sources": [
+        "menu-headings-editor.scss"
+    ],
+    "names": [],
+    "file": "menu-headings-editor.css"
+}
